@@ -18,59 +18,39 @@ public class Main extends JFrame {
     
     // Variables
     //Super lists, we will be editting, adding, and removing from these!!!
-    public List<Book> bookSuper;
-    public List<Thesis> thesisSuper;
-    public List<Dissertation> dissertationSuper;
-    public List<ConferencePaper> conferenceSuper;
-    public List<JournalPaper> journalSuper;
-    public List<ResearchReport> researchSuper;
-    public List<Magazine> magazineSuper;
-
-
-    //Filter Lists, these are the "filters" we will use to take txt box inputs from user to find SUPER obj to find/edit
-    public List<Book> bookFilter = new ArrayList<>();
-    public List<Thesis> thesisFitler = new ArrayList<>();
-    public List<Dissertation> dissertationFilter = new ArrayList<>();
-    public List<ConferencePaper> conferenceFilter = new ArrayList<>();
-    public List<JournalPaper> journalFilter = new ArrayList<>();
-    public List<ResearchReport> researchFilter = new ArrayList<>();
-    public List<Magazine> magazineFilter = new ArrayList<>();
+//    public List<Book> bookSuper;
+//    public List<Thesis> thesisSuper;
+//    public List<Dissertation> dissertationSuper;
+//    public List<ConferencePaper> conferenceSuper;
+//    public List<JournalPaper> journalSuper;
+//    public List<ResearchReport> researchSuper;
+//    public List<Magazine> magazineSuper;
+    
+    
+    public List<Book> bookSuper = new ArrayList<>();
+    public List<Thesis> thesisSuper = new ArrayList<>();
+    public List<Dissertation> dissertationSuper = new ArrayList<>();
+    public List<ConferencePaper> conferenceSuper = new ArrayList<>();
+    public List<JournalPaper> journalSuper = new ArrayList<>();
+    public List<ResearchReport> researchSuper = new ArrayList<>();
+    public List<Magazine> magazineSuper = new ArrayList<>();
+    
+   
     
     
     //selected items
-     public Book bookSelected = new Book();
-     public Thesis thesisSelected = new Thesis();
-     public Dissertation dissSelected = new Dissertation();
-     public ConferencePaper conSelected = new ConferencePaper();
-     public Magazine magSelected = new Magazine();
-     public JournalPaper jourSelected = new JournalPaper();
-     public ResearchReport resSelected = new ResearchReport();
+     public Book bookSelected;
+     public Thesis thesisSelected;
+     public Dissertation dissSelected;
+     public ConferencePaper conSelected;
+     public Magazine magSelected;
+     public JournalPaper jourSelected;
+     public ResearchReport resSelected;
     
      
     //models
      public DefaultListModel<Publication> listOfItems = new DefaultListModel<>();
-//    public DefaultListModel bookModel = new DefaultListModel();
-//    public DefaultListModel thesisModel = new DefaultListModel();
-//    public DefaultListModel dissModel = new DefaultListModel();
-//    public DefaultListModel conModel = new DefaultListModel();
-//    public DefaultListModel journalModel = new DefaultListModel();
-//    public DefaultListModel researchModel = new DefaultListModel();
-//    public DefaultListModel magModel = new DefaultListModel();
     
-
-    //Show JLists
-    
-//    public JList<Book> bookList = new JList<>(bookModel);
-//    public JList<Thesis> thesisList = new JList<>(thesisModel);
-//    public JList<Dissertation> dissertationList = new JList<>(dissModel);
-//    public JList<ConferencePaper> conferenceList = new JList<>(conModel);
-//    public JList<JournalPaper> journalList = new JList<>(journalModel);
-//    public JList<ResearchReport> researchList = new JList<>(researchModel);
-//    public JList<Magazine> magazineList = new JList<>(magModel);
-
-    
-    
-
     //Use this function to iterate through item sin the JTextField for author/commitee member lists
     public List<Author> setAuthors(String txtField){
         List<Author> author = new ArrayList<Author>();
@@ -94,9 +74,81 @@ public class Main extends JFrame {
         return cmem;
     }
     
+    public void addBook(Book book) {
+        bookSuper.add(book);
+    }
+    public void addThesis(Thesis thesis) {
+        thesisSuper.add(thesis);
+    }
+    public void addDiss(Dissertation diss) {
+        dissertationSuper.add(diss);
+    }
+    public void addCon(ConferencePaper con) {
+        conferenceSuper.add(con);
+    }
+    public void addResearch(ResearchReport research) {
+        researchSuper.add(research);
+    }
+    public void addJournal(JournalPaper journal) {
+        journalSuper.add(journal);
+    }
+    public void addMag(Magazine mag) {
+        magazineSuper.add(mag);
+    }
+    
+    public void remBook(Book book) {
+        bookSuper.remove(book);
+    }
+    public void remThesis(Thesis thesis) {
+        thesisSuper.remove(thesis);
+    }
+    public void remDiss(Dissertation diss) {
+        dissertationSuper.remove(diss);
+    }
+    public void remCon(ConferencePaper con) {
+        conferenceSuper.remove(con);
+    }
+    public void remResearch(ResearchReport research) {
+        researchSuper.remove(research);
+    }
+    public void remJournal(JournalPaper journal) {
+        journalSuper.remove(journal);
+    }
+    public void remMag(Magazine mag) {
+        magazineSuper.remove(mag);
+    }
+    
+    public void setBook(Book book) {
+        bookSelected = book;
+    }
+    public void setThesis(Thesis thesis) {
+        thesisSelected = thesis;
+    }
+    public void setDiss(Dissertation diss) {
+        dissSelected = diss;
+    }
+    public void setCon(ConferencePaper con) {
+        conSelected = con;
+    }
+    public void setResearch(ResearchReport res) {
+        resSelected = res;
+    }
+    public void setJournal(JournalPaper journal) {
+        jourSelected = journal;
+    }
+    public void setMag(Magazine mag) {
+        magSelected = mag;
+    }
+    
+    private static final MainFrame menu = new MainFrame();
+    
+    public void backMenu(){
+        menu.setVisible(true);
+    }
+    
+    
     public static void main(String args[])
     {
-        MainFrame menu = new MainFrame();
         menu.setVisible(true);
     }
 }

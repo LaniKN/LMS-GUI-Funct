@@ -31,7 +31,7 @@ public class Book extends Publication{
 
     @Override
     public String toString() {
-        return super.toString() + ", " + publisher.toString() + ", " + chap + ", " + ", " + fig + ", " + edNum;
+        return super.toString() + ", " + publisher.toString() + ", " + chap + ", " + fig + ", " + edNum;
     }
     
 }

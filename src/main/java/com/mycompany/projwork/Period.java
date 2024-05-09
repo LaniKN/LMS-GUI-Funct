@@ -16,4 +16,8 @@ public class Period {
         this.beginDate = beginDate;
         this.endDate = endDate;
     }
+    
+    public String toString() {
+        return beginDate + "-" + endDate;
+    }
 }

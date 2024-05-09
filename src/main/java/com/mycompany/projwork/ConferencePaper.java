@@ -22,4 +22,8 @@ public class ConferencePaper extends Publication {
         this.period = period;
 
     }
+    
+    public String toString() {
+        return super.toString() + ", " + conferenceName + ", " + location.toString() + ", " + period.toString();
+    }
 }

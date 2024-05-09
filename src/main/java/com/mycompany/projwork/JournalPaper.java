@@ -13,4 +13,8 @@ public class JournalPaper extends Publication {
         super(t, py, an);
         journal_title = jt;
     }
+    
+    public String toString() {
+        return super.toString() + ", " + journal_title;
+    }
 }

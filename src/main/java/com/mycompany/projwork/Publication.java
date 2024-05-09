@@ -27,6 +27,17 @@ public class Publication {
     
     @Override
     public String toString() {
-        return title + ", " + Arrays.toString(author_list) + ", " + pubYear;
+        StringBuilder stringBuilder = new StringBuilder();
+        
+        for (Author author : author_list){
+            stringBuilder.append(author.toString());
+            stringBuilder.append(", ");
+        }
+        String authors = stringBuilder.toString();
+        return title + ", " + authors + pubYear;
+    }
+    
+    public String getTitle() {
+        return title;
     }
 }

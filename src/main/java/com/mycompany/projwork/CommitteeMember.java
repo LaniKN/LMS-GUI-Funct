@@ -12,4 +12,8 @@ public class CommitteeMember{
         this.fn = fn;
         this.ln = ln;
     }
+    
+    public String toString() {
+        return fn + ", " + ln;
+    }
 }

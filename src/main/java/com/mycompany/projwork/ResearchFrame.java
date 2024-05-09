@@ -236,16 +236,20 @@ public class ResearchFrame extends Main {
             int numAuthors = authors.size();
 
             //this bookSuper.add is the justAddedBook
-            super.researchSuper.add(new ResearchReport(erResearchTitleTxt.getText(), eRResearchPubYearTxt.getText(), numAuthors));
+            ResearchReport justAddedResearch = new ResearchReport(erResearchTitleTxt.getText(), eRResearchPubYearTxt.getText(), numAuthors);
 
             //outer part makes sure we get only 1 book, the most recent
             for(int i = 1; i>0; i--){
-                ResearchReport justAddedResearch = super.researchSuper.get(super.researchSuper.size()-1);
+                
                 //this for loop goes through array size for the number of authors in this new book
                 for (int num = 0; num < numAuthors; num++){
                     //we are adding the Authors for each index in the author_list for the new book.
                   justAddedResearch.author_list[num] = authors.get(numAuthors - (1+num));
                 }
+                
+                super.addResearch(justAddedResearch);
+                this.setVisible(false);
+                super.backMenu();
             }
             //researchList = new JList<ResearchReport>(researchSuper.toArray(new ResearchReport[researchSuper.size()]));
         }
@@ -254,7 +258,9 @@ public class ResearchFrame extends Main {
     private void removeResearchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeResearchBtnActionPerformed
         int m = JOptionPane.showConfirmDialog(null, "Are you sure?", "Confirmation", JOptionPane.YES_NO_OPTION);
         if (m == JOptionPane.YES_OPTION) {
-            super.researchSuper.remove(super.resSelected);
+            super.remResearch(super.resSelected);
+            this.setVisible(false);
+            super.backMenu();
         } else {
             System.exit(0);
         }            

@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
  */
 //import javax.swing.JFrame;
 
-public class BookFrame extends MainFrame {
+public class BookFrame extends Main {
 
 //    List<Book> books = new ArrayList<Book>();
     /**
@@ -301,8 +301,8 @@ public class BookFrame extends MainFrame {
             int numAuthors = authors.size();
 
             //this bookSuper.add is the justAddedBook
-            super.bookSuper.add(new Book(eRBookTitleTxt.getText(), eRBookPubYearTxt.getText(), numAuthors, eRBookPubTxt.getText(), Integer.parseInt(eRBookChapTxt.getText()), Integer.parseInt(eRBookFigTxt.getText()), Integer.parseInt(eRBookEdNumTxt.getText()) ));
-            Book justAddedBook = super.bookSuper.get(super.bookSuper.size()-1);
+            Book justAddedBook = new Book(eRBookTitleTxt.getText(), eRBookPubYearTxt.getText(), numAuthors, eRBookPubTxt.getText(), Integer.parseInt(eRBookChapTxt.getText()), Integer.parseInt(eRBookFigTxt.getText()), Integer.parseInt(eRBookEdNumTxt.getText()) );
+            
             //outer part makes sure we get only 1 book, the most recent
             for(int i = 1; i>0; i--){
                 //this for loop goes through array size for the number of authors in this new book
@@ -311,13 +311,11 @@ public class BookFrame extends MainFrame {
                   justAddedBook.author_list[num] = authors.get(numAuthors - (1+num));
                 }
             }
-            
-//            System.out.println(super.bookSuper.size());
-//            System.out.println(justAddedBook);
-            
-            MainFrame mainFrame = new MainFrame(true, justAddedBook);
+            super.addBook(justAddedBook);
+            System.out.println(super.bookSuper.toString());
             this.setVisible(false);
-            mainFrame.setVisible(true);
+            super.backMenu();
+            
             
         }
         
@@ -326,7 +324,9 @@ public class BookFrame extends MainFrame {
     private void removeBookBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeBookBtnActionPerformed
         int m = JOptionPane.showConfirmDialog(null, "Are you sure?", "Confirmation", JOptionPane.YES_NO_OPTION);
         if (m == JOptionPane.YES_OPTION) {
-            super.bookSuper.remove(super.bookSelected);
+            super.remBook(super.bookSelected);
+            this.setVisible(false);
+            super.backMenu();
         } else {
             System.exit(0);
         }            
