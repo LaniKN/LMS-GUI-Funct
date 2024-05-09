@@ -8,14 +8,15 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
 import javax.swing.AbstractButton;
+import javax.swing.DefaultListModel;
 
 /**
  *
  * @author nohea
  */
 public class MainFrame extends Main {
-    
-    
+  
+
     /**
      * Creates new form NewJFrame
      * public String title, pubYear;
@@ -25,33 +26,79 @@ public class MainFrame extends Main {
     public Figures fig;
     private int edNum;
      */
+    //1st run: set up some default values
     public MainFrame() {
         initComponents();
-        //do this below for all types like 2-3 times
-        super.bookSuper.add(new Book());
-        super.bookSuper.add(new Book());
-        super.thesisSuper.add(new Thesis());
-        super.thesisSuper.add(new Thesis());
-        super.dissertationSuper.add(new Dissertation());
-        super.dissertationSuper.add(new Dissertation());
-        super.conferenceSuper.add(new ConferencePaper());
-        super.conferenceSuper.add(new ConferencePaper());
-        super.journalSuper.add(new JournalPaper());
-        super.journalSuper.add(new JournalPaper());
-        super.researchSuper.add(new ResearchReport());
-        super.researchSuper.add(new ResearchReport());
-        super.magazineSuper.add(new Magazine());
-        super.magazineSuper.add(new Magazine());        
+//        super.bookSuper = new ArrayList<>();
+//        super.thesisSuper = new ArrayList<>();
+//        super.dissertationSuper = new ArrayList<>();
+//        super.conferenceSuper = new ArrayList<>();
+//        super.researchSuper = new ArrayList<>();
+//        super.journalSuper = new ArrayList<>();
+//        super.magazineSuper = new ArrayList<>();
         
-        /*bookFrame.setVisible(false);
-        thesisFrame.setVisible(false);
-        dissFrame.setVisible(false);
-        conFrame.setVisible(false);
-        journalFrame.setVisible(false);
-        researchFrame.setVisible(false);
-        magFrame.setVisible(false);*/
+        
+                
+        //do this below for all types like 2-3 times
+        super.addBook(new Book());
+        super.addBook(new Book());
+        super.addThesis(new Thesis());
+        super.addThesis(new Thesis());
+        super.addDiss(new Dissertation());
+        super.addDiss(new Dissertation());
+        super.addCon(new ConferencePaper());
+        super.addCon(new ConferencePaper());
+        super.addJournal(new JournalPaper());
+        super.addJournal(new JournalPaper());
+        super.addResearch(new ResearchReport());
+        super.addResearch(new ResearchReport());
+        super.addMag(new Magazine());
+        super.addMag(new Magazine());
+        
+        
     }
+    
+    
+//    public MainFrame(Book newBook) {
+//        initComponents();
+//        super.addBook(newBook);
+//        super.listOfItems.clear();
+//    }
+//    public MainFrame(Thesis newThesis) {
+//        initComponents();
+//        super.addThesis(newThesis);
+//        super.listOfItems.clear();
+//    }
+//    public MainFrame(Dissertation newDiss) {
+//        initComponents();
+//        super.addDiss(newDiss);
+//        super.listOfItems.clear();
+//    }
+//    public MainFrame(ConferencePaper newCon) {
+//        initComponents();
+//        super.addCon(newCon);
+//        super.listOfItems.clear();
+//    }
+//    public MainFrame(ResearchReport newResearch) {
+//        initComponents();
+//        super.addResearch(newResearch);
+//        super.listOfItems.clear();
+//    }
+//    public MainFrame(JournalPaper newJournal) {
+//        initComponents();
+//        super.addJournal(newJournal);
+//        super.listOfItems.clear();
+//    }
+//    public MainFrame(Magazine newMag) {
+//        initComponents();
+//        super.addMag(newMag);
+//        super.listOfItems.clear();
+//    }
 
+    
+    
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -68,10 +115,6 @@ public class MainFrame extends Main {
         InnerBodyPanel = new javax.swing.JPanel();
         searchTitleLabel = new javax.swing.JLabel();
         searchTitleTxt = new javax.swing.JTextField();
-        searchAuthorLabel = new javax.swing.JLabel();
-        searchAuthorTxt = new javax.swing.JTextField();
-        searchPubYearLabel = new javax.swing.JLabel();
-        searchPubYearTxt = new javax.swing.JTextField();
         searchTypePanel = new javax.swing.JPanel();
         searchTypeBookBtn = new javax.swing.JRadioButton();
         searchTypeThesisBtn = new javax.swing.JRadioButton();
@@ -82,7 +125,7 @@ public class MainFrame extends Main {
         searchTypeMagazineBtn = new javax.swing.JRadioButton();
         searchBtn = new javax.swing.JButton();
         searchScrollpane = new javax.swing.JScrollPane();
-        searchResultList = new javax.swing.JList<>();
+        searchResultList = new javax.swing.JList<>(super.listOfItems);
         ItmSearchDescLabel = new javax.swing.JLabel();
         ItmSearchLabel = new javax.swing.JLabel();
         addItemBtn = new javax.swing.JButton();
@@ -106,16 +149,6 @@ public class MainFrame extends Main {
         searchTitleLabel.setText("Title:");
 
         searchTitleTxt.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
-
-        searchAuthorLabel.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
-        searchAuthorLabel.setText("Author:");
-
-        searchAuthorTxt.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
-
-        searchPubYearLabel.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
-        searchPubYearLabel.setText("Publication Year:");
-
-        searchPubYearTxt.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
 
         searchTypePanel.setBackground(new java.awt.Color(203, 211, 217));
 
@@ -192,7 +225,8 @@ public class MainFrame extends Main {
         });
 
         searchResultList.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
-        searchResultList.setModel(bookModel);
+        searchResultList.setModel(super.listOfItems);
+        searchResultList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         searchScrollpane.setViewportView(searchResultList);
 
         javax.swing.GroupLayout InnerBodyPanelLayout = new javax.swing.GroupLayout(InnerBodyPanel);
@@ -206,17 +240,10 @@ public class MainFrame extends Main {
                         .addComponent(searchTypePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(InnerBodyPanelLayout.createSequentialGroup()
+                        .addGap(95, 95, 95)
                         .addComponent(searchTitleLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(searchTitleTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(searchAuthorLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(searchAuthorTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(searchPubYearLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(searchPubYearTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29)
+                        .addComponent(searchTitleTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 481, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(searchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(25, 25, 25))
@@ -231,10 +258,6 @@ public class MainFrame extends Main {
                 .addGroup(InnerBodyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(searchTitleLabel)
                     .addComponent(searchTitleTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(searchAuthorLabel)
-                    .addComponent(searchAuthorTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(searchPubYearLabel)
-                    .addComponent(searchPubYearTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(searchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(searchTypePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -363,7 +386,7 @@ public class MainFrame extends Main {
 
     private void addItemBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addItemBtnActionPerformed
         // TODO add your handling code here:
-        
+        super.listOfItems.clear();
         for(Enumeration<AbstractButton> buttons = searchTypeBtnGroup.getElements() ; buttons.hasMoreElements();)
         {
             AbstractButton button = buttons.nextElement();
@@ -371,8 +394,9 @@ public class MainFrame extends Main {
                 this.setVisible(false);
                 String type = button.getText();
                 if (type.contains("Book")){
-                    BookFrame bookFrame = new BookFrame(1);
-                    bookFrame.setVisible(true);
+//                    BookFrame bookFrame = new BookFrame(1);
+                    super.book.setVisible(true);
+                    this.setVisible(false);
                 } else if (type.contains("Thesis")) {
                     ThesisFrame thesisFrame = new ThesisFrame(1);
                     thesisFrame.setVisible(true);
@@ -383,7 +407,6 @@ public class MainFrame extends Main {
                     ConferenceFrame conFrame = new ConferenceFrame(1);
                     conFrame.setVisible(true);
                 } else if (type.contains("Journal")) {
-                    
                     JournalFrame journalFrame = new JournalFrame(1);
                     journalFrame.setVisible(true);
                 } else if (type.contains("Research")) {
@@ -407,214 +430,112 @@ public class MainFrame extends Main {
 
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
         // TODO add your handling code here:
+        super.listOfItems.clear();
+        System.out.println(super.bookSuper.toString());
         for(Enumeration<AbstractButton> buttons = searchTypeBtnGroup.getElements() ; buttons.hasMoreElements();)
         {
             AbstractButton button = buttons.nextElement();
             if (button.isSelected()) {
-                this.setVisible(false);
                 String type = button.getText();
                 
                 //is title txt empty?
                 if (!searchTitleTxt.getText().isEmpty()) { //has title
                     String titleFilter = searchTitleTxt.getText();
                     
-                    //is it a magazine?
-                    if (!type.contains("Magazine")) { //not magazine
-                        
-                        if (!searchAuthorTxt.getText().isEmpty()){//has author
-                            List<Author> authors = super.setAuthors(searchAuthorTxt.getText());
-                            
-                            //is the pubYear filled in?
-                            if (!searchPubYearTxt.getText().isEmpty()) {//pub year
-                                String pubYearFilter = searchPubYearTxt.getText();
-                                if (type.contains("Book")){
-                                    //super.bookModel.clear();
-                                       for (Book book : super.bookSuper) {
-                                           for (Author author : authors){
-                                               for (int a = 0; a < book.authNum-1; a++){
-                                                    if (book.title.contains(titleFilter) && book.author_list[a].equals(author) && book.pubYear.contains(pubYearFilter)) {
-                                                        super.bookFilter.add(book);
-//                                                        super.bookModel.addElement(book);
-//                                                        searchResultList.setModel(super.bookModel);
-//                                                        this.setVisible(true);
-                                                    }
-                                               }
-                                           }
-                                       }
-                                } else if (type.contains("Thesis")) {
-                                    //super.bookModel.clear();
-                                       for (Thesis thesis : super.thesisSuper) {
-                                           for (Author author : authors){
-                                               for (int a = 0; a < thesis.author_list.length-1; a++){
-                                                    if (thesis.title.contains(titleFilter) && thesis.author_list[a].equals(author) && thesis.pubYear.contains(pubYearFilter)) {
-                                                        super.thesisFitler.add(thesis);
-//                                                        super.bookModel.addElement(book);
-//                                                        searchResultList.setModel(super.bookModel);
-//                                                        this.setVisible(true);
-                                                    }
-                                               }
-                                           }
-                                       }
-                                } else if (type.contains("Dissert")) {
-                                        for (Dissertation dissertation : super.dissertationSuper) {
-                                           for (Author author : authors){
-                                               for (int a = 0; a < dissertation.author_list.length-1; a++){
-                                                    if (dissertation.title.contains(titleFilter) && dissertation.author_list[a].equals(author) && dissertation.pubYear.contains(pubYearFilter)) {
-                                                        super.dissertationFilter.add(dissertation);
-//                                                        super.bookModel.addElement(book);
-//                                                        searchResultList.setModel(super.bookModel);
-//                                                        this.setVisible(true);
-                                                    }
-                                               }
-                                           }
-                                       }
-                                } else if (type.contains("Conf")) {
-                                        for (ConferencePaper conference : super.conferenceSuper) {
-                                           for (Author author : authors){
-                                               for (int a = 0; a < conference.author_list.length-1; a++){
-                                                    if (conference.title.contains(titleFilter) && conference.author_list[a].equals(author) && conference.pubYear.contains(pubYearFilter)) {
-                                                        super.conferenceFilter.add(conference);
-//                                                        super.bookModel.addElement(book);
-//                                                        searchResultList.setModel(super.bookModel);
-//                                                        this.setVisible(true);
-                                                    }
-                                               }
-                                           }
-                                       }
-                                } else if (type.contains("Journal")) {
-                                        for (JournalPaper journal : super.journalSuper) {
-                                           for (Author author : authors){
-                                               for (int a = 0; a < journal.author_list.length-1; a++){
-                                                    if (journal.title.contains(titleFilter) && journal.author_list[a].equals(author) && journal.pubYear.contains(pubYearFilter)) {
-                                                        super.journalFilter.add(journal);
-//                                                        super.bookModel.addElement(book);
-//                                                        searchResultList.setModel(super.bookModel);
-//                                                        this.setVisible(true);
-                                                    }
-                                               }
-                                           }
-                                       }
-                                } else if (type.contains("Research")) {
-                                        for (ResearchReport research : super.researchSuper) {
-                                           for (Author author : authors){
-                                               for (int a = 0; a < research.author_list.length-1; a++){
-                                                    if (research.title.contains(titleFilter) && research.author_list[a].equals(author) && research.pubYear.contains(pubYearFilter)) {
-                                                        super.researchFilter.add(research);
-//                                                        super.bookModel.addElement(book);
-//                                                        searchResultList.setModel(super.bookModel);
-//                                                        this.setVisible(true);
-                                                    }
-                                               }
-                                           }
-                                       }
+                    if (type.contains("Book")){
+                            for (Book book : super.bookSuper) {
+                                System.out.println("Book: " + book);
+                                if (book.getTitle().equalsIgnoreCase(titleFilter)) {
+                                    super.listOfItems.addElement(book);
+                                    searchResultList.setModel(super.listOfItems);
                                 }
-
-                            } else {//does not have pub year
-                                
                             }
-                        } else {//does not have author
-                            
-                        }
                         
-                    } else { //is magazine
-                        
-                    }
-            
-                } else { //does not have title
-
-                    if (!type.contains("Magazine")) { //not magazine
-                        
-                        if (!searchAuthorTxt.getText().isEmpty()){//has author
-                            List<Author> authors = super.setAuthors(searchAuthorTxt.getText());
-                            
-                            //is the pubYear filled in?
-                            if (!searchPubYearTxt.getText().isEmpty()) {//pub year
-                                String pubYearFilter = searchPubYearTxt.getText();
-                                if (type.contains("Book")){
-                                    //super.bookModel.clear();
-                                       for (Book book : super.bookSuper) {
-                                           for (Author author : authors){
-                                               for (int a = 0; a < book.authNum-1; a++){
-                                                    if (book.author_list[a].equals(author) && book.pubYear.contains(pubYearFilter)) {
-                                                        super.bookFilter.add(book);
-//                                                        super.bookModel.addElement(book);
-//                                                        searchResultList.setModel(super.bookModel);
-//                                                        this.setVisible(true);
-                                                    }
-                                               }
-                                           }
-                                       }
-                                } else if (type.contains("Thesis")) {
-                                    //super.bookModel.clear();
-                                       for (Thesis thesis : super.thesisSuper) {
-                                           for (Author author : authors){
-                                               for (int a = 0; a < thesis.author_list.length-1; a++){
-                                                    if (thesis.author_list[a].equals(author) && thesis.pubYear.contains(pubYearFilter)) {
-                                                        super.thesisFitler.add(thesis);
-//                                                        super.bookModel.addElement(book);
-//                                                        searchResultList.setModel(super.bookModel);
-//                                                        this.setVisible(true);
-                                                    }
-                                               }
-                                           }
-                                       }
-                                } else if (type.contains("Dissert")) {
-                                        for (Dissertation dissertation : super.dissertationSuper) {
-                                           for (Author author : authors){
-                                               for (int a = 0; a < dissertation.author_list.length-1; a++){
-                                                    if (dissertation.author_list[a].equals(author) && dissertation.pubYear.contains(pubYearFilter)) {
-                                                        super.dissertationFilter.add(dissertation);
-//                                                        super.bookModel.addElement(book);
-//                                                        searchResultList.setModel(super.bookModel);
-//                                                        this.setVisible(true);
-                                                    }
-                                               }
-                                           }
-                                       }
-                                } else if (type.contains("Conf")) {
-                                        for (ConferencePaper conference : super.conferenceSuper) {
-                                           for (Author author : authors){
-                                               for (int a = 0; a < conference.author_list.length-1; a++){
-                                                    if (conference.author_list[a].equals(author) && conference.pubYear.contains(pubYearFilter)) {
-                                                        super.conferenceFilter.add(conference);
-//                                                        super.bookModel.addElement(book);
-//                                                        searchResultList.setModel(super.bookModel);
-//                                                        this.setVisible(true);
-                                                    }
-                                               }
-                                           }
-                                       }
-                                } else if (type.contains("Journal")) {
-                                        for (JournalPaper journal : super.journalSuper) {
-                                           for (Author author : authors){
-                                               for (int a = 0; a < journal.author_list.length-1; a++){
-                                                    if (journal.author_list[a].equals(author) && journal.pubYear.contains(pubYearFilter)) {
-                                                        super.journalFilter.add(journal);
-//                                                        super.bookModel.addElement(book);
-//                                                        searchResultList.setModel(super.bookModel);
-//                                                        this.setVisible(true);
-                                                    }
-                                               }
-                                           }
-                                       }
-                                } else if (type.contains("Research")) {
-                                        for (ResearchReport research : super.researchSuper) {
-                                           for (Author author : authors){
-                                               for (int a = 0; a < research.author_list.length-1; a++){
-                                                    if (research.author_list[a].equals(author) && research.pubYear.contains(pubYearFilter)) {
-                                                        super.researchFilter.add(research);
-//                                                        super.bookModel.addElement(book);
-//                                                        searchResultList.setModel(super.bookModel);
-//                                                        this.setVisible(true);
-                                                    }
-                                               }
-                                           }
-                                       }
+                    } else if (type.contains("Thesis")) {
+                        //super.bookModel.clear();
+                           for (Thesis thesis : thesisSuper) {
+                                if (thesis.getTitle().equalsIgnoreCase(titleFilter)) {
+                                    super.listOfItems.addElement(thesis);
+                                    searchResultList.setModel(super.listOfItems);
+                                    System.out.println("Should be showing updated List");
                                 }
+                            }
+                    } else if (type.contains("Dissert")) {
+                        for (Dissertation dissertation : dissertationSuper) {
+                            if (dissertation.getTitle().equalsIgnoreCase(titleFilter)) {
+                                super.listOfItems.addElement(dissertation);
+                                    searchResultList.setModel(super.listOfItems);
+                           }
+                        }
+                    } else if (type.contains("Conf")) {
+                        for (ConferencePaper conference : conferenceSuper) {
+                            if (conference.getTitle().equalsIgnoreCase(titleFilter)) {
+                                super.listOfItems.addElement(conference);
+                                    searchResultList.setModel(super.listOfItems);
+                           }
+                        }
+                    } else if (type.contains("Journal")) {
+                        for (JournalPaper journal : journalSuper) {
+                            if (journal.getTitle().equalsIgnoreCase(titleFilter)) {
+                                super.listOfItems.addElement(journal);
+                                searchResultList.setModel(super.listOfItems);
+                           }
+                        }
+                    } else if (type.contains("Research")) {
+                        for (ResearchReport research : researchSuper) {
+                            if (research.getTitle().equalsIgnoreCase(titleFilter)) {
+                                super.listOfItems.addElement(research);
+                                searchResultList.setModel(super.listOfItems);
+                           }
+                        }
+                    } else if (type.contains("Magazine")) {
+                        for (Magazine mag : magazineSuper) {
+                            if (mag.getTitle().equalsIgnoreCase(titleFilter)) {
+                                super.listOfItems.addElement(mag);
+                                searchResultList.setModel(super.listOfItems);
+                            }
+                        }
+                    }
                     
+                    
+                } else { //does not have title
+                    if (type.contains("Book")){
+                        for (Book book : super.bookSuper){
+                            super.listOfItems.addElement(book);
+                        }
+                        searchResultList.setModel(super.listOfItems);
+                    } else if (type.contains("Thesis")) {
+                        for (Thesis thesis : super.thesisSuper){
+                            super.listOfItems.addElement(thesis);
+                        }
+                        searchResultList.setModel(super.listOfItems);
+                    } else if (type.contains("Dissert")) {
+                        for (Dissertation diss : super.dissertationSuper){
+                            super.listOfItems.addElement(diss);
+                        }
+                        searchResultList.setModel(super.listOfItems);
+                    } else if (type.contains("Conf")) {
+                        for (ConferencePaper conference : super.conferenceSuper){
+                            super.listOfItems.addElement(conference);
+                        }
+                        searchResultList.setModel(super.listOfItems);
+                    } else if (type.contains("Research")) {
+                        for (ResearchReport research : super.researchSuper){
+                            super.listOfItems.addElement(research);
+                        }
+                        searchResultList.setModel(super.listOfItems);
+                    } else if (type.contains("Magazine")) {
+                        for (Magazine mag : super.magazineSuper) {
+                            super.listOfItems.addElement(mag);
+                        }
+                        searchResultList.setModel(super.listOfItems);
+                    }
                 }
             }
         }
+            
+            
+        
         
     }//GEN-LAST:event_searchBtnActionPerformed
 
@@ -670,12 +591,8 @@ public class MainFrame extends Main {
     private javax.swing.JTree genReportTree;
     private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel searchAuthorLabel;
-    private javax.swing.JTextField searchAuthorTxt;
     private javax.swing.JButton searchBtn;
-    private javax.swing.JLabel searchPubYearLabel;
-    private javax.swing.JTextField searchPubYearTxt;
-    private javax.swing.JList<String> searchResultList;
+    public javax.swing.JList<Publication> searchResultList;
     private javax.swing.JScrollPane searchScrollpane;
     private javax.swing.JLabel searchTitleLabel;
     private javax.swing.JTextField searchTitleTxt;

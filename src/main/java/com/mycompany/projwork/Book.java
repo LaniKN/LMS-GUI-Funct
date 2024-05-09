@@ -29,4 +29,9 @@ public class Book extends Publication{
     public void setEdNum(int num){ if(num >=1){ edNum = num; } }
     public int getEdNum(){return edNum;}
 
+    @Override
+    public String toString() {
+        return super.toString() + ", " + publisher.toString() + ", " + chap + ", " + fig + ", " + edNum;
+    }
+    
 }

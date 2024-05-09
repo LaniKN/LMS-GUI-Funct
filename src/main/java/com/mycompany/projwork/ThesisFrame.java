@@ -318,20 +318,23 @@ public class ThesisFrame extends Main {
             Chapters addThesisChapter = new Chapters(Integer.parseInt(eRThesisChapTxt.getText()));
             Figures addThesisFigure = new Figures(Integer.parseInt(eRThesisFigTxt.getText()));
 
-            super.thesisSuper.add(new Thesis(eRThesisTitleTxt.getText(), eRThesisPubYearTxt.getText(), addThesisDepartment, numCommittee, addThesisChapter, addThesisFigure));
+            Thesis justAddedThesis =  new Thesis(eRThesisTitleTxt.getText(), eRThesisPubYearTxt.getText(), addThesisDepartment, numCommittee, addThesisChapter, addThesisFigure);
             // thesisSuper.author_list[0] = addThesisAuthorTxt.getText();
             
 
             //outer part makes sure we get only 1 book, the most recent
             for(int i = 1; i>0; i--){
-                Thesis justAddedThesis = thesisSuper.get(thesisSuper.size()-1);
+                
                 //this for loop goes through array size for the number of authors in this new book
                 for (int num = 0; num < numCommittee; num++){
                     //we are adding the Authors for each index in the author_list for the new book.
                   justAddedThesis.committeeMembers[num] = committee.get(numCommittee - (1+num));
                 }
             }
-            //thesisList = new JList<Thesis>(thesisSuper.toArray(new Thesis[thesisSuper.size()]));
+            
+            super.addThesis(justAddedThesis);
+            this.setVisible(false);
+            super.backMenu();
     
         }
     }//GEN-LAST:event_addThesisBtnActionPerformed
@@ -339,7 +342,9 @@ public class ThesisFrame extends Main {
     private void removeThesisBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeThesisBtnActionPerformed
         int m = JOptionPane.showConfirmDialog(null, "Are you sure?", "Confirmation", JOptionPane.YES_NO_OPTION);
         if (m == JOptionPane.YES_OPTION) {
-            super.thesisSuper.remove(super.thesisSelected);
+            super.remThesis(super.thesisSelected);
+            this.setVisible(false);
+            super.backMenu();
         } else {
             System.exit(0);
         }            

@@ -11,4 +11,9 @@ public class Magazine extends Publication{
     public Magazine(String t, String py) {
         super(t, py);
     }
+    
+    @Override
+    public String toString() {
+        return super.title + ", " + super.pubYear;
+    }
 }

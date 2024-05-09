@@ -298,17 +298,21 @@ public class ConferenceFrame extends Main {
 
 
             //this bookSuper.add is the justAddedBook
-            super.conferenceSuper.add(new ConferencePaper(eRConferenceTitleTxt.getText(), eRConferencePubYearTxt.getText(), numAuthors, eRConferenceNameTxt.getText(), addConferenceLocation, addConferencePeriod));
+            ConferencePaper justAddedConference =  new ConferencePaper(eRConferenceTitleTxt.getText(), eRConferencePubYearTxt.getText(), numAuthors, eRConferenceNameTxt.getText(), addConferenceLocation, addConferencePeriod);
 
             //outer part makes sure we get only 1 book, the most recent
             for(int i = 1; i>0; i--){
-                ConferencePaper justAddedConference = super.conferenceSuper.get(super.conferenceSuper.size()-1);
+//                super.conferenceSuper.get(super.conferenceSuper.size()-1);
                 //this for loop goes through array size for the number of authors in this new book
                 for (int num = 0; num < numAuthors; num++){
                     //we are adding the Authors for each index in the author_list for the new book.
                   justAddedConference.author_list[num] = authors.get(numAuthors - (1+num));
                 }
             }
+            
+            super.addCon(justAddedConference);
+            this.setVisible(false);
+            super.backMenu();
         }
         //conferenceList = new JList<ConferencePaper>(conferenceSuper.toArray(new ConferencePaper[conferenceSuper.size()]));
     }//GEN-LAST:event_addConferenceBtnActionPerformed
@@ -316,7 +320,9 @@ public class ConferenceFrame extends Main {
     private void removeConferenceBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeConferenceBtnActionPerformed
         int m = JOptionPane.showConfirmDialog(null, "Are you sure?", "Confirmation", JOptionPane.YES_NO_OPTION);
         if (m == JOptionPane.YES_OPTION) {
-            super.conferenceSuper.remove(super.conSelected);
+            super.remCon(super.conSelected);
+            this.setVisible(false);
+            super.backMenu();
         } else {
             System.exit(0);
         }            

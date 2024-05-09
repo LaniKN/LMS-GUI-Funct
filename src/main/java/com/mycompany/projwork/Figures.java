@@ -19,5 +19,10 @@ public class Figures {
     }
 
     public int getFigures(){ return figCount; }
+    
+    public String toString() {
+        String figString = String.valueOf(getFigures());
+        return figString; 
+    }
 
 }

@@ -39,4 +39,16 @@ public class Dissertation extends Publication{
     public void setFigures(Figures figures) {
         this.figures = figures;
     }
+    
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        
+        for (CommitteeMember comMem : committeeMembers){
+            stringBuilder.append(comMem.toString());
+            stringBuilder.append(", ");
+        }
+        String comMems = stringBuilder.toString();
+        
+        return super.toString() + ", " + department.toString() + ", " + comMems  + ", " + chapters.toString() + ", " + figures.toString();
+    }
 }

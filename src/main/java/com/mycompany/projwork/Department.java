@@ -15,4 +15,8 @@ public class Department {
         building = b;
         department_name = dn;
     }
+    
+    public String toString() {
+        return department_name + ", " + building ;
+    }
 }

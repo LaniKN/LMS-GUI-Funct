@@ -191,15 +191,21 @@ public class MagazineFrame extends Main {
         if(eRMagazineTitleTxt.getText().isEmpty() && eRMagazinePubYearTxt.getText().isEmpty()){
             JOptionPane.showMessageDialog(null,"Please fill in all parameters for adding a book!");
         } else {
-            magazineSuper.add(new Magazine(eRMagazineTitleTxt.getText(), eRMagazinePubYearTxt.getText()));
+            Magazine newMag = new Magazine(eRMagazineTitleTxt.getText(), eRMagazinePubYearTxt.getText());
+        
+        
+            super.addMag(newMag);
+            this.setVisible(false);
+            super.backMenu();
         }
-        //magazineList = new JList<Magazine>(magazineSuper.toArray(new Magazine[magazineSuper.size()]));
     }//GEN-LAST:event_addMagazineBtnActionPerformed
 
     private void removeMagazineBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeMagazineBtnActionPerformed
         int m = JOptionPane.showConfirmDialog(null, "Are you sure?", "Confirmation", JOptionPane.YES_NO_OPTION);
         if (m == JOptionPane.YES_OPTION) {
-            super.magazineSuper.remove(super.magSelected);
+            super.remMag(super.magSelected);
+            this.setVisible(false);
+            super.backMenu();
         } else {
             System.exit(0);
         }            

@@ -20,4 +20,9 @@ public class Chapters {
     public int getChapCount(){
         return chapCount;
     }
+    
+    public String toString() {
+        String chapString = String.valueOf(getChapCount());
+        return chapString;
+    }
 }

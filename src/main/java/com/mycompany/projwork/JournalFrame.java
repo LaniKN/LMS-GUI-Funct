@@ -250,18 +250,22 @@ public class JournalFrame extends Main {
             int numAuthors = authors.size();
 
             //this bookSuper.add is the justAddedBook
-            super.journalSuper.add(new JournalPaper(eRJournalTitleTxt.getText(), eRJournalPubYearTxt.getText(), numAuthors, eRJournalNameTxt.getText()));
+            JournalPaper justAddedJournal = new JournalPaper(eRJournalTitleTxt.getText(), eRJournalPubYearTxt.getText(), numAuthors, eRJournalNameTxt.getText());
 
             //outer part makes sure we get only 1 book, the most recent
             for(int i = 1; i>0; i--){
-                JournalPaper justAddedJournal = super.journalSuper.get(super.journalSuper.size()-1);
+                
                 //this for loop goes through array size for the number of authors in this new book
                 for (int num = 0; num < numAuthors; num++){
                     //we are adding the Authors for each index in the author_list for the new book.
                   justAddedJournal.author_list[num] = authors.get(numAuthors - (1+num));
                 }
+                
             }
-            //journalList = new JList<JournalPaper>(journalSuper.toArray(new JournalPaper[journalSuper.size()]));
+            
+            super.addJournal(justAddedJournal);
+            this.setVisible(false);
+            super.backMenu();
 
         }
     }//GEN-LAST:event_addJournalBtnActionPerformed
@@ -269,7 +273,9 @@ public class JournalFrame extends Main {
     private void removeJournalBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeJournalBtnActionPerformed
         int m = JOptionPane.showConfirmDialog(null, "Are you sure?", "Confirmation", JOptionPane.YES_NO_OPTION);
         if (m == JOptionPane.YES_OPTION) {
-            super.journalSuper.remove(super.jourSelected);
+            super.remJournal(super.jourSelected);
+            this.setVisible(false);
+            super.backMenu();
         } else {
             System.exit(0);
         }

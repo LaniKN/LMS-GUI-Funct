@@ -301,19 +301,23 @@ public class DissertationFrame extends Main {
             Chapters addDissertationChapter = new Chapters(Integer.parseInt(eRDissertationChapTxt.getText()));
             Figures addDissertationFigure = new Figures(Integer.parseInt(eRDissertationFigTxt.getText()));
 
-            super.dissertationSuper.add(new Dissertation(eRDissertationTitleTxt.getText(), eRDissertationPubYearTxt.getText(), addDissertationDepartment, numCommittee, addDissertationChapter, addDissertationFigure));
+            Dissertation justAddedDissertation = new Dissertation(eRDissertationTitleTxt.getText(), eRDissertationPubYearTxt.getText(), addDissertationDepartment, numCommittee, addDissertationChapter, addDissertationFigure);
             //dissertationSuper.author_list[0] = addDissertationAuthorTxt.getText();
             
 
             //outer part makes sure we get only 1 book, the most recent
             for(int i = 1; i>0; i--){
-                Dissertation justAddedDissertation = super.dissertationSuper.get(super.dissertationSuper.size()-1);
+                
                 //this for loop goes through array size for the number of authors in this new book
                 for (int num = 0; num < numCommittee; num++){
                     //we are adding the Authors for each index in the author_list for the new book.
                   justAddedDissertation.committeeMembers[num] = committee.get(numCommittee - (1+num));
                 }
             }
+            
+            super.addDiss(justAddedDissertation);
+            this.setVisible(false);
+            super.backMenu();
 
             //dissertationList = new JList<Dissertation>(dissertationSuper.toArray(new Dissertation[dissertationSuper.size()]));
         }
@@ -322,7 +326,9 @@ public class DissertationFrame extends Main {
     private void removeDissertationBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeDissertationBtnActionPerformed
         int m = JOptionPane.showConfirmDialog(null, "Are you sure?", "Confirmation", JOptionPane.YES_NO_OPTION);
         if (m == JOptionPane.YES_OPTION) {
-            super.dissertationSuper.remove(super.dissSelected);
+            super.remDiss(super.dissSelected);
+            this.setVisible(false);
+            super.backMenu();
         } else {
             System.exit(0);
         }            
