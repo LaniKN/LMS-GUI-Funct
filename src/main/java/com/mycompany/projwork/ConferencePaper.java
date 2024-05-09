@@ -8,7 +8,12 @@ public class ConferencePaper extends Publication {
     public Location location;
     public Period period;
     
-    
+    public ConferencePaper() {
+        super();
+        conferenceName = "Conference A";
+        location = new Location();
+        period = new Period();
+    }
 
     public ConferencePaper(String title, String pub_year, int author_num, String conferenceName, Location location, Period period) {
         super(title, pub_year, author_num);
