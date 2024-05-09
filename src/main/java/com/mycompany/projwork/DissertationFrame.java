@@ -19,10 +19,14 @@ public class DissertationFrame extends Main {
     }
     
     //adding item constructor
-    public DissertationFrame(List<Dissertation> dissertationSuper) {
+    public DissertationFrame(int type) {
         initComponents();
-        editDissertationBtn.setVisible(false);
-        removeDissertationBtn.setVisible(false);
+        if (type == 1) {
+            editDissertationBtn.setVisible(false);
+            removeDissertationBtn.setVisible(false);
+        } else {
+            addDissertationBtn.setVisible(false);
+        }
     }
 
     /**

@@ -20,10 +20,14 @@ public class ResearchFrame extends Main {
         initComponents();
     }
     
-    public ResearchFrame(List<ResearchReport> researchSuper) {
+    public ResearchFrame(int type) {
         initComponents();
-        editResearchBtn.setVisible(false);
-        removeResearchBtn.setVisible(false);
+        if (type == 1) {
+            editResearchBtn.setVisible(false);
+            removeResearchBtn.setVisible(false);
+        } else {
+            addResearchBtn.setVisible(false);
+        }
     }
 
     /**

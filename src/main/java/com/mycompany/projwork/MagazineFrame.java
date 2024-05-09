@@ -18,10 +18,14 @@ public class MagazineFrame extends Main {
         initComponents();
     }
     
-    public MagazineFrame(List<Magazine> magazineSuper) {
+    public MagazineFrame(int type) {
         initComponents();
-        editMagazineBtn.setVisible(false);
-        removeMagazineBtn.setVisible(false);
+        if (type == 1) {
+            editMagazineBtn.setVisible(false);
+            removeMagazineBtn.setVisible(false);
+        } else {
+            addMagazineBtn.setVisible(false);
+        }
     }
 
     /**

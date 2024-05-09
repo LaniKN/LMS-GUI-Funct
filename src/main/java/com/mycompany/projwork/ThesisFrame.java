@@ -21,10 +21,14 @@ public class ThesisFrame extends Main {
     }
     
     //
-    public ThesisFrame(List<Thesis> thesisSuper) {
+    public ThesisFrame(int type) {
         initComponents();
-        editThesisBtn.setVisible(false);
-        removeThesisBtn.setVisible(false);
+        if (type == 1) {
+            editThesisBtn.setVisible(false);
+            removeThesisBtn.setVisible(false);
+        } else {
+            addThesisBtn.setVisible(false);
+        }
     }
 
     /**
