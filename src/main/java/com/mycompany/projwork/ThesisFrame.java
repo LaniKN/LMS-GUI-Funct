@@ -129,6 +129,11 @@ public class ThesisFrame extends Main {
 
         removeThesisBtn.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 18)); // NOI18N
         removeThesisBtn.setText("Remove Thesis");
+        removeThesisBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeThesisBtnActionPerformed(evt);
+            }
+        });
 
         addThesisBtn.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 18)); // NOI18N
         addThesisBtn.setText("Add Thesis");
@@ -330,6 +335,15 @@ public class ThesisFrame extends Main {
     
         }
     }//GEN-LAST:event_addThesisBtnActionPerformed
+
+    private void removeThesisBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeThesisBtnActionPerformed
+        int m = JOptionPane.showConfirmDialog(null, "Are you sure?", "Confirmation", JOptionPane.YES_NO_OPTION);
+        if (m == JOptionPane.YES_OPTION) {
+            //Button code here
+        } else {
+            System.exit(0);
+        }            
+    }//GEN-LAST:event_removeThesisBtnActionPerformed
 
     /**
      * @param args the command line arguments

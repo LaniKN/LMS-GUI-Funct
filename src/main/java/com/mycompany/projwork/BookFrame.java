@@ -124,6 +124,11 @@ public class BookFrame extends Main {
 
         removeBookBtn.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 18)); // NOI18N
         removeBookBtn.setText("Remove Book");
+        removeBookBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeBookBtnActionPerformed(evt);
+            }
+        });
 
         addBookBtn.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 18)); // NOI18N
         addBookBtn.setText("Add Book");
@@ -311,6 +316,15 @@ public class BookFrame extends Main {
         }
         
     }//GEN-LAST:event_addBookBtnActionPerformed
+
+    private void removeBookBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeBookBtnActionPerformed
+        int m = JOptionPane.showConfirmDialog(null, "Are you sure?", "Confirmation", JOptionPane.YES_NO_OPTION);
+        if (m == JOptionPane.YES_OPTION) {
+            //Button code here
+        } else {
+            System.exit(0);
+        }            
+    }//GEN-LAST:event_removeBookBtnActionPerformed
 
     /**
      * @param args the command line arguments

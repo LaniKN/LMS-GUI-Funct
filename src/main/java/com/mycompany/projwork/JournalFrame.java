@@ -93,6 +93,11 @@ public class JournalFrame extends Main {
 
         removeJournalBtn.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 18)); // NOI18N
         removeJournalBtn.setText("Remove Journal Paper");
+        removeJournalBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeJournalBtnActionPerformed(evt);
+            }
+        });
 
         editJournalBtn.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 18)); // NOI18N
         editJournalBtn.setText("Edit Journal Paper");
@@ -260,6 +265,15 @@ public class JournalFrame extends Main {
 
         }
     }//GEN-LAST:event_addJournalBtnActionPerformed
+
+    private void removeJournalBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeJournalBtnActionPerformed
+        int m = JOptionPane.showConfirmDialog(null, "Are you sure?", "Confirmation", JOptionPane.YES_NO_OPTION);
+        if (m == JOptionPane.YES_OPTION) {
+            //Button code here
+        } else {
+            System.exit(0);
+        }
+    }//GEN-LAST:event_removeJournalBtnActionPerformed
 
     /**
      * @param args the command line arguments

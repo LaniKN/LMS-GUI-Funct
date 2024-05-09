@@ -88,6 +88,11 @@ public class ResearchFrame extends Main {
 
         removeResearchBtn.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 18)); // NOI18N
         removeResearchBtn.setText("Remove Research Report");
+        removeResearchBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeResearchBtnActionPerformed(evt);
+            }
+        });
 
         editResearchBtn.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 18)); // NOI18N
         editResearchBtn.setText("Edit Research Report");
@@ -245,6 +250,15 @@ public class ResearchFrame extends Main {
             //researchList = new JList<ResearchReport>(researchSuper.toArray(new ResearchReport[researchSuper.size()]));
         }
     }//GEN-LAST:event_addResearchBtnActionPerformed
+
+    private void removeResearchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeResearchBtnActionPerformed
+        int m = JOptionPane.showConfirmDialog(null, "Are you sure?", "Confirmation", JOptionPane.YES_NO_OPTION);
+        if (m == JOptionPane.YES_OPTION) {
+            //Button code here
+        } else {
+            System.exit(0);
+        }            
+    }//GEN-LAST:event_removeResearchBtnActionPerformed
 
     /**
      * @param args the command line arguments

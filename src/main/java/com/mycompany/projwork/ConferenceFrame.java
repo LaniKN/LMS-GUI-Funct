@@ -118,6 +118,11 @@ public class ConferenceFrame extends Main {
 
         removeConferenceBtn.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 18)); // NOI18N
         removeConferenceBtn.setText("Remove Conference Paper");
+        removeConferenceBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeConferenceBtnActionPerformed(evt);
+            }
+        });
 
         editConferenceBtn.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 18)); // NOI18N
         editConferenceBtn.setText("Edit Conference Paper");
@@ -307,6 +312,15 @@ public class ConferenceFrame extends Main {
         }
         //conferenceList = new JList<ConferencePaper>(conferenceSuper.toArray(new ConferencePaper[conferenceSuper.size()]));
     }//GEN-LAST:event_addConferenceBtnActionPerformed
+
+    private void removeConferenceBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeConferenceBtnActionPerformed
+        int m = JOptionPane.showConfirmDialog(null, "Are you sure?", "Confirmation", JOptionPane.YES_NO_OPTION);
+        if (m == JOptionPane.YES_OPTION) {
+            //Button code here
+        } else {
+            System.exit(0);
+        }            
+    }//GEN-LAST:event_removeConferenceBtnActionPerformed
 
     /**
      * @param args the command line arguments

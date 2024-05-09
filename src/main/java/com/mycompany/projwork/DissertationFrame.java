@@ -125,6 +125,11 @@ public class DissertationFrame extends Main {
 
         removeDissertationBtn.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 18)); // NOI18N
         removeDissertationBtn.setText("Remove Dissertation");
+        removeDissertationBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeDissertationBtnActionPerformed(evt);
+            }
+        });
 
         addDissertationBtn.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 18)); // NOI18N
         addDissertationBtn.setText("Add Dissertation");
@@ -313,6 +318,15 @@ public class DissertationFrame extends Main {
             //dissertationList = new JList<Dissertation>(dissertationSuper.toArray(new Dissertation[dissertationSuper.size()]));
         }
     }//GEN-LAST:event_addDissertationBtnActionPerformed
+
+    private void removeDissertationBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeDissertationBtnActionPerformed
+        int m = JOptionPane.showConfirmDialog(null, "Are you sure?", "Confirmation", JOptionPane.YES_NO_OPTION);
+        if (m == JOptionPane.YES_OPTION) {
+            //Button code here
+        } else {
+            System.exit(0);
+        }            
+    }//GEN-LAST:event_removeDissertationBtnActionPerformed
 
     /**
      * @param args the command line arguments
