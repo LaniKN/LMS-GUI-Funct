@@ -473,116 +473,121 @@ public class MainFrame extends Main {
                 if (!searchTitleTxt.getText().isEmpty()) { //has title
                     String titleFilter = searchTitleTxt.getText();
                     System.out.println("Has Text");
-                    
-                    //is it a magazine?
-                    if (!type.contains("Magazine")) { //not magazine
-                        
-                        if (!searchAuthorTxt.getText().isEmpty()){//has author
-                            List<Author> authors = super.setAuthors(searchAuthorTxt.getText());
-                            System.out.println("Got author list from txt");
-                            
-                            //is the pubYear filled in?
-                            if (!searchPubYearTxt.getText().isEmpty()) {//pub year
-                                System.out.println("Pub year set");
-                                String pubYearFilter = searchPubYearTxt.getText();
-                                if (type.contains("Book")){
-                                    System.out.println("Type is Book");
-                                    System.out.println("Is bookSuper populated?: " + super.bookSuper.size());
-                                       for (Book book : super.bookSuper) {
-                                           System.out.println("Book: " + book.title);
-                                           for (Author author : authors){
-                                               System.out.println("Author check: " + author);
-                                               for (int a = 0; a < book.authNum-1; a++){
-                                                   System.out.println("Author check: " + author);
-                                                   System.out.println("Author in book: " + book.author_list[a]);
-                                                    if (book.title.contains(titleFilter) && book.author_list[a].equals(author) && book.pubYear.contains(pubYearFilter)) {
-                                                        super.bookFilter.add(book);
-                                                        super.listOfItems.addElement(book);
-                                                        searchResultList.setModel(super.listOfItems);
-                                                        System.out.println("Should be showing updated List");
-                                                    }
-                                               }
-                                           }
-                                       }
-                                } else if (type.contains("Thesis")) {
-                                    //super.bookModel.clear();
-                                       for (Thesis thesis : super.thesisSuper) {
-                                           for (Author author : authors){
-                                               for (int a = 0; a < thesis.author_list.length-1; a++){
-                                                    if (thesis.title.contains(titleFilter) && thesis.author_list[a].equals(author) && thesis.pubYear.contains(pubYearFilter)) {
-                                                        super.thesisFitler.add(thesis);
-//                                                        super.bookModel.addElement(book);
-//                                                        searchResultList.setModel(super.bookModel);
-//                                                        this.setVisible(true);
-                                                    }
-                                               }
-                                           }
-                                       }
-                                } else if (type.contains("Dissert")) {
-                                        for (Dissertation dissertation : super.dissertationSuper) {
-                                           for (Author author : authors){
-                                               for (int a = 0; a < dissertation.author_list.length-1; a++){
-                                                    if (dissertation.title.contains(titleFilter) && dissertation.author_list[a].equals(author) && dissertation.pubYear.contains(pubYearFilter)) {
-                                                        super.dissertationFilter.add(dissertation);
-//                                                        super.bookModel.addElement(book);
-//                                                        searchResultList.setModel(super.bookModel);
-//                                                        this.setVisible(true);
-                                                    }
-                                               }
-                                           }
-                                       }
-                                } else if (type.contains("Conf")) {
-                                        for (ConferencePaper conference : super.conferenceSuper) {
-                                           for (Author author : authors){
-                                               for (int a = 0; a < conference.author_list.length-1; a++){
-                                                    if (conference.title.contains(titleFilter) && conference.author_list[a].equals(author) && conference.pubYear.contains(pubYearFilter)) {
-                                                        super.conferenceFilter.add(conference);
-//                                                        super.bookModel.addElement(book);
-//                                                        searchResultList.setModel(super.bookModel);
-//                                                        this.setVisible(true);
-                                                    }
-                                               }
-                                           }
-                                       }
-                                } else if (type.contains("Journal")) {
-                                        for (JournalPaper journal : super.journalSuper) {
-                                           for (Author author : authors){
-                                               for (int a = 0; a < journal.author_list.length-1; a++){
-                                                    if (journal.title.contains(titleFilter) && journal.author_list[a].equals(author) && journal.pubYear.contains(pubYearFilter)) {
-                                                        super.journalFilter.add(journal);
-//                                                        super.bookModel.addElement(book);
-//                                                        searchResultList.setModel(super.bookModel);
-//                                                        this.setVisible(true);
-                                                    }
-                                               }
-                                           }
-                                       }
-                                } else if (type.contains("Research")) {
-                                        for (ResearchReport research : super.researchSuper) {
-                                           for (Author author : authors){
-                                               for (int a = 0; a < research.author_list.length-1; a++){
-                                                    if (research.title.contains(titleFilter) && research.author_list[a].equals(author) && research.pubYear.contains(pubYearFilter)) {
-                                                        super.researchFilter.add(research);
-//                                                        super.bookModel.addElement(book);
-//                                                        searchResultList.setModel(super.bookModel);
-//                                                        this.setVisible(true);
-                                                    }
-                                               }
-                                           }
-                                       }
-                                }
+                    //is the pubYear filled in?
+                    if (!searchPubYearTxt.getText().isEmpty()) {//pub year
+                        System.out.println("Pub year set");
+                        String pubYearFilter = searchPubYearTxt.getText();
+                        //is it a magazine?
+                        if (!type.contains("Magazine")) { //not magazine
 
-                            } else {//does not have pub year
+                            if (!searchAuthorTxt.getText().isEmpty()){//has author
+                                List<Author> authors = super.setAuthors(searchAuthorTxt.getText());
+                                System.out.println("Got author list from txt");
+                                    if (type.contains("Book")){
+                                        System.out.println("Type is Book");
+                                        System.out.println("Is bookSuper populated?: " + super.bookSuper.size());
+                                            for (Book book : super.bookSuper) {
+                                               System.out.println("Book: " + book.title);
+                                               for (Author author : authors){
+                                                   System.out.println("Author check: " + author);
+                                                   for (int a = 0; a < book.authNum-1; a++){
+                                                       System.out.println("Author check: " + author);
+                                                       System.out.println("Author in book: " + book.author_list[a]);
+                                                        if (book.title.contains(titleFilter) && book.author_list[a].equals(author) && book.pubYear.contains(pubYearFilter)) {
+                                                            super.bookFilter.add(book);
+                                                            super.listOfItems.addElement(book);
+                                                            searchResultList.setModel(super.listOfItems);
+                                                            System.out.println("Should be showing updated List");
+                                                        }
+                                                   }
+                                               }
+                                           }
+                                    } else if (type.contains("Thesis")) {
+                                        //super.bookModel.clear();
+                                           for (Thesis thesis : super.thesisSuper) {
+                                               for (Author author : authors){
+                                                   for (int a = 0; a < thesis.author_list.length-1; a++){
+                                                        if (thesis.title.contains(titleFilter) && thesis.author_list[a].equals(author) && thesis.pubYear.contains(pubYearFilter)) {
+                                                            super.thesisFitler.add(thesis);
+    //                                                        super.bookModel.addElement(book);
+    //                                                        searchResultList.setModel(super.bookModel);
+    //                                                        this.setVisible(true);
+                                                        }
+                                                   }
+                                               }
+                                           }
+                                    } else if (type.contains("Dissert")) {
+                                            for (Dissertation dissertation : super.dissertationSuper) {
+                                               for (Author author : authors){
+                                                   for (int a = 0; a < dissertation.author_list.length-1; a++){
+                                                        if (dissertation.title.contains(titleFilter) && dissertation.author_list[a].equals(author) && dissertation.pubYear.contains(pubYearFilter)) {
+                                                            super.dissertationFilter.add(dissertation);
+    //                                                        super.bookModel.addElement(book);
+    //                                                        searchResultList.setModel(super.bookModel);
+    //                                                        this.setVisible(true);
+                                                        }
+                                                   }
+                                               }
+                                           }
+                                    } else if (type.contains("Conf")) {
+                                            for (ConferencePaper conference : super.conferenceSuper) {
+                                               for (Author author : authors){
+                                                   for (int a = 0; a < conference.author_list.length-1; a++){
+                                                        if (conference.title.contains(titleFilter) && conference.author_list[a].equals(author) && conference.pubYear.contains(pubYearFilter)) {
+                                                            super.conferenceFilter.add(conference);
+    //                                                        super.bookModel.addElement(book);
+    //                                                        searchResultList.setModel(super.bookModel);
+    //                                                        this.setVisible(true);
+                                                        }
+                                                   }
+                                               }
+                                           }
+                                    } else if (type.contains("Journal")) {
+                                            for (JournalPaper journal : super.journalSuper) {
+                                               for (Author author : authors){
+                                                   for (int a = 0; a < journal.author_list.length-1; a++){
+                                                        if (journal.title.contains(titleFilter) && journal.author_list[a].equals(author) && journal.pubYear.contains(pubYearFilter)) {
+                                                            super.journalFilter.add(journal);
+    //                                                        super.bookModel.addElement(book);
+    //                                                        searchResultList.setModel(super.bookModel);
+    //                                                        this.setVisible(true);
+                                                        }
+                                                   }
+                                               }
+                                           }
+                                    } else if (type.contains("Research")) {
+                                            for (ResearchReport research : super.researchSuper) {
+                                               for (Author author : authors){
+                                                   for (int a = 0; a < research.author_list.length-1; a++){
+                                                        if (research.title.contains(titleFilter) && research.author_list[a].equals(author) && research.pubYear.contains(pubYearFilter)) {
+                                                            super.researchFilter.add(research);
+    //                                                        super.bookModel.addElement(book);
+    //                                                        searchResultList.setModel(super.bookModel);
+    //                                                        this.setVisible(true);
+                                                        }
+                                                   }
+                                               }
+                                           }
+                                    }
+
+                                
+                            } else {//does not have author
                                 
                             }
-                        } else {//does not have author
-                            
+
+                        } else { //is magazine
+                            for (Magazine mag : super.magazineSuper) {
+                                if (mag.title.contains(titleFilter) && mag.pubYear.contains(pubYearFilter)) {
+                                    super.magazineFilter.add(mag);
+                                    super.listOfItems.addElement(mag);
+                                    searchResultList.setModel(super.listOfItems);
+                                    System.out.println("Should be showing updated List");
+                                }
+                            }
                         }
-                        
-                    } else { //is magazine
-                        
+                    } else {//does not have pub year
+
                     }
-            
                 } else { //does not have title
 
                 }
