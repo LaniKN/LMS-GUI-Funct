@@ -90,7 +90,18 @@ public class MainFrame extends Main {
         //do this below for all types like 2-3 times
         bookSuper.add(new Book());
         bookSuper.add(new Book());
-        
+        thesisSuper.add(new Thesis());
+        thesisSuper.add(new Thesis());
+        dissertationSuper.add(new Dissertation());
+        dissertationSuper.add(new Dissertation());
+        conferenceSuper.add(new ConferencePaper());
+        conferenceSuper.add(new ConferencePaper());
+        journalSuper.add(new JournalPaper());
+        journalSuper.add(new JournalPaper());
+        researchSuper.add(new ResearchReport());
+        researchSuper.add(new ResearchReport());
+        magazineSuper.add(new Magazine());
+        magazineSuper.add(new Magazine());        
         
         bookFrame.setVisible(false);
         thesisFrame.setVisible(false);
