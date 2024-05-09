@@ -9,7 +9,7 @@ package com.mycompany.projwork;
  *
  * @author nohea
  */
-public class MagazineFrame extends javax.swing.JFrame {
+public class MagazineFrame extends Main {
 
     /**
      * Creates new form MagazineForm

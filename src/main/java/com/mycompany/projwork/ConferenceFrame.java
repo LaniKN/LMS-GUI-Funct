@@ -9,7 +9,7 @@ package com.mycompany.projwork;
  *
  * @author nohea
  */
-public class ConferenceFrame extends javax.swing.JFrame {
+public class ConferenceFrame extends Main {
 
     /**
      * Creates new form EditRemoveConference

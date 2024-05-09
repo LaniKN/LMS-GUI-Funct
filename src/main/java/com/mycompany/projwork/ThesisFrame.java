@@ -9,7 +9,7 @@ package com.mycompany.projwork;
  *
  * @author nohea
  */
-public class ThesisFrame extends javax.swing.JFrame {
+public class ThesisFrame extends Main {
 
     /**
      * Creates new form EditRemoveThesis
