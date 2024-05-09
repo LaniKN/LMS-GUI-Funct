@@ -8,13 +8,13 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
 import javax.swing.AbstractButton;
+import javax.swing.DefaultListModel;
 
 /**
  *
  * @author nohea
  */
 public class MainFrame extends Main {
-    
     
     /**
      * Creates new form NewJFrame
@@ -25,33 +25,88 @@ public class MainFrame extends Main {
     public Figures fig;
     private int edNum;
      */
+    //1st run: set up some default values
     public MainFrame() {
         initComponents();
-        //do this below for all types like 2-3 times
-        super.bookSuper.add(new Book());
-        super.bookSuper.add(new Book());
-        super.thesisSuper.add(new Thesis());
-        super.thesisSuper.add(new Thesis());
-        super.dissertationSuper.add(new Dissertation());
-        super.dissertationSuper.add(new Dissertation());
-        super.conferenceSuper.add(new ConferencePaper());
-        super.conferenceSuper.add(new ConferencePaper());
-        super.journalSuper.add(new JournalPaper());
-        super.journalSuper.add(new JournalPaper());
-        super.researchSuper.add(new ResearchReport());
-        super.researchSuper.add(new ResearchReport());
-        super.magazineSuper.add(new Magazine());
-        super.magazineSuper.add(new Magazine());        
+        bookSuper = new ArrayList<>();
+        thesisSuper = new ArrayList<>();
+        dissertationSuper = new ArrayList<>();
+        conferenceSuper = new ArrayList<>();
+        journalSuper = new ArrayList<>();
+        researchSuper = new ArrayList<>();
+        magazineSuper = new ArrayList<>();
         
-        /*bookFrame.setVisible(false);
-        thesisFrame.setVisible(false);
-        dissFrame.setVisible(false);
-        conFrame.setVisible(false);
-        journalFrame.setVisible(false);
-        researchFrame.setVisible(false);
-        magFrame.setVisible(false);*/
+        //filter var established
+        bookFilter = new ArrayList<>();
+        thesisFitler = new ArrayList<>();
+        dissertationFilter = new ArrayList<>();
+        conferenceFilter = new ArrayList<>();
+        journalFilter = new ArrayList<>();
+        researchFilter = new ArrayList<>();
+        magazineFilter = new ArrayList<>();
+                
+        //do this below for all types like 2-3 times
+        bookSuper.add(new Book());
+        bookSuper.add(new Book());
+        thesisSuper.add(new Thesis());
+        thesisSuper.add(new Thesis());
+        dissertationSuper.add(new Dissertation());
+        dissertationSuper.add(new Dissertation());
+        conferenceSuper.add(new ConferencePaper());
+        conferenceSuper.add(new ConferencePaper());
+        journalSuper.add(new JournalPaper());
+        journalSuper.add(new JournalPaper());
+        researchSuper.add(new ResearchReport());
+        researchSuper.add(new ResearchReport());
+        magazineSuper.add(new Magazine());
+        magazineSuper.add(new Magazine()); 
+        
+        
+        //below is for testing of list population
+//        for(Book book : super.bookSuper) {
+//            super.listOfItems.addElement(book);
+//        }
+//        
+//        for (Thesis thesis : super.thesisSuper) {
+//            super.listOfItems.addElement(thesis);
+//        }
+//        
+//        for (Dissertation diss : super.dissertationSuper) {
+//            super.listOfItems.addElement(diss);
+//        }
+//        
+//        for (ConferencePaper con : super.conferenceSuper) {
+//            super.listOfItems.addElement(con);
+//        }
+//        
+//        for (JournalPaper journal : super.journalSuper) {
+//            super.listOfItems.addElement(journal);
+//        }
+//        
+//        for (ResearchReport research : super.researchSuper) {
+//            super.listOfItems.addElement(research);
+//        }
+//        
+//        for (Magazine mag : super.magazineSuper) {
+//            super.listOfItems.addElement(mag);
+//        }
+        
+    }
+    
+    public MainFrame(Boolean back, Book newBook) {
+        initComponents();
+        bookSuper.add(newBook);
+        super.listOfItems.clear();
+    }
+    
+    public MainFrame(Boolean back, Thesis newThesis) {
+        initComponents();
+        thesisSuper.add(newThesis);
+        super.listOfItems.clear();
     }
 
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -82,7 +137,7 @@ public class MainFrame extends Main {
         searchTypeMagazineBtn = new javax.swing.JRadioButton();
         searchBtn = new javax.swing.JButton();
         searchScrollpane = new javax.swing.JScrollPane();
-        searchResultList = new javax.swing.JList<>();
+        searchResultList = new javax.swing.JList<>(super.listOfItems);
         ItmSearchDescLabel = new javax.swing.JLabel();
         ItmSearchLabel = new javax.swing.JLabel();
         addItemBtn = new javax.swing.JButton();
@@ -192,7 +247,7 @@ public class MainFrame extends Main {
         });
 
         searchResultList.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
-        searchResultList.setModel(bookModel);
+        searchResultList.setModel(super.listOfItems);
         searchResultList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         searchScrollpane.setViewportView(searchResultList);
 
@@ -374,6 +429,7 @@ public class MainFrame extends Main {
                 if (type.contains("Book")){
                     BookFrame bookFrame = new BookFrame(1);
                     bookFrame.setVisible(true);
+                    this.setVisible(false);
                 } else if (type.contains("Thesis")) {
                     ThesisFrame thesisFrame = new ThesisFrame(1);
                     thesisFrame.setVisible(true);
@@ -384,7 +440,6 @@ public class MainFrame extends Main {
                     ConferenceFrame conFrame = new ConferenceFrame(1);
                     conFrame.setVisible(true);
                 } else if (type.contains("Journal")) {
-                    
                     JournalFrame journalFrame = new JournalFrame(1);
                     journalFrame.setVisible(true);
                 } else if (type.contains("Research")) {
@@ -412,32 +467,39 @@ public class MainFrame extends Main {
         {
             AbstractButton button = buttons.nextElement();
             if (button.isSelected()) {
-                this.setVisible(false);
                 String type = button.getText();
                 
                 //is title txt empty?
                 if (!searchTitleTxt.getText().isEmpty()) { //has title
                     String titleFilter = searchTitleTxt.getText();
+                    System.out.println("Has Text");
                     
                     //is it a magazine?
                     if (!type.contains("Magazine")) { //not magazine
                         
                         if (!searchAuthorTxt.getText().isEmpty()){//has author
                             List<Author> authors = super.setAuthors(searchAuthorTxt.getText());
+                            System.out.println("Got author list from txt");
                             
                             //is the pubYear filled in?
                             if (!searchPubYearTxt.getText().isEmpty()) {//pub year
+                                System.out.println("Pub year set");
                                 String pubYearFilter = searchPubYearTxt.getText();
                                 if (type.contains("Book")){
-                                    //super.bookModel.clear();
+                                    System.out.println("Type is Book");
+                                    System.out.println("Is bookSuper populated?: " + super.bookSuper.size());
                                        for (Book book : super.bookSuper) {
+                                           System.out.println("Book: " + book.title);
                                            for (Author author : authors){
+                                               System.out.println("Author check: " + author);
                                                for (int a = 0; a < book.authNum-1; a++){
+                                                   System.out.println("Author check: " + author);
+                                                   System.out.println("Author in book: " + book.author_list[a]);
                                                     if (book.title.contains(titleFilter) && book.author_list[a].equals(author) && book.pubYear.contains(pubYearFilter)) {
                                                         super.bookFilter.add(book);
-//                                                        super.bookModel.addElement(book);
-//                                                        searchResultList.setModel(super.bookModel);
-//                                                        this.setVisible(true);
+                                                        super.listOfItems.addElement(book);
+                                                        searchResultList.setModel(super.listOfItems);
+                                                        System.out.println("Should be showing updated List");
                                                     }
                                                }
                                            }
@@ -542,7 +604,7 @@ public class MainFrame extends Main {
     private javax.swing.JButton searchBtn;
     private javax.swing.JLabel searchPubYearLabel;
     private javax.swing.JTextField searchPubYearTxt;
-    private javax.swing.JList<String> searchResultList;
+    public javax.swing.JList<Publication> searchResultList;
     private javax.swing.JScrollPane searchScrollpane;
     private javax.swing.JLabel searchTitleLabel;
     private javax.swing.JTextField searchTitleTxt;

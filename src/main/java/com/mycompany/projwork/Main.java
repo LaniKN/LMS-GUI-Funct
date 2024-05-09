@@ -18,23 +18,23 @@ public class Main extends JFrame {
     
     // Variables
     //Super lists, we will be editting, adding, and removing from these!!!
-    public List<Book> bookSuper = new ArrayList<Book>();
-    public List<Thesis> thesisSuper = new ArrayList<Thesis>();
-    public List<Dissertation> dissertationSuper = new ArrayList<Dissertation>();
-    public List<ConferencePaper> conferenceSuper = new ArrayList<ConferencePaper>();
-    public List<JournalPaper> journalSuper = new ArrayList<JournalPaper>();
-    public List<ResearchReport> researchSuper = new ArrayList<ResearchReport>();
-    public List<Magazine> magazineSuper = new ArrayList<Magazine>();
+    public List<Book> bookSuper;
+    public List<Thesis> thesisSuper;
+    public List<Dissertation> dissertationSuper;
+    public List<ConferencePaper> conferenceSuper;
+    public List<JournalPaper> journalSuper;
+    public List<ResearchReport> researchSuper;
+    public List<Magazine> magazineSuper;
 
 
     //Filter Lists, these are the "filters" we will use to take txt box inputs from user to find SUPER obj to find/edit
-    public List<Book> bookFilter = new ArrayList<Book>();
-    public List<Thesis> thesisFitler = new ArrayList<Thesis>();
-    public List<Dissertation> dissertationFilter = new ArrayList<Dissertation>();
-    public List<ConferencePaper> conferenceFilter = new ArrayList<ConferencePaper>();
-    public List<JournalPaper> journalFilter = new ArrayList<JournalPaper>();
-    public List<ResearchReport> researchFilter = new ArrayList<ResearchReport>();
-    public List<Magazine> magazineFilter = new ArrayList<Magazine>();
+    public List<Book> bookFilter = new ArrayList<>();
+    public List<Thesis> thesisFitler = new ArrayList<>();
+    public List<Dissertation> dissertationFilter = new ArrayList<>();
+    public List<ConferencePaper> conferenceFilter = new ArrayList<>();
+    public List<JournalPaper> journalFilter = new ArrayList<>();
+    public List<ResearchReport> researchFilter = new ArrayList<>();
+    public List<Magazine> magazineFilter = new ArrayList<>();
     
     
     //selected items
@@ -46,23 +46,25 @@ public class Main extends JFrame {
     
      
     //models
-    public DefaultListModel bookModel = new DefaultListModel();
-    public DefaultListModel thesisModel = new DefaultListModel();
-    public DefaultListModel dissModel = new DefaultListModel();
-    public DefaultListModel conModel = new DefaultListModel();
-    public DefaultListModel journalModel = new DefaultListModel();
-    public DefaultListModel researchModel = new DefaultListModel();
-    public DefaultListModel magModel = new DefaultListModel();
+     public DefaultListModel<Publication> listOfItems = new DefaultListModel<>();
+//    public DefaultListModel bookModel = new DefaultListModel();
+//    public DefaultListModel thesisModel = new DefaultListModel();
+//    public DefaultListModel dissModel = new DefaultListModel();
+//    public DefaultListModel conModel = new DefaultListModel();
+//    public DefaultListModel journalModel = new DefaultListModel();
+//    public DefaultListModel researchModel = new DefaultListModel();
+//    public DefaultListModel magModel = new DefaultListModel();
     
 
     //Show JLists
-    public JList<Book> bookList = new JList<>(bookModel);
-    public JList<Thesis> thesisList = new JList<>(thesisModel);
-    public JList<Dissertation> dissertationList = new JList<>(dissModel);
-    public JList<ConferencePaper> conferenceList = new JList<>(conModel);
-    public JList<JournalPaper> journalList = new JList<>(journalModel);
-    public JList<ResearchReport> researchList = new JList<>(researchModel);
-    public JList<Magazine> magazineList = new JList<>(magModel);
+    
+//    public JList<Book> bookList = new JList<>(bookModel);
+//    public JList<Thesis> thesisList = new JList<>(thesisModel);
+//    public JList<Dissertation> dissertationList = new JList<>(dissModel);
+//    public JList<ConferencePaper> conferenceList = new JList<>(conModel);
+//    public JList<JournalPaper> journalList = new JList<>(journalModel);
+//    public JList<ResearchReport> researchList = new JList<>(researchModel);
+//    public JList<Magazine> magazineList = new JList<>(magModel);
 
     
     
@@ -80,7 +82,7 @@ public class Main extends JFrame {
 
 
     public List<CommitteeMember> setCommitteeMems(String txtField){
-        List<CommitteeMember> cmem = new ArrayList<CommitteeMember>();
+        List<CommitteeMember> cmem = new ArrayList<>();
         String[] arrMembers = txtField.split(";");
         for(String a : arrMembers){
             a = a.trim();

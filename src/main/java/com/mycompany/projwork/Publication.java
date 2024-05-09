@@ -1,6 +1,9 @@
 package com.mycompany.projwork;
 //Kala :D
 
+import java.util.Arrays;
+
+
 public class Publication {
     public Author[] author_list;
     public String title, pubYear;
@@ -22,7 +25,8 @@ public class Publication {
         pubYear=py;
     }
     
+    @Override
     public String toString() {
-        return title + pubYear;
+        return title + ", " + Arrays.toString(author_list) + ", " + pubYear;
     }
 }

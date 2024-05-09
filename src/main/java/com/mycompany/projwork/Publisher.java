@@ -10,5 +10,9 @@ public class Publisher {
     public Publisher(String name){
         this.name = name;
     }
+    
+    public String toString() {
+        return name;
+    }
 
 }

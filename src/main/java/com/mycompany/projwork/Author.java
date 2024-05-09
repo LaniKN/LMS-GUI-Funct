@@ -20,7 +20,7 @@ public class Author {
     public String getFirstName() { return first_name; }
     public String getLastName() { return last_name; }
 
-    public String getString(){
+    public String toString(){
         return "\n\tFirst Name: " + first_name + "\n\tLast Name: " + last_name;
     }
 }
