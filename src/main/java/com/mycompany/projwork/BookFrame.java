@@ -16,7 +16,7 @@ import java.util.List;
 
 public class BookFrame extends Main {
 
-    List<Book> books = new ArrayList<Book>();
+//    List<Book> books = new ArrayList<Book>();
     /**
      * Creates new form EditRemoveForm
      */
@@ -24,10 +24,11 @@ public class BookFrame extends Main {
         initComponents();
     }
     
-    public BookFrame(int type, List<Book> booksMain) {
+  //This constructor is for the adding item
+    public BookFrame(List<Book> booksMain) {
         initComponents();
-        //type = 1 : add item frame
-        
+        editBookBtn.setVisible(false);
+        removeBookBtn.setVisible(false);
     }
 
     /**

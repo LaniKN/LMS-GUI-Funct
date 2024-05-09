@@ -4,7 +4,7 @@ package com.mycompany.projwork;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-
+import java.util.List;
 /**
  *
  * @author nohea
@@ -16,6 +16,13 @@ public class DissertationFrame extends javax.swing.JFrame {
      */
     public DissertationFrame() {
         initComponents();
+    }
+    
+    //adding item constructor
+    public DissertationFrame(List<Dissertation> dissertationSuper) {
+        initComponents();
+        editDissertationBtn.setVisible(false);
+        removeDissertationBtn.setVisible(false);
     }
 
     /**

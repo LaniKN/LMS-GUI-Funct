@@ -4,7 +4,7 @@ package com.mycompany.projwork;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-
+import java.util.List;
 /**
  *
  * @author nohea
@@ -18,6 +18,12 @@ public class ResearchFrame extends Main {
      */
     public ResearchFrame() {
         initComponents();
+    }
+    
+    public ResearchFrame(List<ResearchReport> researchSuper) {
+        initComponents();
+        editResearchBtn.setVisible(false);
+        removeResearchBtn.setVisible(false);
     }
 
     /**
