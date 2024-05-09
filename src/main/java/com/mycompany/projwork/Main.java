@@ -27,25 +27,25 @@ public class Main extends JFrame {
 //    public List<Magazine> magazineSuper;
     
     
-    public List<Book> bookSuper = new ArrayList<>();
-    public List<Thesis> thesisSuper = new ArrayList<>();
-    public List<Dissertation> dissertationSuper = new ArrayList<>();
-    public List<ConferencePaper> conferenceSuper = new ArrayList<>();
-    public List<JournalPaper> journalSuper = new ArrayList<>();
-    public List<ResearchReport> researchSuper = new ArrayList<>();
-    public List<Magazine> magazineSuper = new ArrayList<>();
+    public static List<Book> bookSuper = new ArrayList<>();
+    public static List<Thesis> thesisSuper = new ArrayList<>();
+    public static List<Dissertation> dissertationSuper = new ArrayList<>();
+    public static List<ConferencePaper> conferenceSuper = new ArrayList<>();
+    public static List<JournalPaper> journalSuper = new ArrayList<>();
+    public static List<ResearchReport> researchSuper = new ArrayList<>();
+    public static List<Magazine> magazineSuper = new ArrayList<>();
     
    
     
     
     //selected items
-     public Book bookSelected;
-     public Thesis thesisSelected;
-     public Dissertation dissSelected;
-     public ConferencePaper conSelected;
-     public Magazine magSelected;
-     public JournalPaper jourSelected;
-     public ResearchReport resSelected;
+     public static Book bookSelected;
+     public static Thesis thesisSelected;
+     public static Dissertation dissSelected;
+     public static ConferencePaper conSelected;
+     public static Magazine magSelected;
+     public static JournalPaper jourSelected;
+     public static ResearchReport resSelected;
     
      
     //models

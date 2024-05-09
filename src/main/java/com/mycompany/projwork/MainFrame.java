@@ -59,6 +59,8 @@ public class MainFrame extends Main {
     }
     
     
+    
+    
 //    public MainFrame(Book newBook) {
 //        initComponents();
 //        super.addBook(newBook);
@@ -394,8 +396,8 @@ public class MainFrame extends Main {
                 this.setVisible(false);
                 String type = button.getText();
                 if (type.contains("Book")){
-//                    BookFrame bookFrame = new BookFrame(1);
-                    super.book.setVisible(true);
+                    BookFrame bookFrame = new BookFrame(1);
+                    bookFrame.setVisible(true);
                     this.setVisible(false);
                 } else if (type.contains("Thesis")) {
                     ThesisFrame thesisFrame = new ThesisFrame(1);
