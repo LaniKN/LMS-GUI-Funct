@@ -199,7 +199,7 @@ public class MagazineFrame extends Main {
     private void removeMagazineBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeMagazineBtnActionPerformed
         int m = JOptionPane.showConfirmDialog(null, "Are you sure?", "Confirmation", JOptionPane.YES_NO_OPTION);
         if (m == JOptionPane.YES_OPTION) {
-            //Button code here
+            super.magazineSuper.remove(super.magSelected);
         } else {
             System.exit(0);
         }            

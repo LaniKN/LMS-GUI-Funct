@@ -316,7 +316,7 @@ public class ConferenceFrame extends Main {
     private void removeConferenceBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeConferenceBtnActionPerformed
         int m = JOptionPane.showConfirmDialog(null, "Are you sure?", "Confirmation", JOptionPane.YES_NO_OPTION);
         if (m == JOptionPane.YES_OPTION) {
-            //Button code here
+            super.conferenceSuper.remove(super.conSelected);
         } else {
             System.exit(0);
         }            

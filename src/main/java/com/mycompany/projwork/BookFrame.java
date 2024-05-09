@@ -320,7 +320,7 @@ public class BookFrame extends Main {
     private void removeBookBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeBookBtnActionPerformed
         int m = JOptionPane.showConfirmDialog(null, "Are you sure?", "Confirmation", JOptionPane.YES_NO_OPTION);
         if (m == JOptionPane.YES_OPTION) {
-            //Button code here
+            super.bookSuper.remove(super.bookSelected);
         } else {
             System.exit(0);
         }            

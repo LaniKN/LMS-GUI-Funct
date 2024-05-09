@@ -254,7 +254,7 @@ public class ResearchFrame extends Main {
     private void removeResearchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeResearchBtnActionPerformed
         int m = JOptionPane.showConfirmDialog(null, "Are you sure?", "Confirmation", JOptionPane.YES_NO_OPTION);
         if (m == JOptionPane.YES_OPTION) {
-            //Button code here
+            super.researchSuper.remove(super.resSelected);
         } else {
             System.exit(0);
         }            
