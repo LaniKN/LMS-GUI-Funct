@@ -5,6 +5,8 @@ package com.mycompany.projwork;
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 import java.util.List;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
 /**
  *
  * @author nohea
@@ -91,12 +93,22 @@ public class JournalFrame extends Main {
 
         removeJournalBtn.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 18)); // NOI18N
         removeJournalBtn.setText("Remove Journal Paper");
+        removeJournalBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeJournalBtnActionPerformed(evt);
+            }
+        });
 
         editJournalBtn.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 18)); // NOI18N
         editJournalBtn.setText("Edit Journal Paper");
 
         addJournalBtn.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 18)); // NOI18N
         addJournalBtn.setText("Add Journal Paper");
+        addJournalBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addJournalBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout editRemoveJournalPanelLayout = new javax.swing.GroupLayout(editRemoveJournalPanel);
         editRemoveJournalPanel.setLayout(editRemoveJournalPanelLayout);
@@ -224,6 +236,44 @@ public class JournalFrame extends Main {
         this.setVisible(false);
         mainFrame.setVisible(true);
     }//GEN-LAST:event_backBtnActionPerformed
+
+    private void addJournalBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addJournalBtnActionPerformed
+        // TODO add your handling code here:
+        if(eRJournalTitleTxt.getText().isEmpty() && eRJournalPubYearTxt.getText().isEmpty() && eRJournalAuthorTxt.getText().isEmpty() && eRJournalNameTxt.getText().isEmpty()){
+
+            JOptionPane.showMessageDialog(null,"Please fill in all parameters for adding a Journal!");
+        } else {
+            //calling setAuthors to parse through text field for authors of new book
+            List<Author> authors = super.setAuthors(eRJournalAuthorTxt.getText());
+            
+            //number of authors for array size in classes
+            int numAuthors = authors.size();
+
+            //this bookSuper.add is the justAddedBook
+            super.journalSuper.add(new JournalPaper(eRJournalTitleTxt.getText(), eRJournalPubYearTxt.getText(), numAuthors, eRJournalNameTxt.getText()));
+
+            //outer part makes sure we get only 1 book, the most recent
+            for(int i = 1; i>0; i--){
+                JournalPaper justAddedJournal = super.journalSuper.get(super.journalSuper.size()-1);
+                //this for loop goes through array size for the number of authors in this new book
+                for (int num = 0; num < numAuthors; num++){
+                    //we are adding the Authors for each index in the author_list for the new book.
+                  justAddedJournal.author_list[num] = authors.get(numAuthors - (1+num));
+                }
+            }
+            //journalList = new JList<JournalPaper>(journalSuper.toArray(new JournalPaper[journalSuper.size()]));
+
+        }
+    }//GEN-LAST:event_addJournalBtnActionPerformed
+
+    private void removeJournalBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeJournalBtnActionPerformed
+        int m = JOptionPane.showConfirmDialog(null, "Are you sure?", "Confirmation", JOptionPane.YES_NO_OPTION);
+        if (m == JOptionPane.YES_OPTION) {
+            //Button code here
+        } else {
+            System.exit(0);
+        }
+    }//GEN-LAST:event_removeJournalBtnActionPerformed
 
     /**
      * @param args the command line arguments

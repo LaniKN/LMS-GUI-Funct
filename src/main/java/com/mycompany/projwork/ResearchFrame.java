@@ -10,6 +10,8 @@ import java.util.List;
  * @author nohea
  */
 import javax.swing.JFrame;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
 
 public class ResearchFrame extends Main {
 
@@ -86,12 +88,22 @@ public class ResearchFrame extends Main {
 
         removeResearchBtn.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 18)); // NOI18N
         removeResearchBtn.setText("Remove Research Report");
+        removeResearchBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeResearchBtnActionPerformed(evt);
+            }
+        });
 
         editResearchBtn.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 18)); // NOI18N
         editResearchBtn.setText("Edit Research Report");
 
         addResearchBtn.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 18)); // NOI18N
         addResearchBtn.setText("Add Research Report");
+        addResearchBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addResearchBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout editRemoveResearchPanelLayout = new javax.swing.GroupLayout(editRemoveResearchPanel);
         editRemoveResearchPanel.setLayout(editRemoveResearchPanelLayout);
@@ -211,6 +223,42 @@ public class ResearchFrame extends Main {
         this.setVisible(false);
         mainFrame.setVisible(true);
     }//GEN-LAST:event_backBtnActionPerformed
+
+    private void addResearchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addResearchBtnActionPerformed
+        // TODO add your handling code here:
+        if(erResearchTitleTxt.getText().isEmpty() && eRResearchPubYearTxt.getText().isEmpty() && eRResearchAuthorTxt.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null,"Please fill in all parameters for adding a book!");
+        } else {
+            //calling setAuthors to parse through text field for authors of new book
+            List<Author> authors = super.setAuthors(eRResearchAuthorTxt.getText());
+              
+            //number of authors for array size in classes
+            int numAuthors = authors.size();
+
+            //this bookSuper.add is the justAddedBook
+            super.researchSuper.add(new ResearchReport(erResearchTitleTxt.getText(), eRResearchPubYearTxt.getText(), numAuthors));
+
+            //outer part makes sure we get only 1 book, the most recent
+            for(int i = 1; i>0; i--){
+                ResearchReport justAddedResearch = super.researchSuper.get(super.researchSuper.size()-1);
+                //this for loop goes through array size for the number of authors in this new book
+                for (int num = 0; num < numAuthors; num++){
+                    //we are adding the Authors for each index in the author_list for the new book.
+                  justAddedResearch.author_list[num] = authors.get(numAuthors - (1+num));
+                }
+            }
+            //researchList = new JList<ResearchReport>(researchSuper.toArray(new ResearchReport[researchSuper.size()]));
+        }
+    }//GEN-LAST:event_addResearchBtnActionPerformed
+
+    private void removeResearchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeResearchBtnActionPerformed
+        int m = JOptionPane.showConfirmDialog(null, "Are you sure?", "Confirmation", JOptionPane.YES_NO_OPTION);
+        if (m == JOptionPane.YES_OPTION) {
+            super.researchSuper.remove(super.resSelected);
+        } else {
+            System.exit(0);
+        }            
+    }//GEN-LAST:event_removeResearchBtnActionPerformed
 
     /**
      * @param args the command line arguments

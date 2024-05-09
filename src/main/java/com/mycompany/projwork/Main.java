@@ -43,6 +43,8 @@ public class Main extends JFrame {
      public Dissertation dissSelected = new Dissertation();
      public ConferencePaper conSelected = new ConferencePaper();
      public Magazine magSelected = new Magazine();
+     public JournalPaper jourSelected = new JournalPaper();
+     public ResearchReport resSelected = new ResearchReport();
     
      
     //models

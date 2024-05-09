@@ -1,6 +1,8 @@
 package com.mycompany.projwork;
 
 import java.util.List;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -116,12 +118,22 @@ public class ConferenceFrame extends Main {
 
         removeConferenceBtn.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 18)); // NOI18N
         removeConferenceBtn.setText("Remove Conference Paper");
+        removeConferenceBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeConferenceBtnActionPerformed(evt);
+            }
+        });
 
         editConferenceBtn.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 18)); // NOI18N
         editConferenceBtn.setText("Edit Conference Paper");
 
         addConferenceBtn.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 18)); // NOI18N
         addConferenceBtn.setText("Add Conference Paper");
+        addConferenceBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addConferenceBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout editRemoveConferencePanelLayout = new javax.swing.GroupLayout(editRemoveConferencePanel);
         editRemoveConferencePanel.setLayout(editRemoveConferencePanelLayout);
@@ -267,6 +279,48 @@ public class ConferenceFrame extends Main {
         this.setVisible(false);
         mainFrame.setVisible(true);
     }//GEN-LAST:event_backBtnActionPerformed
+
+    private void addConferenceBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addConferenceBtnActionPerformed
+        // TODO add your handling code here:
+        if(eRConferenceTitleTxt.getText().isEmpty() && eRConferencePubYearTxt.getText().isEmpty() && eRConferenceAuthorTxt.getText().isEmpty() && eRConferenceNameTxt.getText().isEmpty() && eRConferenceLocationTxt.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null,"Please fill in all parameters for adding a conference paper!");
+        } else {
+            //calling setAuthors to parse through text field for authors of new book
+            List<Author> authors = super.setAuthors(eRConferenceAuthorTxt.getText());
+
+            //number of authors for array size in classes
+            int numAuthors = authors.size();
+
+
+            //for Location and Period
+            Location addConferenceLocation = new Location(eRConferenceLocationTxt.getText());
+            Period addConferencePeriod = new Period(eRConferenceBeginDateTxt.getText(), eRConferenceEndDateTxt.getText());
+
+
+            //this bookSuper.add is the justAddedBook
+            super.conferenceSuper.add(new ConferencePaper(eRConferenceTitleTxt.getText(), eRConferencePubYearTxt.getText(), numAuthors, eRConferenceNameTxt.getText(), addConferenceLocation, addConferencePeriod));
+
+            //outer part makes sure we get only 1 book, the most recent
+            for(int i = 1; i>0; i--){
+                ConferencePaper justAddedConference = super.conferenceSuper.get(super.conferenceSuper.size()-1);
+                //this for loop goes through array size for the number of authors in this new book
+                for (int num = 0; num < numAuthors; num++){
+                    //we are adding the Authors for each index in the author_list for the new book.
+                  justAddedConference.author_list[num] = authors.get(numAuthors - (1+num));
+                }
+            }
+        }
+        //conferenceList = new JList<ConferencePaper>(conferenceSuper.toArray(new ConferencePaper[conferenceSuper.size()]));
+    }//GEN-LAST:event_addConferenceBtnActionPerformed
+
+    private void removeConferenceBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeConferenceBtnActionPerformed
+        int m = JOptionPane.showConfirmDialog(null, "Are you sure?", "Confirmation", JOptionPane.YES_NO_OPTION);
+        if (m == JOptionPane.YES_OPTION) {
+            super.conferenceSuper.remove(super.conSelected);
+        } else {
+            System.exit(0);
+        }            
+    }//GEN-LAST:event_removeConferenceBtnActionPerformed
 
     /**
      * @param args the command line arguments

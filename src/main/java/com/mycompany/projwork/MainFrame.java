@@ -519,13 +519,57 @@ public class MainFrame extends Main {
                                            }
                                        }
                                 } else if (type.contains("Dissert")) {
-
+                                        for (Dissertation dissertation : super.dissertationSuper) {
+                                           for (Author author : authors){
+                                               for (int a = 0; a < dissertation.author_list.length-1; a++){
+                                                    if (dissertation.title.contains(titleFilter) && dissertation.author_list[a].equals(author) && dissertation.pubYear.contains(pubYearFilter)) {
+                                                        super.dissertationFilter.add(dissertation);
+//                                                        super.bookModel.addElement(book);
+//                                                        searchResultList.setModel(super.bookModel);
+//                                                        this.setVisible(true);
+                                                    }
+                                               }
+                                           }
+                                       }
                                 } else if (type.contains("Conf")) {
-
+                                        for (ConferencePaper conference : super.conferenceSuper) {
+                                           for (Author author : authors){
+                                               for (int a = 0; a < conference.author_list.length-1; a++){
+                                                    if (conference.title.contains(titleFilter) && conference.author_list[a].equals(author) && conference.pubYear.contains(pubYearFilter)) {
+                                                        super.conferenceFilter.add(conference);
+//                                                        super.bookModel.addElement(book);
+//                                                        searchResultList.setModel(super.bookModel);
+//                                                        this.setVisible(true);
+                                                    }
+                                               }
+                                           }
+                                       }
                                 } else if (type.contains("Journal")) {
-
+                                        for (JournalPaper journal : super.journalSuper) {
+                                           for (Author author : authors){
+                                               for (int a = 0; a < journal.author_list.length-1; a++){
+                                                    if (journal.title.contains(titleFilter) && journal.author_list[a].equals(author) && journal.pubYear.contains(pubYearFilter)) {
+                                                        super.journalFilter.add(journal);
+//                                                        super.bookModel.addElement(book);
+//                                                        searchResultList.setModel(super.bookModel);
+//                                                        this.setVisible(true);
+                                                    }
+                                               }
+                                           }
+                                       }
                                 } else if (type.contains("Research")) {
-
+                                        for (ResearchReport research : super.researchSuper) {
+                                           for (Author author : authors){
+                                               for (int a = 0; a < research.author_list.length-1; a++){
+                                                    if (research.title.contains(titleFilter) && research.author_list[a].equals(author) && research.pubYear.contains(pubYearFilter)) {
+                                                        super.researchFilter.add(research);
+//                                                        super.bookModel.addElement(book);
+//                                                        searchResultList.setModel(super.bookModel);
+//                                                        this.setVisible(true);
+                                                    }
+                                               }
+                                           }
+                                       }
                                 }
 
                             } else {//does not have pub year

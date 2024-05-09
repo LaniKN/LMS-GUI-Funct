@@ -5,6 +5,8 @@ package com.mycompany.projwork;
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 import java.util.List;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
 /**
  *
  * @author nohea
@@ -76,11 +78,6 @@ public class DissertationFrame extends Main {
         eRDissertationTitleLabel.setText("Title:");
 
         eRDissertationTitleTxt.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
-        eRDissertationTitleTxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                eRDissertationTitleTxtActionPerformed(evt);
-            }
-        });
 
         eRDissertationPubYearLabel.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
         eRDissertationPubYearLabel.setText("Publication Year:");
@@ -128,9 +125,19 @@ public class DissertationFrame extends Main {
 
         removeDissertationBtn.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 18)); // NOI18N
         removeDissertationBtn.setText("Remove Dissertation");
+        removeDissertationBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeDissertationBtnActionPerformed(evt);
+            }
+        });
 
         addDissertationBtn.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 18)); // NOI18N
         addDissertationBtn.setText("Add Dissertation");
+        addDissertationBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addDissertationBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout editRemoveDissertationPanelLayout = new javax.swing.GroupLayout(editRemoveDissertationPanel);
         editRemoveDissertationPanel.setLayout(editRemoveDissertationPanelLayout);
@@ -271,16 +278,55 @@ public class DissertationFrame extends Main {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void eRDissertationTitleTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eRDissertationTitleTxtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_eRDissertationTitleTxtActionPerformed
-
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         // TODO add your handling code here:
         MainFrame mainFrame = new MainFrame();
         this.setVisible(false);
         mainFrame.setVisible(true);
     }//GEN-LAST:event_backBtnActionPerformed
+
+    private void addDissertationBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addDissertationBtnActionPerformed
+        // TODO add your handling code here:
+        if(eRDissertationTitleTxt.getText().isEmpty() && eRDissertationDepTxt.getText().isEmpty() && eRDissertationPubYearTxt.getText().isEmpty() && eRDissertationDepBuildingTxt.getText().isEmpty() && eRDissertationFigTxt.getText().isEmpty() && eRDissertationAuthorTxt.getText().isEmpty() && eRDissertationComMemTxt.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null,"Please fill in all parameters for adding a dissertation!");
+        } else {
+            //calling setComitteeMems to parse through text field for committee members and committee title of new dissertation/thesis
+            List<CommitteeMember> committee = super.setCommitteeMems(eRDissertationComMemTxt.getText());
+
+            //number of authors for array size in classes
+            int numCommittee = committee.size();
+
+            //this bookSuper.add is the justAddedBook
+            Department addDissertationDepartment = new Department(eRDissertationDepBuildingTxt.getText(), eRDissertationDepTxt.getText());
+            Chapters addDissertationChapter = new Chapters(Integer.parseInt(eRDissertationChapTxt.getText()));
+            Figures addDissertationFigure = new Figures(Integer.parseInt(eRDissertationFigTxt.getText()));
+
+            super.dissertationSuper.add(new Dissertation(eRDissertationTitleTxt.getText(), eRDissertationPubYearTxt.getText(), addDissertationDepartment, numCommittee, addDissertationChapter, addDissertationFigure));
+            //dissertationSuper.author_list[0] = addDissertationAuthorTxt.getText();
+            
+
+            //outer part makes sure we get only 1 book, the most recent
+            for(int i = 1; i>0; i--){
+                Dissertation justAddedDissertation = super.dissertationSuper.get(super.dissertationSuper.size()-1);
+                //this for loop goes through array size for the number of authors in this new book
+                for (int num = 0; num < numCommittee; num++){
+                    //we are adding the Authors for each index in the author_list for the new book.
+                  justAddedDissertation.committeeMembers[num] = committee.get(numCommittee - (1+num));
+                }
+            }
+
+            //dissertationList = new JList<Dissertation>(dissertationSuper.toArray(new Dissertation[dissertationSuper.size()]));
+        }
+    }//GEN-LAST:event_addDissertationBtnActionPerformed
+
+    private void removeDissertationBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeDissertationBtnActionPerformed
+        int m = JOptionPane.showConfirmDialog(null, "Are you sure?", "Confirmation", JOptionPane.YES_NO_OPTION);
+        if (m == JOptionPane.YES_OPTION) {
+            super.dissertationSuper.remove(super.dissSelected);
+        } else {
+            System.exit(0);
+        }            
+    }//GEN-LAST:event_removeDissertationBtnActionPerformed
 
     /**
      * @param args the command line arguments

@@ -375,6 +375,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Remove Thesis"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="removeThesisBtnActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="addThesisBtn">
               <Properties>
@@ -383,6 +386,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Add Thesis"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addThesisBtnActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
