@@ -1,6 +1,8 @@
 package com.mycompany.projwork;
 
 import java.util.List;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -126,6 +128,11 @@ public class ThesisFrame extends Main {
 
         addThesisBtn.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 18)); // NOI18N
         addThesisBtn.setText("Add Thesis");
+        addThesisBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addThesisBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout editRemoveThesisPanelLayout = new javax.swing.GroupLayout(editRemoveThesisPanel);
         editRemoveThesisPanel.setLayout(editRemoveThesisPanelLayout);
@@ -285,6 +292,40 @@ public class ThesisFrame extends Main {
         this.setVisible(false);
         mainFrame.setVisible(true);
     }//GEN-LAST:event_backBtnActionPerformed
+
+    private void addThesisBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addThesisBtnActionPerformed
+        // TODO add your handling code here:
+        if (eRThesisTitleTxt.getText().isEmpty() && eRThesisDepTxt.getText().isEmpty() && eRThesisPubYearTxt.getText().isEmpty() && eRThesisDepBuildingTxt.getText().isEmpty() && eRThesisFigTxt.getText().isEmpty() && eRThesisAuthorTxt.getText().isEmpty() && eRThesisComMemTxt.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null,"Please fill in all parameters for adding a Thesis!");
+        } else {
+            //calling setComitteeMems to parse through text field for committee members and committee title of new dissertation/thesis
+            List<CommitteeMember> committee = super.setCommitteeMems(eRThesisComMemTxt.getText());
+
+            //number of authors for array size in classes
+            int numCommittee = committee.size();
+
+            //this bookSuper.add is the justAddedBook
+            Department addThesisDepartment = new Department(eRThesisDepBuildingTxt.getText(), eRThesisDepTxt.getText());
+            Chapters addThesisChapter = new Chapters(Integer.parseInt(eRThesisChapTxt.getText()));
+            Figures addThesisFigure = new Figures(Integer.parseInt(eRThesisFigTxt.getText()));
+
+            super.thesisSuper.add(new Thesis(eRThesisTitleTxt.getText(), eRThesisPubYearTxt.getText(), addThesisDepartment, numCommittee, addThesisChapter, addThesisFigure));
+            // thesisSuper.author_list[0] = addThesisAuthorTxt.getText();
+            
+
+            //outer part makes sure we get only 1 book, the most recent
+            for(int i = 1; i>0; i--){
+                Thesis justAddedThesis = thesisSuper.get(thesisSuper.size()-1);
+                //this for loop goes through array size for the number of authors in this new book
+                for (int num = 0; num < numCommittee; num++){
+                    //we are adding the Authors for each index in the author_list for the new book.
+                  justAddedThesis.committeeMembers[num] = committee.get(numCommittee - (1+num));
+                }
+            }
+            //thesisList = new JList<Thesis>(thesisSuper.toArray(new Thesis[thesisSuper.size()]));
+    
+        }
+    }//GEN-LAST:event_addThesisBtnActionPerformed
 
     /**
      * @param args the command line arguments

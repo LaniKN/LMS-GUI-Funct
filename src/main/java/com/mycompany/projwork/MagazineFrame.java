@@ -5,6 +5,7 @@ package com.mycompany.projwork;
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 import java.util.List;
+import javax.swing.JOptionPane;
 /**
  *
  * @author nohea
@@ -66,6 +67,11 @@ public class MagazineFrame extends Main {
 
         addMagazineBtn.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 18)); // NOI18N
         addMagazineBtn.setText("Add Magazine");
+        addMagazineBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addMagazineBtnActionPerformed(evt);
+            }
+        });
 
         editMagazineBtn.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 18)); // NOI18N
         editMagazineBtn.setText("Edit Magazine");
@@ -170,6 +176,16 @@ public class MagazineFrame extends Main {
         this.setVisible(false);
         mainFrame.setVisible(true);
     }//GEN-LAST:event_backBtnActionPerformed
+
+    private void addMagazineBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMagazineBtnActionPerformed
+        // TODO add your handling code here:
+        if(eRMagazineTitleTxt.getText().isEmpty() && eRMagazinePubYearTxt.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null,"Please fill in all parameters for adding a book!");
+        } else {
+            magazineSuper.add(new Magazine(eRMagazineTitleTxt.getText(), eRMagazinePubYearTxt.getText()));
+        }
+        //magazineList = new JList<Magazine>(magazineSuper.toArray(new Magazine[magazineSuper.size()]));
+    }//GEN-LAST:event_addMagazineBtnActionPerformed
 
     /**
      * @param args the command line arguments
