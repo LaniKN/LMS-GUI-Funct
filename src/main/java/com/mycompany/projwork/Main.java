@@ -51,6 +51,7 @@ public class Main extends JFrame {
         String[] arrAuthors = txtField.split(";");
         for(String a : arrAuthors){
             String[] arrName = a.split(" ");
+            System.out.println(arrName.length);
             author.add(new Author(arrName[0], arrName[1]));
         }
         return author;
