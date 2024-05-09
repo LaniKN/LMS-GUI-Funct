@@ -269,7 +269,7 @@ public class JournalFrame extends Main {
     private void removeJournalBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeJournalBtnActionPerformed
         int m = JOptionPane.showConfirmDialog(null, "Are you sure?", "Confirmation", JOptionPane.YES_NO_OPTION);
         if (m == JOptionPane.YES_OPTION) {
-            //Button code here
+            super.journalSuper.remove(super.jourSelected);
         } else {
             System.exit(0);
         }
