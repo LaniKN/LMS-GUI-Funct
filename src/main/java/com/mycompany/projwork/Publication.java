@@ -3,26 +3,26 @@ package com.mycompany.projwork;
 
 public class Publication {
     public Author[] author_list;
-    public String title, pub_year;
+    public String title, pubYear;
 
     public Publication() {
         title = "N/A";
-        pub_year = "1969";
+        pubYear = "1969";
         author_list = new Author[0];
     }
 
     public Publication(String title, String py, int authNum){
         this.title = title;
-        pub_year = py;
+        pubYear = py;
         author_list = new Author[authNum];
     }
 
     public Publication(String title, String py){
         this.title = title;
-        pub_year=py;
+        pubYear=py;
     }
     
     public String toString() {
-        return title + pub_year;
+        return title + pubYear;
     }
 }

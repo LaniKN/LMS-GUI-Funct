@@ -192,11 +192,7 @@ public class MainFrame extends Main {
         });
 
         searchResultList.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
-        searchResultList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
+        searchResultList.setModel(bookModel);
         searchScrollpane.setViewportView(searchResultList);
 
         javax.swing.GroupLayout InnerBodyPanelLayout = new javax.swing.GroupLayout(InnerBodyPanel);
@@ -419,41 +415,68 @@ public class MainFrame extends Main {
                 String type = button.getText();
                 
                 //is title txt empty?
-                if (!searchTitleTxt.getText().isEmpty()) {
+                if (!searchTitleTxt.getText().isEmpty()) { //has title
                     String titleFilter = searchTitleTxt.getText();
                     
                     //is it a magazine?
-                    if (!type.contains("Magazine")) {
+                    if (!type.contains("Magazine")) { //not magazine
                         
-                        //is the pubYear filled in?
-                        if (!searchPubYearTxt.getText().isEmpty()) {
-                            String pubYearFilter = searchPubYearTxt.getText();
-                            if (type.contains("Book")){
-                                   for (Book book : super.bookSuper) {
-                                       if (book.title.contains(titleFilter) && book.pubYear.contains(pubYearFilter)) {
-                                           super.bookFilter.add(book);
+                        if (!searchAuthorTxt.getText().isEmpty()){//has author
+                            List<Author> authors = super.setAuthors(searchAuthorTxt.getText());
+                            
+                            //is the pubYear filled in?
+                            if (!searchPubYearTxt.getText().isEmpty()) {//pub year
+                                String pubYearFilter = searchPubYearTxt.getText();
+                                if (type.contains("Book")){
+                                    //super.bookModel.clear();
+                                       for (Book book : super.bookSuper) {
+                                           for (Author author : authors){
+                                               for (int a = 0; a < book.authNum-1; a++){
+                                                    if (book.title.contains(titleFilter) && book.author_list[a].equals(author) && book.pubYear.contains(pubYearFilter)) {
+                                                        super.bookFilter.add(book);
+//                                                        super.bookModel.addElement(book);
+//                                                        searchResultList.setModel(super.bookModel);
+//                                                        this.setVisible(true);
+                                                    }
+                                               }
+                                           }
                                        }
-                                   }
-                            } else if (type.contains("Thesis")) {
-                                
-                            } else if (type.contains("Dissert")) {
-                                
-                            } else if (type.contains("Conf")) {
-                                
-                            } else if (type.contains("Journal")) {
-                                
-                            } else if (type.contains("Research")) {
+                                } else if (type.contains("Thesis")) {
+                                    //super.bookModel.clear();
+                                       for (Thesis thesis : super.thesisSuper) {
+                                           for (Author author : authors){
+                                               for (int a = 0; a < thesis.author_list.length-1; a++){
+                                                    if (thesis.title.contains(titleFilter) && thesis.author_list[a].equals(author) && thesis.pubYear.contains(pubYearFilter)) {
+                                                        super.thesisFitler.add(thesis);
+//                                                        super.bookModel.addElement(book);
+//                                                        searchResultList.setModel(super.bookModel);
+//                                                        this.setVisible(true);
+                                                    }
+                                               }
+                                           }
+                                       }
+                                } else if (type.contains("Dissert")) {
+
+                                } else if (type.contains("Conf")) {
+
+                                } else if (type.contains("Journal")) {
+
+                                } else if (type.contains("Research")) {
+
+                                }
+
+                            } else {//does not have pub year
                                 
                             }
+                        } else {//does not have author
                             
                         }
                         
-                        
-                    } else {
+                    } else { //is magazine
                         
                     }
             
-                } else {
+                } else { //does not have title
 
                 }
             }
@@ -461,6 +484,7 @@ public class MainFrame extends Main {
         
     }//GEN-LAST:event_searchBtnActionPerformed
 
+    
     /**
      * @param args the command line arguments
      */

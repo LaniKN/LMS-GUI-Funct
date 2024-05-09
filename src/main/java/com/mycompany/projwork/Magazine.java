@@ -5,7 +5,7 @@ package com.mycompany.projwork;
 public class Magazine extends Publication{
 
     public Magazine() {
-        super("N/A", "1963");
+        super();
     }
 
     public Magazine(String t, String py) {
