@@ -121,6 +121,11 @@ public class BookFrame extends Main {
 
         editBookBtn.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 18)); // NOI18N
         editBookBtn.setText("Edit Book");
+        editBookBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editBookBtnActionPerformed(evt);
+            }
+        });
 
         removeBookBtn.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 18)); // NOI18N
         removeBookBtn.setText("Remove Book");
@@ -325,6 +330,35 @@ public class BookFrame extends Main {
             System.exit(0);
         }            
     }//GEN-LAST:event_removeBookBtnActionPerformed
+
+    private void editBookBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBookBtnActionPerformed
+        // TODO add your handling code here:
+        super.bookSuper.remove(super.bookSelected);
+        if(eRBookTitleTxt.getText().isEmpty() && eRBookEdNumTxt.getText().isEmpty() && eRBookPubYearTxt.getText().isEmpty() && eRBookChapTxt.getText().isEmpty() && eRBookFigTxt.getText().isEmpty() && eRBookAuthorTxt.getText().isEmpty() && eRBookPubTxt.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null,"Please fill in all parameters for editting a book!");
+        } else {
+            //calling setAuthors to parse through text field for authors of new book
+            System.out.println("In Add book");
+            List<Author> authors = super.setAuthors(eRBookAuthorTxt.getText());
+            System.out.println("Got past set author");
+
+            //number of authors for array size in classes
+            int numAuthors = authors.size();
+
+            //this bookSuper.add is the justAddedBook
+            super.bookSuper.add(new Book(eRBookTitleTxt.getText(), eRBookPubYearTxt.getText(), numAuthors, eRBookPubTxt.getText(), Integer.parseInt(eRBookChapTxt.getText()), Integer.parseInt(eRBookFigTxt.getText()), Integer.parseInt(eRBookEdNumTxt.getText()) ));
+            Book justAddedBook = super.bookSuper.get(super.bookSuper.size()-1);
+            //outer part makes sure we get only 1 book, the most recent
+            for(int i = 1; i>0; i--){
+                //this for loop goes through array size for the number of authors in this new book
+                for (int num = 0; num < numAuthors; num++){
+                    //we are adding the Authors for each index in the author_list for the new book.
+                  justAddedBook.author_list[num] = authors.get(numAuthors - (1+num));
+                }
+            }
+        }    
+        super.bookModel.addElement(justAddedBook);
+    }//GEN-LAST:event_editBookBtnActionPerformed
 
     /**
      * @param args the command line arguments
