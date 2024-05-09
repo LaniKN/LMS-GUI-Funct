@@ -78,11 +78,6 @@ public class BookFrame extends Main {
         eRBookTitleLabel.setText("Title:");
 
         eRBookTitleTxt.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
-        eRBookTitleTxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                med(evt);
-            }
-        });
 
         eRBookPubYearLabel.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
         eRBookPubYearLabel.setText("Publication Year:");
@@ -275,31 +270,6 @@ public class BookFrame extends Main {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void med(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_med
-        if(eRBookTitleTxt.getText().isEmpty() && eRBookEdNumTxt.getText().isEmpty() && eRBookPubYearTxt.getText().isEmpty() && eRBookChapTxt.getText().isEmpty() && eRBookFigTxt.getText().isEmpty() && eRBookAuthorTxt.getText().isEmpty() && eRBookPubTxt.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null,"Please fill in all parameters for adding a book!");
-        } else {
-            //calling setAuthors to parse through text field for authors of new book
-            List<Author> authors = super.setAuthors(eRBookAuthorTxt.getText());
-
-            //number of authors for array size in classes
-            int numAuthors = authors.size();
-
-            //this bookSuper.add is the justAddedBook
-            bookSuper.add(new Book(eRBookTitleTxt.getText(), eRBookPubYearTxt.getText(), numAuthors, eRBookPubTxt.getText(), Integer.parseInt(eRBookChapTxt.getText()), Integer.parseInt(eRBookFigTxt.getText()), Integer.parseInt(eRBookEdNumTxt.getText()) ));
-            
-            //outer part makes sure we get only 1 book, the most recent
-            for(int i = 1; i>0; i--){
-                Book justAddedBook = bookSuper.get(bookSuper.size()-1);
-                //this for loop goes through array size for the number of authors in this new book
-                for (int num = 0; num < numAuthors; num++){
-                    //we are adding the Authors for each index in the author_list for the new book.
-                  justAddedBook.author_list[num] = authors.get(numAuthors - (1+num));
-                }
-            }
-        bookList = new JList<Book>(bookSuper.toArray(new Book[bookSuper.size()]));
-    }//GEN-LAST:event_med
-
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         // TODO add your handling code here:
         MainFrame mainFrame = new MainFrame();
@@ -308,7 +278,33 @@ public class BookFrame extends Main {
     }//GEN-LAST:event_backBtnActionPerformed
 
     private void addBookBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBookBtnActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here:if(eRBookTitleTxt.getText().isEmpty() && eRBookEdNumTxt.getText().isEmpty() && eRBookPubYearTxt.getText().isEmpty() && eRBookChapTxt.getText().isEmpty() && eRBookFigTxt.getText().isEmpty() && eRBookAuthorTxt.getText().isEmpty() && eRBookPubTxt.getText().isEmpty()){
+        if(eRBookTitleTxt.getText().isEmpty() && eRBookEdNumTxt.getText().isEmpty() && eRBookPubYearTxt.getText().isEmpty() && eRBookChapTxt.getText().isEmpty() && eRBookFigTxt.getText().isEmpty() && eRBookAuthorTxt.getText().isEmpty() && eRBookPubTxt.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null,"Please fill in all parameters for adding a book!");
+        } else {
+            //calling setAuthors to parse through text field for authors of new book
+            System.out.println("In Add book");
+            List<Author> authors = super.setAuthors(eRBookAuthorTxt.getText());
+            System.out.println("Got past set author");
+
+            //number of authors for array size in classes
+            int numAuthors = authors.size();
+
+            //this bookSuper.add is the justAddedBook
+            super.bookSuper.add(new Book(eRBookTitleTxt.getText(), eRBookPubYearTxt.getText(), numAuthors, eRBookPubTxt.getText(), Integer.parseInt(eRBookChapTxt.getText()), Integer.parseInt(eRBookFigTxt.getText()), Integer.parseInt(eRBookEdNumTxt.getText()) ));
+            
+            //outer part makes sure we get only 1 book, the most recent
+            for(int i = 1; i>0; i--){
+                Book justAddedBook = super.bookSuper.get(super.bookSuper.size()-1);
+                //this for loop goes through array size for the number of authors in this new book
+                for (int num = 0; num < numAuthors; num++){
+                    //we are adding the Authors for each index in the author_list for the new book.
+                  justAddedBook.author_list[num] = authors.get(numAuthors - (1+num));
+                }
+            }
+        
+        }
+        
     }//GEN-LAST:event_addBookBtnActionPerformed
 
     /**
