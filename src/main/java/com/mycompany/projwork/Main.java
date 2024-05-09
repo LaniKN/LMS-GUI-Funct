@@ -56,13 +56,13 @@ public class Main extends JFrame {
     
 
     //Show JLists
-    public JList bookList = new JList(bookModel);
-    public JList thesisList = new JList(thesisModel);
-    public JList dissertationList = new JList(dissModel);
-    public JList conferenceList = new JList(conModel);
-    public JList journalList = new JList(journalModel);
-    public JList researchList = new JList(researchModel);
-    public JList magazineList = new JList(magModel);
+    public JList<Book> bookList = new JList<>(bookModel);
+    public JList<Thesis> thesisList = new JList<>(thesisModel);
+    public JList<Dissertation> dissertationList = new JList<>(dissModel);
+    public JList<ConferencePaper> conferenceList = new JList<>(conModel);
+    public JList<JournalPaper> journalList = new JList<>(journalModel);
+    public JList<ResearchReport> researchList = new JList<>(researchModel);
+    public JList<Magazine> magazineList = new JList<>(magModel);
 
     
     

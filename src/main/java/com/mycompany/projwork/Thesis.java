@@ -2,6 +2,7 @@ package com.mycompany.projwork;
 
 //Cherico Welch
 public class Thesis extends Publication{
+    //public String title, pubYear;
     public Department department;
     public CommitteeMember[] committeeMembers;
     private Chapters chapters;

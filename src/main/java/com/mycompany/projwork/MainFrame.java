@@ -193,6 +193,7 @@ public class MainFrame extends Main {
 
         searchResultList.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
         searchResultList.setModel(bookModel);
+        searchResultList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         searchScrollpane.setViewportView(searchResultList);
 
         javax.swing.GroupLayout InnerBodyPanelLayout = new javax.swing.GroupLayout(InnerBodyPanel);
