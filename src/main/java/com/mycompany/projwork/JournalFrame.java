@@ -9,7 +9,7 @@ import java.util.List;
  *
  * @author nohea
  */
-public class JournalFrame extends javax.swing.JFrame {
+public class JournalFrame extends Main {
 
     /**
      * Creates new form JournalFrame

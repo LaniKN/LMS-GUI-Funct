@@ -9,7 +9,7 @@ import java.util.List;
  *
  * @author nohea
  */
-public class DissertationFrame extends javax.swing.JFrame {
+public class DissertationFrame extends Main {
 
     /**
      * Creates new form EditRemoveDissertation

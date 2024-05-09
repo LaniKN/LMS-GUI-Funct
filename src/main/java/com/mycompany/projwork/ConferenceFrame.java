@@ -11,7 +11,7 @@ import java.util.List;
  *
  * @author nohea
  */
-public class ConferenceFrame extends javax.swing.JFrame {
+public class ConferenceFrame extends Main {
 
     /**
      * Creates new form EditRemoveConference

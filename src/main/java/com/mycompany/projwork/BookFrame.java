@@ -2,6 +2,7 @@ package com.mycompany.projwork;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -127,6 +128,11 @@ public class BookFrame extends Main {
 
         addBookBtn.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 18)); // NOI18N
         addBookBtn.setText("Add Book");
+        addBookBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addBookBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout editRemoveBookPanelLayout = new javax.swing.GroupLayout(editRemoveBookPanel);
         editRemoveBookPanel.setLayout(editRemoveBookPanelLayout);
@@ -270,7 +276,28 @@ public class BookFrame extends Main {
     }// </editor-fold>//GEN-END:initComponents
 
     private void med(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_med
-        // TODO add your handling code here:
+        if(eRBookTitleTxt.getText().isEmpty() && eRBookEdNumTxt.getText().isEmpty() && eRBookPubYearTxt.getText().isEmpty() && eRBookChapTxt.getText().isEmpty() && eRBookFigTxt.getText().isEmpty() && eRBookAuthorTxt.getText().isEmpty() && eRBookPubTxt.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null,"Please fill in all parameters for adding a book!");
+        } else {
+            //calling setAuthors to parse through text field for authors of new book
+            List<Author> authors = setAuthors(addBookAuthorListTxt.getText());
+
+            //number of authors for array size in classes
+            int numAuthors = authors.size();
+
+            //this bookSuper.add is the justAddedBook
+            bookSuper.add(new Book(addBookTitleTxt.getText(), addBookPubYearTxt.getText(), numAuthors, addBookPubTxt.getText(), Integer.parseInt(addBookChapTxt.getText()), Integer.parseInt(addBookFigsTxt.getText()), Integer.parseInt(addBookEdNumTxt.getText()) ));
+            
+            //outer part makes sure we get only 1 book, the most recent
+            for(int i = 1; i>0; i--){
+                Book justAddedBook = bookSuper.get(bookSuper.size()-1);
+                //this for loop goes through array size for the number of authors in this new book
+                for (int num = 0; num < numAuthors; num++){
+                    //we are adding the Authors for each index in the author_list for the new book.
+                  justAddedBook.author_list[num] = authors.get(numAuthors - (1+num));
+                }
+            }
+        bookList = new JList<Book>(bookSuper.toArray(new Book[bookSuper.size()]));
     }//GEN-LAST:event_med
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
@@ -279,6 +306,10 @@ public class BookFrame extends Main {
         this.setVisible(false);
         mainFrame.setVisible(true);
     }//GEN-LAST:event_backBtnActionPerformed
+
+    private void addBookBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBookBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addBookBtnActionPerformed
 
     /**
      * @param args the command line arguments
