@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
 import javax.swing.AbstractButton;
-import javax.swing.JList;
 
 /**
  *
@@ -186,6 +185,11 @@ public class MainFrame extends Main {
 
         searchBtn.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
         searchBtn.setText("Search");
+        searchBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchBtnActionPerformed(evt);
+            }
+        });
 
         searchResultList.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
         searchResultList.setModel(new javax.swing.AbstractListModel<String>() {
@@ -371,26 +375,26 @@ public class MainFrame extends Main {
                 this.setVisible(false);
                 String type = button.getText();
                 if (type.contains("Book")){
-                    BookFrame bookFrame = new BookFrame(super.bookSuper);
+                    BookFrame bookFrame = new BookFrame(1);
                     bookFrame.setVisible(true);
                 } else if (type.contains("Thesis")) {
-                    ThesisFrame thesisFrame = new ThesisFrame(super.thesisSuper);
+                    ThesisFrame thesisFrame = new ThesisFrame(1);
                     thesisFrame.setVisible(true);
                 } else if (type.contains("Dissert")) {
-                    DissertationFrame dissFrame = new DissertationFrame(super.dissertationSuper);
+                    DissertationFrame dissFrame = new DissertationFrame(1);
                     dissFrame.setVisible(true);
                 } else if (type.contains("Conf")) {
-                    ConferenceFrame conFrame = new ConferenceFrame(super.conferenceSuper);
+                    ConferenceFrame conFrame = new ConferenceFrame(1);
                     conFrame.setVisible(true);
                 } else if (type.contains("Journal")) {
                     
-                    JournalFrame journalFrame = new JournalFrame(super.journalSuper);
+                    JournalFrame journalFrame = new JournalFrame(1);
                     journalFrame.setVisible(true);
                 } else if (type.contains("Research")) {
-                    ResearchFrame researchFrame = new ResearchFrame(super.researchSuper);
+                    ResearchFrame researchFrame = new ResearchFrame(1);
                     researchFrame.setVisible(true);
                 } else if (type.contains("Magazine")) {
-                    MagazineFrame magFrame = new MagazineFrame(super.magazineSuper);
+                    MagazineFrame magFrame = new MagazineFrame(1);
                     magFrame.setVisible(true);
                 }
                 
@@ -404,6 +408,58 @@ public class MainFrame extends Main {
         bookFrame.setVisible(true);
         */
     }//GEN-LAST:event_addItemBtnActionPerformed
+
+    private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
+        // TODO add your handling code here:
+        for(Enumeration<AbstractButton> buttons = searchTypeBtnGroup.getElements() ; buttons.hasMoreElements();)
+        {
+            AbstractButton button = buttons.nextElement();
+            if (button.isSelected()) {
+                this.setVisible(false);
+                String type = button.getText();
+                
+                //is title txt empty?
+                if (!searchTitleTxt.getText().isEmpty()) {
+                    String titleFilter = searchTitleTxt.getText();
+                    
+                    //is it a magazine?
+                    if (!type.contains("Magazine")) {
+                        
+                        //is the pubYear filled in?
+                        if (!searchPubYearTxt.getText().isEmpty()) {
+                            String pubYearFilter = searchPubYearTxt.getText();
+                            if (type.contains("Book")){
+                                   for (Book book : super.bookSuper) {
+                                       if (book.title.contains(titleFilter) && book.pubYear.contains(pubYearFilter)) {
+                                           super.bookFilter.add(book);
+                                       }
+                                   }
+                            } else if (type.contains("Thesis")) {
+                                
+                            } else if (type.contains("Dissert")) {
+                                
+                            } else if (type.contains("Conf")) {
+                                
+                            } else if (type.contains("Journal")) {
+                                
+                            } else if (type.contains("Research")) {
+                                
+                            }
+                            
+                        }
+                        
+                        
+                    } else {
+                        
+                    }
+            
+                } else {
+
+                }
+            }
+        }
+        
+    }//GEN-LAST:event_searchBtnActionPerformed
 
     /**
      * @param args the command line arguments

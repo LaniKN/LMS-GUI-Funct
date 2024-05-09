@@ -20,10 +20,14 @@ public class JournalFrame extends Main {
         initComponents();
     }
     
-    public JournalFrame(List<JournalPaper> journalSuper) {
+    public JournalFrame(int type) {
         initComponents();
-        editJournalBtn.setVisible(false);
-        removeJournalBtn.setVisible(false);
+        if (type == 1) {
+            editJournalBtn.setVisible(false);
+            removeJournalBtn.setVisible(false);
+        } else {
+            addJournalBtn.setVisible(false);
+        }
     }
 
     /**

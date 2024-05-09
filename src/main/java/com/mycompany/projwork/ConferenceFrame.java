@@ -22,10 +22,14 @@ public class ConferenceFrame extends Main {
         initComponents();
     }
     
-    public ConferenceFrame(List<ConferencePaper> conferenceSuper) {
+    public ConferenceFrame(int type) {
         initComponents();
-        editConferenceBtn.setVisible(false);
-        removeConferenceBtn.setVisible(false);
+        if (type == 1) {
+            editConferenceBtn.setVisible(false);
+            removeConferenceBtn.setVisible(false);
+        } else {
+            addConferenceBtn.setVisible(false);
+        }
     }
 
     /**

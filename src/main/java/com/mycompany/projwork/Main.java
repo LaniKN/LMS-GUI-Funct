@@ -5,6 +5,7 @@
 package com.mycompany.projwork;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JList;
 
@@ -34,16 +35,37 @@ public class Main extends JFrame {
     public List<JournalPaper> journalFilter = new ArrayList<JournalPaper>();
     public List<ResearchReport> researchFilter = new ArrayList<ResearchReport>();
     public List<Magazine> magazineFilter = new ArrayList<Magazine>();
+    
+    
+    //selected items
+     public Book bookSelected = new Book();
+     public Thesis thesisSelected = new Thesis();
+     public Dissertation dissSelected = new Dissertation();
+     public ConferencePaper conSelected = new ConferencePaper();
+     public Magazine magSelected = new Magazine();
+    
+     
+    //models
+    public DefaultListModel bookModel = new DefaultListModel();
+    public DefaultListModel thesisModel = new DefaultListModel();
+    public DefaultListModel dissModel = new DefaultListModel();
+    public DefaultListModel conModel = new DefaultListModel();
+    public DefaultListModel journalModel = new DefaultListModel();
+    public DefaultListModel researchModel = new DefaultListModel();
+    public DefaultListModel magModel = new DefaultListModel();
+    
 
     //Show JLists
-    public JList<Book> bookList;
-    public JList<Thesis> thesisList;
-    public JList<Dissertation> dissertationList;
-    public JList<ConferencePaper> conferenceList;
-    public JList<JournalPaper> journalList;
-    public JList<ResearchReport> researchList;
-    public JList<Magazine> magazineList;
+    public JList bookList = new JList(bookModel);
+    public JList thesisList = new JList(thesisModel);
+    public JList dissertationList = new JList(dissModel);
+    public JList conferenceList = new JList(conModel);
+    public JList journalList = new JList(journalModel);
+    public JList researchList = new JList(researchModel);
+    public JList magazineList = new JList(magModel);
 
+    
+    
 
     //Use this function to iterate through item sin the JTextField for author/commitee member lists
     public List<Author> setAuthors(String txtField){
@@ -62,6 +84,7 @@ public class Main extends JFrame {
         List<CommitteeMember> cmem = new ArrayList<CommitteeMember>();
         String[] arrMembers = txtField.split(";");
         for(String a : arrMembers){
+            a = a.trim();
             String[] arrChar = a.split(" ");
             cmem.add(new CommitteeMember(arrChar[0], arrChar[1]));
         }

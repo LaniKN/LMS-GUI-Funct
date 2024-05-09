@@ -26,10 +26,14 @@ public class BookFrame extends Main {
     }
     
   //This constructor is for the adding item
-    public BookFrame(List<Book> booksMain) {
+    public BookFrame(int type) {
         initComponents();
-        editBookBtn.setVisible(false);
-        removeBookBtn.setVisible(false);
+        if (type == 1) {
+            editBookBtn.setVisible(false);
+            removeBookBtn.setVisible(false);
+        } else {
+            addBookBtn.setVisible(false);
+        }
     }
 
     /**
@@ -292,17 +296,18 @@ public class BookFrame extends Main {
 
             //this bookSuper.add is the justAddedBook
             super.bookSuper.add(new Book(eRBookTitleTxt.getText(), eRBookPubYearTxt.getText(), numAuthors, eRBookPubTxt.getText(), Integer.parseInt(eRBookChapTxt.getText()), Integer.parseInt(eRBookFigTxt.getText()), Integer.parseInt(eRBookEdNumTxt.getText()) ));
-            
+            Book justAddedBook = super.bookSuper.get(super.bookSuper.size()-1);
             //outer part makes sure we get only 1 book, the most recent
             for(int i = 1; i>0; i--){
-                Book justAddedBook = super.bookSuper.get(super.bookSuper.size()-1);
                 //this for loop goes through array size for the number of authors in this new book
                 for (int num = 0; num < numAuthors; num++){
                     //we are adding the Authors for each index in the author_list for the new book.
                   justAddedBook.author_list[num] = authors.get(numAuthors - (1+num));
                 }
             }
-        
+            
+            super.bookModel.addElement(justAddedBook);
+            
         }
         
     }//GEN-LAST:event_addBookBtnActionPerformed
