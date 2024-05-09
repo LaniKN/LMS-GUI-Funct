@@ -1,5 +1,8 @@
 package com.mycompany.projwork;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -9,13 +12,22 @@ package com.mycompany.projwork;
  *
  * @author nohea
  */
-public class BookFrame extends javax.swing.JFrame {
+//import javax.swing.JFrame;
 
+public class BookFrame extends Main {
+
+    List<Book> books = new ArrayList<Book>();
     /**
      * Creates new form EditRemoveForm
      */
-    public BookFrame() {
+    public BookFrame () {
         initComponents();
+    }
+    
+    public BookFrame(int type, List<Book> booksMain) {
+        initComponents();
+        //type = 1 : add item frame
+        
     }
 
     /**
@@ -66,7 +78,7 @@ public class BookFrame extends javax.swing.JFrame {
         eRBookTitleTxt.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
         eRBookTitleTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                eRBookTitleTxtActionPerformed(evt);
+                med(evt);
             }
         });
 
@@ -209,6 +221,11 @@ public class BookFrame extends javax.swing.JFrame {
 
         backBtn.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 18)); // NOI18N
         backBtn.setText("Back to Search");
+        backBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout BookRootPanelLayout = new javax.swing.GroupLayout(BookRootPanel);
         BookRootPanel.setLayout(BookRootPanelLayout);
@@ -251,9 +268,16 @@ public class BookFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void eRBookTitleTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eRBookTitleTxtActionPerformed
+    private void med(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_med
         // TODO add your handling code here:
-    }//GEN-LAST:event_eRBookTitleTxtActionPerformed
+    }//GEN-LAST:event_med
+
+    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
+        // TODO add your handling code here:
+        MainFrame mainFrame = new MainFrame();
+        this.setVisible(false);
+        mainFrame.setVisible(true);
+    }//GEN-LAST:event_backBtnActionPerformed
 
     /**
      * @param args the command line arguments

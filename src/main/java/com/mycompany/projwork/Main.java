@@ -15,20 +15,6 @@ public class Main extends JFrame {
     {
         MainFrame menu = new MainFrame();
         menu.setVisible(true);
-        BookFrame bookFrame = new BookFrame();
-        bookFrame.setVisible(false);
-        ThesisFrame thesisFrame = new ThesisFrame();
-        thesisFrame.setVisible(false);
-        DissertationFrame dissFrame = new DissertationFrame();
-        dissFrame.setVisible(false);
-        ConferenceFrame conFrame = new ConferenceFrame();
-        conFrame.setVisible(false);
-        JournalFrame journalFrame = new JournalFrame();
-        journalFrame.setVisible(false);
-        ResearchFrame researchFrame = new ResearchFrame();
-        researchFrame.setVisible(false);
-        MagazineFrame magFrame = new MagazineFrame();
-        magFrame.setVisible(false);
         
         
         

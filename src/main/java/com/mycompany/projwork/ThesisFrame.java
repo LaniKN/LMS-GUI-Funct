@@ -223,6 +223,11 @@ public class ThesisFrame extends javax.swing.JFrame {
 
         backBtn.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 18)); // NOI18N
         backBtn.setText("Back to Search");
+        backBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout ThesisRootPanelLayout = new javax.swing.GroupLayout(ThesisRootPanel);
         ThesisRootPanel.setLayout(ThesisRootPanelLayout);
@@ -264,6 +269,13 @@ public class ThesisFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
+        // TODO add your handling code here:
+        MainFrame mainFrame = new MainFrame();
+        this.setVisible(false);
+        mainFrame.setVisible(true);
+    }//GEN-LAST:event_backBtnActionPerformed
 
     /**
      * @param args the command line arguments

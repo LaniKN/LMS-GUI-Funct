@@ -2,13 +2,13 @@ package com.mycompany.projwork;
 
 //Patrick Siegler
 public class Dissertation extends Publication{
-    
     public Department department;
     public CommitteeMember[] committeeMembers;
     private Chapters chapters;
     private Figures figures;
 
     public Dissertation(){
+        super();
         department = new Department();
         committeeMembers = new CommitteeMember[0];
         chapters = new Chapters();

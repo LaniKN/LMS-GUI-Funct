@@ -8,6 +8,7 @@ public class Thesis extends Publication{
     private Figures figures;
 
     public Thesis(){
+        super();
         department = new Department();
         committeeMembers = new CommitteeMember[0];
         chapters = new Chapters();
