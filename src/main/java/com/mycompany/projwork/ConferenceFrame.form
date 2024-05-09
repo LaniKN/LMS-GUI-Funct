@@ -129,7 +129,7 @@
                       <Component id="jScrollPane1" min="-2" pref="504" max="-2" attributes="0"/>
                       <EmptySpace pref="51" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="RemoveConferenceBtn" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="removeConferenceBtn" alignment="1" min="-2" max="-2" attributes="0"/>
                           <Group type="102" alignment="1" attributes="0">
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Component id="addConferenceBtn" min="-2" max="-2" attributes="0"/>
@@ -189,7 +189,7 @@
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="editConferenceBtn" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="RemoveConferenceBtn" min="-2" max="-2" attributes="0"/>
+                              <Component id="removeConferenceBtn" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -328,7 +328,7 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JButton" name="RemoveConferenceBtn">
+            <Component class="javax.swing.JButton" name="removeConferenceBtn">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Yu Gothic UI Semibold" size="18" style="0"/>

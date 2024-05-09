@@ -1,5 +1,7 @@
 package com.mycompany.projwork;
 
+import java.util.List;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -16,6 +18,12 @@ public class ConferenceFrame extends Main {
      */
     public ConferenceFrame() {
         initComponents();
+    }
+    
+    public ConferenceFrame(List<ConferencePaper> conferenceSuper) {
+        initComponents();
+        editConferenceBtn.setVisible(false);
+        removeConferenceBtn.setVisible(false);
     }
 
     /**
@@ -46,7 +54,7 @@ public class ConferenceFrame extends Main {
         eRConferenceAuthorLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         eRConferenceAuthorTxt = new javax.swing.JTextArea();
-        RemoveConferenceBtn = new javax.swing.JButton();
+        removeConferenceBtn = new javax.swing.JButton();
         editConferenceBtn = new javax.swing.JButton();
         addConferenceBtn = new javax.swing.JButton();
         backBtn = new javax.swing.JButton();
@@ -102,8 +110,8 @@ public class ConferenceFrame extends Main {
         eRConferenceAuthorTxt.setRows(5);
         jScrollPane1.setViewportView(eRConferenceAuthorTxt);
 
-        RemoveConferenceBtn.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 18)); // NOI18N
-        RemoveConferenceBtn.setText("Remove Conference Paper");
+        removeConferenceBtn.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 18)); // NOI18N
+        removeConferenceBtn.setText("Remove Conference Paper");
 
         editConferenceBtn.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 18)); // NOI18N
         editConferenceBtn.setText("Edit Conference Paper");
@@ -148,7 +156,7 @@ public class ConferenceFrame extends Main {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 504, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
                 .addGroup(editRemoveConferencePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(RemoveConferenceBtn, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(removeConferenceBtn, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, editRemoveConferencePanelLayout.createSequentialGroup()
                         .addGroup(editRemoveConferencePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(addConferenceBtn)
@@ -196,7 +204,7 @@ public class ConferenceFrame extends Main {
                         .addGap(18, 18, 18)
                         .addComponent(editConferenceBtn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(RemoveConferenceBtn)
+                        .addComponent(removeConferenceBtn)
                         .addGap(53, 53, 53))))
         );
 
@@ -294,7 +302,6 @@ public class ConferenceFrame extends Main {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel ConferenceRootPanel;
-    private javax.swing.JButton RemoveConferenceBtn;
     private javax.swing.JButton addConferenceBtn;
     private javax.swing.JButton backBtn;
     private javax.swing.JLabel eRConferenceAuthorInstrucLabel;
@@ -316,5 +323,6 @@ public class ConferenceFrame extends Main {
     private javax.swing.JLabel editRemoveConferenceLabel;
     private javax.swing.JPanel editRemoveConferencePanel;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton removeConferenceBtn;
     // End of variables declaration//GEN-END:variables
 }

@@ -15,65 +15,6 @@ import javax.swing.JList;
  * @author nohea
  */
 public class MainFrame extends Main {
-    public BookFrame bookFrame = new BookFrame();
-    public ThesisFrame thesisFrame = new ThesisFrame();
-    public DissertationFrame dissFrame = new DissertationFrame();
-    public ConferenceFrame conFrame = new ConferenceFrame();
-    public JournalFrame journalFrame = new JournalFrame();
-    public ResearchFrame researchFrame = new ResearchFrame();
-    public MagazineFrame magFrame = new MagazineFrame();
-    
-    // Variables
-    //Super lists, we will be editting, adding, and removing from these!!!
-    List<Book> bookSuper = new ArrayList<Book>();
-    List<Thesis> thesisSuper = new ArrayList<Thesis>();
-    List<Dissertation> dissertationSuper = new ArrayList<Dissertation>();
-    List<ConferencePaper> conferenceSuper = new ArrayList<ConferencePaper>();
-    List<JournalPaper> journalSuper = new ArrayList<JournalPaper>();
-    List<ResearchReport> researchSuper = new ArrayList<ResearchReport>();
-    List<Magazine> magazineSuper = new ArrayList<Magazine>();
-
-
-    //Filter Lists, these are the "filters" we will use to take txt box inputs from user to find SUPER obj to find/edit
-    List<Book> bookFilter = new ArrayList<Book>();
-    List<Thesis> thesisFitler = new ArrayList<Thesis>();
-    List<Dissertation> dissertationFilter = new ArrayList<Dissertation>();
-    List<ConferencePaper> conferenceFilter = new ArrayList<ConferencePaper>();
-    List<JournalPaper> journalFilter = new ArrayList<JournalPaper>();
-    List<ResearchReport> researchFilter = new ArrayList<ResearchReport>();
-    List<Magazine> magazineFilter = new ArrayList<Magazine>();
-
-    //Show JLists
-    JList<Book> bookList;
-    JList<Thesis> thesisList;
-    JList<Dissertation> dissertationList;
-    JList<ConferencePaper> conferenceList;
-    JList<JournalPaper> journalList;
-    JList<ResearchReport> researchList;
-    JList<Magazine> magazineList;
-
-
-    //Use this function to iterate through item sin the JTextField for author/commitee member lists
-    public List<Author> setAuthors(String txtField){
-        List<Author> author = new ArrayList<Author>();
-        String[] arrAuthors = txtField.split(";");
-        for(String a : arrAuthors){
-            String[] arrName = a.split(" ");
-            author.add(new Author(arrName[0], arrName[1]));
-        }
-        return author;
-    }
-
-
-    public List<CommitteeMember> setCommitteeMems(String txtField){
-        List<CommitteeMember> cmem = new ArrayList<CommitteeMember>();
-        String[] arrMembers = txtField.split(";");
-        for(String a : arrMembers){
-            String[] arrChar = a.split(" ");
-            cmem.add(new CommitteeMember(arrChar[0], arrChar[1]));
-        }
-        return cmem;
-    }
     
     
     /**
@@ -88,28 +29,28 @@ public class MainFrame extends Main {
     public MainFrame() {
         initComponents();
         //do this below for all types like 2-3 times
-        bookSuper.add(new Book());
-        bookSuper.add(new Book());
-        thesisSuper.add(new Thesis());
-        thesisSuper.add(new Thesis());
-        dissertationSuper.add(new Dissertation());
-        dissertationSuper.add(new Dissertation());
-        conferenceSuper.add(new ConferencePaper());
-        conferenceSuper.add(new ConferencePaper());
-        journalSuper.add(new JournalPaper());
-        journalSuper.add(new JournalPaper());
-        researchSuper.add(new ResearchReport());
-        researchSuper.add(new ResearchReport());
-        magazineSuper.add(new Magazine());
-        magazineSuper.add(new Magazine());        
+        super.bookSuper.add(new Book());
+        super.bookSuper.add(new Book());
+        super.thesisSuper.add(new Thesis());
+        super.thesisSuper.add(new Thesis());
+        super.dissertationSuper.add(new Dissertation());
+        super.dissertationSuper.add(new Dissertation());
+        super.conferenceSuper.add(new ConferencePaper());
+        super.conferenceSuper.add(new ConferencePaper());
+        super.journalSuper.add(new JournalPaper());
+        super.journalSuper.add(new JournalPaper());
+        super.researchSuper.add(new ResearchReport());
+        super.researchSuper.add(new ResearchReport());
+        super.magazineSuper.add(new Magazine());
+        super.magazineSuper.add(new Magazine());        
         
-        bookFrame.setVisible(false);
+        /*bookFrame.setVisible(false);
         thesisFrame.setVisible(false);
         dissFrame.setVisible(false);
         conFrame.setVisible(false);
         journalFrame.setVisible(false);
         researchFrame.setVisible(false);
-        magFrame.setVisible(false);
+        magFrame.setVisible(false);*/
     }
 
     /**
@@ -430,18 +371,26 @@ public class MainFrame extends Main {
                 this.setVisible(false);
                 String type = button.getText();
                 if (type.contains("Book")){
+                    BookFrame bookFrame = new BookFrame(super.bookSuper);
                     bookFrame.setVisible(true);
                 } else if (type.contains("Thesis")) {
+                    ThesisFrame thesisFrame = new ThesisFrame(super.thesisSuper);
                     thesisFrame.setVisible(true);
                 } else if (type.contains("Dissert")) {
+                    DissertationFrame dissFrame = new DissertationFrame(super.dissertationSuper);
                     dissFrame.setVisible(true);
                 } else if (type.contains("Conf")) {
+                    ConferenceFrame conFrame = new ConferenceFrame(super.conferenceSuper);
                     conFrame.setVisible(true);
                 } else if (type.contains("Journal")) {
+                    
+                    JournalFrame journalFrame = new JournalFrame(super.journalSuper);
                     journalFrame.setVisible(true);
                 } else if (type.contains("Research")) {
+                    ResearchFrame researchFrame = new ResearchFrame(super.researchSuper);
                     researchFrame.setVisible(true);
                 } else if (type.contains("Magazine")) {
+                    MagazineFrame magFrame = new MagazineFrame(super.magazineSuper);
                     magFrame.setVisible(true);
                 }
                 

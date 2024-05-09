@@ -1,5 +1,7 @@
 package com.mycompany.projwork;
 
+import java.util.List;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -16,6 +18,13 @@ public class ThesisFrame extends Main {
      */
     public ThesisFrame() {
         initComponents();
+    }
+    
+    //
+    public ThesisFrame(List<Thesis> thesisSuper) {
+        initComponents();
+        editThesisBtn.setVisible(false);
+        removeThesisBtn.setVisible(false);
     }
 
     /**
