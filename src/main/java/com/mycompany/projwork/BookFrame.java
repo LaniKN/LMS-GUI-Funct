@@ -280,13 +280,13 @@ public class BookFrame extends Main {
             JOptionPane.showMessageDialog(null,"Please fill in all parameters for adding a book!");
         } else {
             //calling setAuthors to parse through text field for authors of new book
-            List<Author> authors = setAuthors(addBookAuthorListTxt.getText());
+            List<Author> authors = super.setAuthors(eRBookAuthorTxt.getText());
 
             //number of authors for array size in classes
             int numAuthors = authors.size();
 
             //this bookSuper.add is the justAddedBook
-            bookSuper.add(new Book(addBookTitleTxt.getText(), addBookPubYearTxt.getText(), numAuthors, addBookPubTxt.getText(), Integer.parseInt(addBookChapTxt.getText()), Integer.parseInt(addBookFigsTxt.getText()), Integer.parseInt(addBookEdNumTxt.getText()) ));
+            bookSuper.add(new Book(eRBookTitleTxt.getText(), eRBookPubYearTxt.getText(), numAuthors, eRBookPubTxt.getText(), Integer.parseInt(eRBookChapTxt.getText()), Integer.parseInt(eRBookFigTxt.getText()), Integer.parseInt(eRBookEdNumTxt.getText()) ));
             
             //outer part makes sure we get only 1 book, the most recent
             for(int i = 1; i>0; i--){
