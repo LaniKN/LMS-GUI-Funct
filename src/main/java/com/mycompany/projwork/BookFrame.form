@@ -225,7 +225,7 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="eRBookTitleTxtActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="med"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="eRBookPubYearLabel">
@@ -370,6 +370,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Back to Search"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="backBtnActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

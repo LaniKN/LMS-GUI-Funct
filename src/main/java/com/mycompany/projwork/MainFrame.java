@@ -4,17 +4,101 @@
  */
 package com.mycompany.projwork;
 
+import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.List;
+import javax.swing.AbstractButton;
+import javax.swing.JList;
+
 /**
  *
  * @author nohea
  */
-public class MainFrame extends javax.swing.JFrame {
+public class MainFrame extends Main {
+    public BookFrame bookFrame = new BookFrame();
+    public ThesisFrame thesisFrame = new ThesisFrame();
+    public DissertationFrame dissFrame = new DissertationFrame();
+    public ConferenceFrame conFrame = new ConferenceFrame();
+    public JournalFrame journalFrame = new JournalFrame();
+    public ResearchFrame researchFrame = new ResearchFrame();
+    public MagazineFrame magFrame = new MagazineFrame();
+    
+    // Variables
+    //Super lists, we will be editting, adding, and removing from these!!!
+    List<Book> bookSuper = new ArrayList<Book>();
+    List<Thesis> thesisSuper = new ArrayList<Thesis>();
+    List<Dissertation> dissertationSuper = new ArrayList<Dissertation>();
+    List<ConferencePaper> conferenceSuper = new ArrayList<ConferencePaper>();
+    List<JournalPaper> journalSuper = new ArrayList<JournalPaper>();
+    List<ResearchReport> researchSuper = new ArrayList<ResearchReport>();
+    List<Magazine> magazineSuper = new ArrayList<Magazine>();
 
+
+    //Filter Lists, these are the "filters" we will use to take txt box inputs from user to find SUPER obj to find/edit
+    List<Book> bookFilter = new ArrayList<Book>();
+    List<Thesis> thesisFitler = new ArrayList<Thesis>();
+    List<Dissertation> dissertationFilter = new ArrayList<Dissertation>();
+    List<ConferencePaper> conferenceFilter = new ArrayList<ConferencePaper>();
+    List<JournalPaper> journalFilter = new ArrayList<JournalPaper>();
+    List<ResearchReport> researchFilter = new ArrayList<ResearchReport>();
+    List<Magazine> magazineFilter = new ArrayList<Magazine>();
+
+    //Show JLists
+    JList<Book> bookList;
+    JList<Thesis> thesisList;
+    JList<Dissertation> dissertationList;
+    JList<ConferencePaper> conferenceList;
+    JList<JournalPaper> journalList;
+    JList<ResearchReport> researchList;
+    JList<Magazine> magazineList;
+
+
+    //Use this function to iterate through item sin the JTextField for author/commitee member lists
+    public List<Author> setAuthors(String txtField){
+        List<Author> author = new ArrayList<Author>();
+        String[] arrAuthors = txtField.split(";");
+        for(String a : arrAuthors){
+            String[] arrName = a.split(" ");
+            author.add(new Author(arrName[0], arrName[1]));
+        }
+        return author;
+    }
+
+
+    public List<CommitteeMember> setCommitteeMems(String txtField){
+        List<CommitteeMember> cmem = new ArrayList<CommitteeMember>();
+        String[] arrMembers = txtField.split(";");
+        for(String a : arrMembers){
+            String[] arrChar = a.split(" ");
+            cmem.add(new CommitteeMember(arrChar[0], arrChar[1]));
+        }
+        return cmem;
+    }
+    
+    
     /**
      * Creates new form NewJFrame
+     * public String title, pubYear;
+    public int authNum;
+    public Publisher publisher;
+    public Chapters chap;
+    public Figures fig;
+    private int edNum;
      */
     public MainFrame() {
         initComponents();
+        //do this below for all types like 2-3 times
+        bookSuper.add(new Book());
+        bookSuper.add(new Book());
+        
+        
+        bookFrame.setVisible(false);
+        thesisFrame.setVisible(false);
+        dissFrame.setVisible(false);
+        conFrame.setVisible(false);
+        journalFrame.setVisible(false);
+        researchFrame.setVisible(false);
+        magFrame.setVisible(false);
     }
 
     /**
@@ -26,7 +110,7 @@ public class MainFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        serachTypeBtnGroup = new javax.swing.ButtonGroup();
+        searchTypeBtnGroup = new javax.swing.ButtonGroup();
         RootPanel = new javax.swing.JPanel();
         MainMenuTabs = new javax.swing.JTabbedPane();
         SearchPane = new javax.swing.JPanel();
@@ -84,31 +168,31 @@ public class MainFrame extends javax.swing.JFrame {
 
         searchTypePanel.setBackground(new java.awt.Color(203, 211, 217));
 
-        serachTypeBtnGroup.add(searchTypeBookBtn);
+        searchTypeBtnGroup.add(searchTypeBookBtn);
         searchTypeBookBtn.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
         searchTypeBookBtn.setText("Book");
 
-        serachTypeBtnGroup.add(searchTypeThesisBtn);
+        searchTypeBtnGroup.add(searchTypeThesisBtn);
         searchTypeThesisBtn.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
         searchTypeThesisBtn.setText("Thesis");
 
-        serachTypeBtnGroup.add(searchTypeDissertationBtn);
+        searchTypeBtnGroup.add(searchTypeDissertationBtn);
         searchTypeDissertationBtn.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
         searchTypeDissertationBtn.setText("Dissertation");
 
-        serachTypeBtnGroup.add(searchTypeConferenceBtn);
+        searchTypeBtnGroup.add(searchTypeConferenceBtn);
         searchTypeConferenceBtn.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
         searchTypeConferenceBtn.setText("Conference Paper");
 
-        serachTypeBtnGroup.add(searchTypeResearchBtn);
+        searchTypeBtnGroup.add(searchTypeResearchBtn);
         searchTypeResearchBtn.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
         searchTypeResearchBtn.setText("Research Report");
 
-        serachTypeBtnGroup.add(searchTypeJournalBtn);
+        searchTypeBtnGroup.add(searchTypeJournalBtn);
         searchTypeJournalBtn.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
         searchTypeJournalBtn.setText("Journal Paper");
 
-        serachTypeBtnGroup.add(searchTypeMagazineBtn);
+        searchTypeBtnGroup.add(searchTypeMagazineBtn);
         searchTypeMagazineBtn.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
         searchTypeMagazineBtn.setText("Magazine");
 
@@ -218,6 +302,11 @@ public class MainFrame extends javax.swing.JFrame {
 
         addItemBtn.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
         addItemBtn.setText("Add Item of Selected Type");
+        addItemBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addItemBtnActionPerformed(evt);
+            }
+        });
 
         jButton1.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
         jButton1.setText("Edit/Remove Selected Item");
@@ -320,6 +409,42 @@ public class MainFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void addItemBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addItemBtnActionPerformed
+        // TODO add your handling code here:
+        
+        for(Enumeration<AbstractButton> buttons = searchTypeBtnGroup.getElements() ; buttons.hasMoreElements();)
+        {
+            AbstractButton button = buttons.nextElement();
+            if (button.isSelected()) {
+                this.setVisible(false);
+                String type = button.getText();
+                if (type.contains("Book")){
+                    bookFrame.setVisible(true);
+                } else if (type.contains("Thesis")) {
+                    thesisFrame.setVisible(true);
+                } else if (type.contains("Dissert")) {
+                    dissFrame.setVisible(true);
+                } else if (type.contains("Conf")) {
+                    conFrame.setVisible(true);
+                } else if (type.contains("Journal")) {
+                    journalFrame.setVisible(true);
+                } else if (type.contains("Research")) {
+                    researchFrame.setVisible(true);
+                } else if (type.contains("Magazine")) {
+                    magFrame.setVisible(true);
+                }
+                
+            }
+        }
+        
+        //Testing
+        /*
+        System.out.println("Add button pressed");
+        this.setVisible(true);
+        bookFrame.setVisible(true);
+        */
+    }//GEN-LAST:event_addItemBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -355,6 +480,8 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
     }
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel GenReportPane;
@@ -379,6 +506,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel searchTitleLabel;
     private javax.swing.JTextField searchTitleTxt;
     private javax.swing.JRadioButton searchTypeBookBtn;
+    private javax.swing.ButtonGroup searchTypeBtnGroup;
     private javax.swing.JRadioButton searchTypeConferenceBtn;
     private javax.swing.JRadioButton searchTypeDissertationBtn;
     private javax.swing.JRadioButton searchTypeJournalBtn;
@@ -386,6 +514,5 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel searchTypePanel;
     private javax.swing.JRadioButton searchTypeResearchBtn;
     private javax.swing.JRadioButton searchTypeThesisBtn;
-    private javax.swing.ButtonGroup serachTypeBtnGroup;
     // End of variables declaration//GEN-END:variables
 }
