@@ -21,4 +21,8 @@ public class Publication {
         this.title = title;
         pub_year=py;
     }
+    
+    public String toString() {
+        return title + pub_year;
+    }
 }
