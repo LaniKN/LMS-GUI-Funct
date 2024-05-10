@@ -28,11 +28,24 @@ public class BookFrame extends Main {
   //This constructor is for the adding item
     public BookFrame(int type) {
         this.initComponents();
+        
         if (type == 1) {
             editBookBtn.setVisible(false);
             removeBookBtn.setVisible(false);
         } else {
             addBookBtn.setVisible(false);
+            eRBookTitleTxt.setText(super.bookSelected.getTitle());
+            for (int i = 0; i < super.bookSelected.author_list.length ; i++){
+                eRBookAuthorTxt.setText(super.bookSelected.author_list[i].toString());
+                System.out.println(super.bookSelected.author_list[i].toString());
+            }
+            eRBookPubYearTxt.setText(super.bookSelected.getPubYear());
+            eRBookChapTxt.setText(super.bookSelected.chap.toString());
+            eRBookFigTxt.setText(super.bookSelected.fig.toString());
+            String edNum = String.valueOf(super.bookSelected.getEdNum());
+            eRBookEdNumTxt.setText(edNum);
+            eRBookPubTxt.setText(super.bookSelected.publisher.toString());
+            
         }
     }
 
@@ -282,9 +295,8 @@ public class BookFrame extends Main {
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         // TODO add your handling code here:
-        MainFrame mainFrame = new MainFrame();
         this.setVisible(false);
-        mainFrame.setVisible(true);
+        super.backMenu();
     }//GEN-LAST:event_backBtnActionPerformed
 
     private void addBookBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBookBtnActionPerformed
@@ -312,7 +324,6 @@ public class BookFrame extends Main {
                 }
             }
             super.addBook(justAddedBook);
-            System.out.println(super.bookSuper.toString());
             this.setVisible(false);
             super.backMenu();
             
@@ -324,9 +335,16 @@ public class BookFrame extends Main {
     private void removeBookBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeBookBtnActionPerformed
         int m = JOptionPane.showConfirmDialog(null, "Are you sure?", "Confirmation", JOptionPane.YES_NO_OPTION);
         if (m == JOptionPane.YES_OPTION) {
-            super.remBook(super.bookSelected);
-            this.setVisible(false);
-            super.backMenu();
+            for (Book book : bookSuper) {
+                
+                if (book.toString().equalsIgnoreCase(super.itemSelected.toString())) {
+                    
+                    super.remBook(book);
+                    this.setVisible(false);
+                    super.backMenu();
+                    
+                }
+            }
         } else {
             System.exit(0);
         }            

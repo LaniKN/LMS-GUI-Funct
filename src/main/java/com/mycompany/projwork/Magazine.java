@@ -16,4 +16,6 @@ public class Magazine extends Publication{
     public String toString() {
         return super.title + ", " + super.pubYear;
     }
+    
+    
 }

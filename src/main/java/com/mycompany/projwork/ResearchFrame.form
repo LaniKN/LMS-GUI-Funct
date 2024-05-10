@@ -99,7 +99,7 @@
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="erResearchTitleTxt" min="-2" pref="459" max="-2" attributes="0"/>
+                                  <Component id="eRResearchTitleTxt" min="-2" pref="459" max="-2" attributes="0"/>
                                   <Component id="eRResearchPubYearTxt" min="-2" pref="180" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -147,7 +147,7 @@
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="eRResearchTitleLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="erResearchTitleTxt" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="eRResearchTitleTxt" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
@@ -177,7 +177,7 @@
                 <Property name="text" type="java.lang.String" value="Title:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="erResearchTitleTxt">
+            <Component class="javax.swing.JTextField" name="eRResearchTitleTxt">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Yu Gothic UI Semibold" size="14" style="0"/>

@@ -27,6 +27,9 @@ public class JournalFrame extends Main {
             removeJournalBtn.setVisible(false);
         } else {
             addJournalBtn.setVisible(false);
+            eRJournalTitleTxt.setText(super.jourSelected.title);
+            eRJournalAuthorTxt.setText(super.jourSelected.author_list.toString());
+            eRJournalPubYearTxt.setText(super.jourSelected.pubYear);
         }
     }
 
@@ -232,9 +235,8 @@ public class JournalFrame extends Main {
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         // TODO add your handling code here:
-        MainFrame mainFrame = new MainFrame();
         this.setVisible(false);
-        mainFrame.setVisible(true);
+        super.backMenu();
     }//GEN-LAST:event_backBtnActionPerformed
 
     private void addJournalBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addJournalBtnActionPerformed
@@ -273,9 +275,14 @@ public class JournalFrame extends Main {
     private void removeJournalBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeJournalBtnActionPerformed
         int m = JOptionPane.showConfirmDialog(null, "Are you sure?", "Confirmation", JOptionPane.YES_NO_OPTION);
         if (m == JOptionPane.YES_OPTION) {
-            super.remJournal(super.jourSelected);
-            this.setVisible(false);
-            super.backMenu();
+            for (JournalPaper jour : journalSuper) {
+                if (jour.toString().equalsIgnoreCase(super.itemSelected.toString())) {
+                    super.remJournal(jour);
+                    this.setVisible(false);
+                    super.backMenu();
+                    System.exit(0);
+                }
+            }
         } else {
             System.exit(0);
         }
