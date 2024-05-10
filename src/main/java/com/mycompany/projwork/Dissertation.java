@@ -4,8 +4,8 @@ package com.mycompany.projwork;
 public class Dissertation extends Publication{
     public Department department;
     public CommitteeMember[] committeeMembers;
-    private Chapters chapters;
-    private Figures figures;
+    public Chapters chapters;
+    public Figures figures;
 
     public Dissertation(){
         super();
