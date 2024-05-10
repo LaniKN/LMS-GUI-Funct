@@ -33,15 +33,15 @@ public class DissertationFrame extends Main {
             for (int i = 0; i < super.dissSelected.committeeMembers.length ; i++){
                 eRDissertationComMemTxt.setText(super.dissSelected.author_list[i].toString());
                 System.out.println(super.dissSelected.author_list[i].toString());
+            }
             eRDissertationPubYearTxt.setText(super.dissSelected.getPubYear());
-            eRDissertationFigTxt.setText(super.dissSelected.figures.toString());
-            eRDissertationChapTxt.setText(super.dissSelected.chapters.toString());
+            eRDissertationFigTxt.setText(super.dissSelected.getFigures().toString());
+            eRDissertationChapTxt.setText(super.dissSelected.getChapters().toString());
             String[] dep = super.dissSelected.department.toString().split(", ");
             eRDissertationDepTxt.setText(dep[0]);
             eRDissertationDepBuildingTxt.setText(dep[1]);
         }
     }
-}
 
     /**
      * This method is called from within the constructor to initialize the form.
