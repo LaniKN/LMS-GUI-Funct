@@ -27,9 +27,13 @@ public class JournalFrame extends Main {
             removeJournalBtn.setVisible(false);
         } else {
             addJournalBtn.setVisible(false);
-            eRJournalTitleTxt.setText(super.jourSelected.title);
-            eRJournalAuthorTxt.setText(super.jourSelected.author_list.toString());
-            eRJournalPubYearTxt.setText(super.jourSelected.pubYear);
+            eRJournalTitleTxt.setText(super.jourSelected.getTitle());
+            for (int i = 0; i < super.jourSelected.author_list.length ; i++){
+                eRJournalAuthorTxt.setText(super.jourSelected.author_list[i].toString());
+                System.out.println(super.jourSelected.author_list[i].toString());
+            }
+            eRJournalPubYearTxt.setText(super.jourSelected.getPubYear());
+            eRJournalNameTxt.setText(super.jourSelected.journal_title);
         }
     }
 

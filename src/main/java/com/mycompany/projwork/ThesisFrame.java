@@ -30,9 +30,18 @@ public class ThesisFrame extends Main {
             removeThesisBtn.setVisible(false);
         } else {
             addThesisBtn.setVisible(false);
-            eRThesisTitleTxt.setText(super.thesisSelected.title);
+            eRThesisTitleTxt.setText(super.thesisSelected.getTitle());
             eRThesisAuthorTxt.setText(super.thesisSelected.author_list.toString());
-            eRThesisPubYearTxt.setText(super.thesisSelected.pubYear);
+            for (int i = 0; i < super.thesisSelected.committeeMembers.length ; i++){
+                eRThesisComMemTxt.setText(super.thesisSelected.author_list[i].toString());
+                System.out.println(super.thesisSelected.author_list[i].toString());
+            }
+            eRThesisPubYearTxt.setText(super.thesisSelected.getPubYear());
+            eRThesisFigTxt.setText(super.thesisSelected.figures.toString());
+            eRThesisChapTxt.setText(super.thesisSelected.chapters.toString());
+            String[] dep = super.thesisSelected.department.toString().split(", ");
+            eRThesisDepTxt.setText(dep[0]);
+            eRThesisDepBuildingTxt.setText(dep[1]);
         }
     }
 
