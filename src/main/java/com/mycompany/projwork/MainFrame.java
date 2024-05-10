@@ -356,7 +356,7 @@ public class MainFrame extends Main {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addItemBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addItemBtnActionPerformed
-        // TODO add your handling code here:
+       // TODO add your handling code here:
         super.listOfItems.clear();
         for(Enumeration<AbstractButton> buttons = searchTypeBtnGroup.getElements() ; buttons.hasMoreElements();)
         {
@@ -399,19 +399,19 @@ public class MainFrame extends Main {
     }//GEN-LAST:event_addItemBtnActionPerformed
 
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
-        // TODO add your handling code here:
+         // TODO add your handling code here:
         super.listOfItems.clear();
-        System.out.println(super.bookSuper.toString());
+        System.out.println("In search btn");
         for(Enumeration<AbstractButton> buttons = searchTypeBtnGroup.getElements() ; buttons.hasMoreElements();)
         {
             AbstractButton button = buttons.nextElement();
             if (button.isSelected()) {
                 String type = button.getText();
-                
+                System.out.println("Button type: " + type);
                 //is title txt empty?
                 if (!searchTitleTxt.getText().isEmpty()) { //has title
                     String titleFilter = searchTitleTxt.getText();
-                    
+                    System.out.println("Theres a title");
                     if (type.contains("Book")){
                             for (Book book : super.bookSuper) {
                                 System.out.println("Book: " + book);
@@ -469,7 +469,9 @@ public class MainFrame extends Main {
                     
                     
                 } else { //does not have title
+                    System.out.println("no Title");
                     if (type.contains("Book")){
+                        System.out.println("Is Book again");
                         for (Book book : super.bookSuper){
                             super.listOfItems.addElement(book);
                         }
@@ -502,9 +504,7 @@ public class MainFrame extends Main {
                     }
                 }
             }
-        }
-            
-            
+        } 
         
         
     }//GEN-LAST:event_searchBtnActionPerformed
@@ -604,6 +604,8 @@ public class MainFrame extends Main {
         DefaultMutableTreeNode res = new DefaultMutableTreeNode("Research Reports");
         DefaultMutableTreeNode jour = new DefaultMutableTreeNode("Books");
         DefaultMutableTreeNode mag = new DefaultMutableTreeNode("Books");
+        
+        
     }
     
     
