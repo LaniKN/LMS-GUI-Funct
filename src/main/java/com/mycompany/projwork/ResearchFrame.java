@@ -102,6 +102,11 @@ public class ResearchFrame extends Main {
 
         editResearchBtn.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 18)); // NOI18N
         editResearchBtn.setText("Edit Research Report");
+        editResearchBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editResearchBtnActionPerformed(evt);
+            }
+        });
 
         addResearchBtn.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 18)); // NOI18N
         addResearchBtn.setText("Add Research Report");
@@ -243,20 +248,16 @@ public class ResearchFrame extends Main {
             //this bookSuper.add is the justAddedBook
             ResearchReport justAddedResearch = new ResearchReport(eRResearchTitleTxt.getText(), eRResearchPubYearTxt.getText(), numAuthors);
 
-            //outer part makes sure we get only 1 book, the most recent
-            for(int i = 1; i>0; i--){
-                
-                //this for loop goes through array size for the number of authors in this new book
-                for (int num = 0; num < numAuthors; num++){
-                    //we are adding the Authors for each index in the author_list for the new book.
-                  justAddedResearch.author_list[num] = authors.get(numAuthors - (1+num));
-                }
-                
-                super.addResearch(justAddedResearch);
-                this.setVisible(false);
-                super.backMenu();
+            
+            //this for loop goes through array size for the number of authors in this new book
+            for (int num = 0; num < numAuthors; num++){
+                //we are adding the Authors for each index in the author_list for the new book.
+              justAddedResearch.author_list[num] = authors.get(numAuthors - (1+num));
             }
-            //researchList = new JList<ResearchReport>(researchSuper.toArray(new ResearchReport[researchSuper.size()]));
+
+            super.addResearch(justAddedResearch);
+            this.setVisible(false);
+            super.backMenu();
         }
     }//GEN-LAST:event_addResearchBtnActionPerformed
 
@@ -275,6 +276,34 @@ public class ResearchFrame extends Main {
             System.exit(0);
         }            
     }//GEN-LAST:event_removeResearchBtnActionPerformed
+
+    private void editResearchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editResearchBtnActionPerformed
+        // TODO add your handling code here:
+        if(eRResearchTitleTxt.getText().isEmpty() && eRResearchPubYearTxt.getText().isEmpty() && eRResearchAuthorTxt.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null,"Please fill in all parameters for adding a book!");
+        } else {
+            //calling setAuthors to parse through text field for authors of new book
+            List<Author> authors = super.setAuthors(eRResearchAuthorTxt.getText());
+              
+            //number of authors for array size in classes
+            int numAuthors = authors.size();
+
+            //this bookSuper.add is the justAddedBook
+            ResearchReport justAddedResearch = new ResearchReport(eRResearchTitleTxt.getText(), eRResearchPubYearTxt.getText(), numAuthors);
+
+            
+            //this for loop goes through array size for the number of authors in this new book
+            for (int num = 0; num < numAuthors; num++){
+                //we are adding the Authors for each index in the author_list for the new book.
+              justAddedResearch.author_list[num] = authors.get(numAuthors - (1+num));
+            }
+            
+            super.remResearch(super.resSelected);
+            super.addResearch(justAddedResearch);
+            this.setVisible(false);
+            super.backMenu();
+        }
+    }//GEN-LAST:event_editResearchBtnActionPerformed
 
     /**
      * @param args the command line arguments
