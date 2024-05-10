@@ -29,6 +29,9 @@ public class ConferenceFrame extends Main {
             removeConferenceBtn.setVisible(false);
         } else {
             addConferenceBtn.setVisible(false);
+            eRConferenceTitleTxt.setText(super.conSelected.title);
+            eRConferenceAuthorTxt.setText(super.conSelected.author_list.toString());
+            eRConferencePubYearTxt.setText(super.conSelected.pubYear);
         }
     }
 
@@ -275,9 +278,8 @@ public class ConferenceFrame extends Main {
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         // TODO add your handling code here:
-        MainFrame mainFrame = new MainFrame();
         this.setVisible(false);
-        mainFrame.setVisible(true);
+        super.backMenu();
     }//GEN-LAST:event_backBtnActionPerformed
 
     private void addConferenceBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addConferenceBtnActionPerformed
@@ -320,9 +322,15 @@ public class ConferenceFrame extends Main {
     private void removeConferenceBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeConferenceBtnActionPerformed
         int m = JOptionPane.showConfirmDialog(null, "Are you sure?", "Confirmation", JOptionPane.YES_NO_OPTION);
         if (m == JOptionPane.YES_OPTION) {
-            super.remCon(super.conSelected);
-            this.setVisible(false);
-            super.backMenu();
+            for (ConferencePaper con : conferenceSuper) {
+                
+                if (con.toString().equalsIgnoreCase(super.itemSelected.toString())) {
+                    super.remCon(con);
+                    this.setVisible(false);
+                    super.backMenu();
+                    System.exit(0);
+                }
+            }
         } else {
             System.exit(0);
         }            

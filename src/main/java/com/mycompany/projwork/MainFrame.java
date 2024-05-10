@@ -9,14 +9,15 @@ import java.util.Enumeration;
 import java.util.List;
 import javax.swing.AbstractButton;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author nohea
  */
 public class MainFrame extends Main {
-  
 
+    
     /**
      * Creates new form NewJFrame
      * public String title, pubYear;
@@ -29,15 +30,6 @@ public class MainFrame extends Main {
     //1st run: set up some default values
     public MainFrame() {
         initComponents();
-//        super.bookSuper = new ArrayList<>();
-//        super.thesisSuper = new ArrayList<>();
-//        super.dissertationSuper = new ArrayList<>();
-//        super.conferenceSuper = new ArrayList<>();
-//        super.researchSuper = new ArrayList<>();
-//        super.journalSuper = new ArrayList<>();
-//        super.magazineSuper = new ArrayList<>();
-        
-        
                 
         //do this below for all types like 2-3 times
         super.addBook(new Book());
@@ -57,46 +49,6 @@ public class MainFrame extends Main {
         
         
     }
-    
-    
-    
-    
-//    public MainFrame(Book newBook) {
-//        initComponents();
-//        super.addBook(newBook);
-//        super.listOfItems.clear();
-//    }
-//    public MainFrame(Thesis newThesis) {
-//        initComponents();
-//        super.addThesis(newThesis);
-//        super.listOfItems.clear();
-//    }
-//    public MainFrame(Dissertation newDiss) {
-//        initComponents();
-//        super.addDiss(newDiss);
-//        super.listOfItems.clear();
-//    }
-//    public MainFrame(ConferencePaper newCon) {
-//        initComponents();
-//        super.addCon(newCon);
-//        super.listOfItems.clear();
-//    }
-//    public MainFrame(ResearchReport newResearch) {
-//        initComponents();
-//        super.addResearch(newResearch);
-//        super.listOfItems.clear();
-//    }
-//    public MainFrame(JournalPaper newJournal) {
-//        initComponents();
-//        super.addJournal(newJournal);
-//        super.listOfItems.clear();
-//    }
-//    public MainFrame(Magazine newMag) {
-//        initComponents();
-//        super.addMag(newMag);
-//        super.listOfItems.clear();
-//    }
-
     
     
     
@@ -131,7 +83,7 @@ public class MainFrame extends Main {
         ItmSearchDescLabel = new javax.swing.JLabel();
         ItmSearchLabel = new javax.swing.JLabel();
         addItemBtn = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        editRemoveItemBtn = new javax.swing.JButton();
         GenReportPane = new javax.swing.JPanel();
         genReportBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -228,7 +180,12 @@ public class MainFrame extends Main {
 
         searchResultList.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
         searchResultList.setModel(super.listOfItems);
-        searchResultList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        searchResultList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        searchResultList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                searchResultListMouseClicked(evt);
+            }
+        });
         searchScrollpane.setViewportView(searchResultList);
 
         javax.swing.GroupLayout InnerBodyPanelLayout = new javax.swing.GroupLayout(InnerBodyPanel);
@@ -285,8 +242,13 @@ public class MainFrame extends Main {
             }
         });
 
-        jButton1.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
-        jButton1.setText("Edit/Remove Selected Item");
+        editRemoveItemBtn.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
+        editRemoveItemBtn.setText("Edit/Remove Selected Item");
+        editRemoveItemBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editRemoveItemBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout SearchPaneLayout = new javax.swing.GroupLayout(SearchPane);
         SearchPane.setLayout(SearchPaneLayout);
@@ -302,7 +264,7 @@ public class MainFrame extends Main {
                                 .addGap(45, 45, 45)
                                 .addComponent(addItemBtn)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton1))
+                                .addComponent(editRemoveItemBtn))
                             .addComponent(ItmSearchDescLabel)))
                     .addGroup(SearchPaneLayout.createSequentialGroup()
                         .addContainerGap()
@@ -318,7 +280,7 @@ public class MainFrame extends Main {
                 .addGroup(SearchPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ItmSearchLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(addItemBtn)
-                    .addComponent(jButton1))
+                    .addComponent(editRemoveItemBtn))
                 .addGap(23, 23, 23)
                 .addComponent(InnerBodyPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -393,7 +355,6 @@ public class MainFrame extends Main {
         {
             AbstractButton button = buttons.nextElement();
             if (button.isSelected()) {
-                this.setVisible(false);
                 String type = button.getText();
                 if (type.contains("Book")){
                     BookFrame bookFrame = new BookFrame(1);
@@ -541,6 +502,92 @@ public class MainFrame extends Main {
         
     }//GEN-LAST:event_searchBtnActionPerformed
 
+    private void editRemoveItemBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editRemoveItemBtnActionPerformed
+        // TODO add your handling code here:
+        super.listOfItems.clear();
+        if (!super.itemSelected.isEmpty()) {
+            for(Enumeration<AbstractButton> buttons = searchTypeBtnGroup.getElements() ; buttons.hasMoreElements();)
+            {
+                AbstractButton button = buttons.nextElement();
+                if (button.isSelected()) {
+//                    itemSelected = searchResultList.getSelectedValue();
+                    this.setVisible(false);
+                    String type = button.getText();
+                    if (type.contains("Book")){
+                        for (Book book : bookSuper) {
+                            if (book.toString().contains(super.itemSelected)) {
+                                super.bookSelected = book;
+                            }
+                        }
+                        BookFrame bookFrame = new BookFrame(2);
+                        bookFrame.setVisible(true);
+                        this.setVisible(false);
+                    } else if (type.contains("Thesis")) {
+                        for (Thesis thesis : thesisSuper) {
+                            if (thesis.toString().contains(super.itemSelected)) {
+                                super.thesisSelected = thesis;
+                            }
+                        }
+                        ThesisFrame thesisFrame = new ThesisFrame(2);
+                        thesisFrame.setVisible(true);
+                    } else if (type.contains("Dissert")) {
+                        for (Dissertation diss : dissertationSuper) {
+                            if (diss.toString().contains(super.itemSelected)) {
+                                super.dissSelected = diss;
+                            }
+                        }
+                        DissertationFrame dissFrame = new DissertationFrame(2);
+                        dissFrame.setVisible(true);
+                    } else if (type.contains("Conf")) {
+                        for (ConferencePaper con : conferenceSuper) {
+                            if (con.toString().contains(super.itemSelected)) {
+                                super.conSelected = con;
+                            }
+                        }
+                        ConferenceFrame conFrame = new ConferenceFrame(2);
+                        conFrame.setVisible(true);
+                    } else if (type.contains("Journal")) {
+                        for (JournalPaper jour : journalSuper) {
+                            if (jour.toString().contains(super.itemSelected)) {
+                                super.jourSelected = jour;
+                            }
+                        }
+                        JournalFrame journalFrame = new JournalFrame(2);
+                        journalFrame.setVisible(true);
+                    } else if (type.contains("Research")) {
+                        for (ResearchReport res : researchSuper) {
+                            if (res.toString().contains(super.itemSelected)) {
+                                super.resSelected = res;
+                            }
+                        }
+                        ResearchFrame researchFrame = new ResearchFrame(2);
+                        researchFrame.setVisible(true);
+                    } else if (type.contains("Magazine")) {
+                        for (Magazine mag : magazineSuper) {
+                            if (mag.toString().contains(super.itemSelected)) {
+                                super.magSelected = mag;
+                            }
+                        }
+                        MagazineFrame magFrame = new MagazineFrame(2);
+                        magFrame.setVisible(true);
+                    }
+
+                }
+            }
+            
+        } else {
+            JOptionPane.showMessageDialog(null,"Please select an item first!");
+        }
+       
+    }//GEN-LAST:event_editRemoveItemBtnActionPerformed
+
+    private void searchResultListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchResultListMouseClicked
+        // TODO add your handling code here:
+        super.itemSelected = searchResultList.getSelectedValue().toString();
+        System.out.println(super.itemSelected);
+        
+    }//GEN-LAST:event_searchResultListMouseClicked
+
     
     /**
      * @param args the command line arguments
@@ -589,9 +636,9 @@ public class MainFrame extends Main {
     private javax.swing.JPanel RootPanel;
     private javax.swing.JPanel SearchPane;
     private javax.swing.JButton addItemBtn;
+    private javax.swing.JButton editRemoveItemBtn;
     private javax.swing.JButton genReportBtn;
     private javax.swing.JTree genReportTree;
-    private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton searchBtn;
     public javax.swing.JList<Publication> searchResultList;

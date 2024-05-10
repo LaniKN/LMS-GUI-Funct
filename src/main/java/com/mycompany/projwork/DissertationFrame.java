@@ -28,6 +28,9 @@ public class DissertationFrame extends Main {
             removeDissertationBtn.setVisible(false);
         } else {
             addDissertationBtn.setVisible(false);
+            eRDissertationTitleTxt.setText(super.dissSelected.title);
+            eRDissertationAuthorTxt.setText(super.dissSelected.author_list.toString());
+            eRDissertationPubYearTxt.setText(super.dissSelected.pubYear);
         }
     }
 
@@ -280,9 +283,8 @@ public class DissertationFrame extends Main {
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         // TODO add your handling code here:
-        MainFrame mainFrame = new MainFrame();
         this.setVisible(false);
-        mainFrame.setVisible(true);
+        super.backMenu();
     }//GEN-LAST:event_backBtnActionPerformed
 
     private void addDissertationBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addDissertationBtnActionPerformed
@@ -326,9 +328,15 @@ public class DissertationFrame extends Main {
     private void removeDissertationBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeDissertationBtnActionPerformed
         int m = JOptionPane.showConfirmDialog(null, "Are you sure?", "Confirmation", JOptionPane.YES_NO_OPTION);
         if (m == JOptionPane.YES_OPTION) {
-            super.remDiss(super.dissSelected);
-            this.setVisible(false);
-            super.backMenu();
+            for (Dissertation diss : dissertationSuper) {
+                
+                if (diss.toString().equalsIgnoreCase(super.itemSelected.toString())) {
+                    super.remDiss(diss);
+                    this.setVisible(false);
+                    super.backMenu();
+                    System.exit(0);
+                }
+            }
         } else {
             System.exit(0);
         }            

@@ -38,6 +38,7 @@ com\mycompany\projwork\ConferencePaper.class
 com\mycompany\projwork\ThesisFrame$1.class
 com\mycompany\projwork\JournalFrame$2.class
 com\mycompany\projwork\DissertationFrame$2.class
+com\mycompany\projwork\MainFrame$5.class
 com\mycompany\projwork\Figures.class
 com\mycompany\projwork\MagazineFrame$1.class
 com\mycompany\projwork\DissertationFrame.class
@@ -51,6 +52,7 @@ com\mycompany\projwork\ConferenceFrame.class
 com\mycompany\projwork\ResearchFrame$2.class
 com\mycompany\projwork\BookFrame.class
 com\mycompany\projwork\MainFrame.class
+com\mycompany\projwork\MainFrame$4.class
 com\mycompany\projwork\BookFrame$4.class
 com\mycompany\projwork\Main.class
 com\mycompany\projwork\ResearchFrame.class

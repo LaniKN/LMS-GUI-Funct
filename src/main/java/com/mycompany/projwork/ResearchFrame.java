@@ -29,6 +29,9 @@ public class ResearchFrame extends Main {
             removeResearchBtn.setVisible(false);
         } else {
             addResearchBtn.setVisible(false);
+            eRResearchTitleTxt.setText(super.resSelected.title);
+            eRResearchAuthorTxt.setText(super.resSelected.author_list.toString());
+            eRResearchPubYearTxt.setText(super.resSelected.pubYear);
         }
     }
 
@@ -45,7 +48,7 @@ public class ResearchFrame extends Main {
         editRemoveReserachLabel = new javax.swing.JLabel();
         editRemoveResearchPanel = new javax.swing.JPanel();
         eRResearchTitleLabel = new javax.swing.JLabel();
-        erResearchTitleTxt = new javax.swing.JTextField();
+        eRResearchTitleTxt = new javax.swing.JTextField();
         eRResearchPubYearLabel = new javax.swing.JLabel();
         eRResearchPubYearTxt = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
@@ -68,7 +71,7 @@ public class ResearchFrame extends Main {
         eRResearchTitleLabel.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
         eRResearchTitleLabel.setText("Title:");
 
-        erResearchTitleTxt.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
+        eRResearchTitleTxt.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
 
         eRResearchPubYearLabel.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
         eRResearchPubYearLabel.setText("Publication Year:");
@@ -118,7 +121,7 @@ public class ResearchFrame extends Main {
                             .addComponent(eRResearchTitleLabel))
                         .addGap(18, 18, 18)
                         .addGroup(editRemoveResearchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(erResearchTitleTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 459, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(eRResearchTitleTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 459, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(eRResearchPubYearTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(editRemoveResearchPanelLayout.createSequentialGroup()
                         .addGap(73, 73, 73)
@@ -154,7 +157,7 @@ public class ResearchFrame extends Main {
                     .addGroup(editRemoveResearchPanelLayout.createSequentialGroup()
                         .addGroup(editRemoveResearchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(eRResearchTitleLabel)
-                            .addComponent(erResearchTitleTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(eRResearchTitleTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(35, 35, 35)
                         .addGroup(editRemoveResearchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(eRResearchPubYearLabel)
@@ -219,14 +222,13 @@ public class ResearchFrame extends Main {
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         // TODO add your handling code here:
-        MainFrame mainFrame = new MainFrame();
         this.setVisible(false);
-        mainFrame.setVisible(true);
+        super.backMenu();
     }//GEN-LAST:event_backBtnActionPerformed
 
     private void addResearchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addResearchBtnActionPerformed
         // TODO add your handling code here:
-        if(erResearchTitleTxt.getText().isEmpty() && eRResearchPubYearTxt.getText().isEmpty() && eRResearchAuthorTxt.getText().isEmpty()){
+        if(eRResearchTitleTxt.getText().isEmpty() && eRResearchPubYearTxt.getText().isEmpty() && eRResearchAuthorTxt.getText().isEmpty()){
             JOptionPane.showMessageDialog(null,"Please fill in all parameters for adding a book!");
         } else {
             //calling setAuthors to parse through text field for authors of new book
@@ -236,7 +238,7 @@ public class ResearchFrame extends Main {
             int numAuthors = authors.size();
 
             //this bookSuper.add is the justAddedBook
-            ResearchReport justAddedResearch = new ResearchReport(erResearchTitleTxt.getText(), eRResearchPubYearTxt.getText(), numAuthors);
+            ResearchReport justAddedResearch = new ResearchReport(eRResearchTitleTxt.getText(), eRResearchPubYearTxt.getText(), numAuthors);
 
             //outer part makes sure we get only 1 book, the most recent
             for(int i = 1; i>0; i--){
@@ -258,9 +260,15 @@ public class ResearchFrame extends Main {
     private void removeResearchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeResearchBtnActionPerformed
         int m = JOptionPane.showConfirmDialog(null, "Are you sure?", "Confirmation", JOptionPane.YES_NO_OPTION);
         if (m == JOptionPane.YES_OPTION) {
-            super.remResearch(super.resSelected);
-            this.setVisible(false);
-            super.backMenu();
+            for (ResearchReport res : researchSuper) {
+                
+                if (res.toString().equalsIgnoreCase(super.itemSelected.toString())) {
+                    super.remResearch(res);
+                    this.setVisible(false);
+                    super.backMenu();
+                    System.exit(0);
+                }
+            }
         } else {
             System.exit(0);
         }            
@@ -309,11 +317,11 @@ public class ResearchFrame extends Main {
     private javax.swing.JLabel eRResearchPubYearLabel;
     private javax.swing.JTextField eRResearchPubYearTxt;
     private javax.swing.JLabel eRResearchTitleLabel;
+    private javax.swing.JTextField eRResearchTitleTxt;
     private javax.swing.JPanel editRemoveResearchPanel;
     private javax.swing.JLabel editRemoveReserachLabel;
     private javax.swing.JButton editResearchBtn;
     private javax.swing.JLabel erResearchAuthorLabel;
-    private javax.swing.JTextField erResearchTitleTxt;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton removeResearchBtn;

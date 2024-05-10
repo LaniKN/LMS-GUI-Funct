@@ -30,6 +30,9 @@ public class ThesisFrame extends Main {
             removeThesisBtn.setVisible(false);
         } else {
             addThesisBtn.setVisible(false);
+            eRThesisTitleTxt.setText(super.thesisSelected.title);
+            eRThesisAuthorTxt.setText(super.thesisSelected.author_list.toString());
+            eRThesisPubYearTxt.setText(super.thesisSelected.pubYear);
         }
     }
 
@@ -297,9 +300,8 @@ public class ThesisFrame extends Main {
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         // TODO add your handling code here:
-        MainFrame mainFrame = new MainFrame();
         this.setVisible(false);
-        mainFrame.setVisible(true);
+        super.backMenu();
     }//GEN-LAST:event_backBtnActionPerformed
 
     private void addThesisBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addThesisBtnActionPerformed
@@ -342,9 +344,15 @@ public class ThesisFrame extends Main {
     private void removeThesisBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeThesisBtnActionPerformed
         int m = JOptionPane.showConfirmDialog(null, "Are you sure?", "Confirmation", JOptionPane.YES_NO_OPTION);
         if (m == JOptionPane.YES_OPTION) {
-            super.remThesis(super.thesisSelected);
-            this.setVisible(false);
-            super.backMenu();
+            for (Thesis thesis : thesisSuper) {
+                
+                if (thesis.toString().equalsIgnoreCase(super.itemSelected.toString())) {
+                    super.remThesis(thesis);
+                    this.setVisible(false);
+                    super.backMenu();
+                    System.exit(0);
+                }
+            }
         } else {
             System.exit(0);
         }            

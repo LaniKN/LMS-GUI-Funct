@@ -26,6 +26,8 @@ public class MagazineFrame extends Main {
             removeMagazineBtn.setVisible(false);
         } else {
             addMagazineBtn.setVisible(false);
+            eRMagazineTitleTxt.setText(super.magSelected.title);
+            eRMagazinePubYearTxt.setText(super.magSelected.pubYear);
         }
     }
 
@@ -181,9 +183,8 @@ public class MagazineFrame extends Main {
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         // TODO add your handling code here:
-        MainFrame mainFrame = new MainFrame();
         this.setVisible(false);
-        mainFrame.setVisible(true);
+        super.backMenu();
     }//GEN-LAST:event_backBtnActionPerformed
 
     private void addMagazineBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMagazineBtnActionPerformed
@@ -203,9 +204,18 @@ public class MagazineFrame extends Main {
     private void removeMagazineBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeMagazineBtnActionPerformed
         int m = JOptionPane.showConfirmDialog(null, "Are you sure?", "Confirmation", JOptionPane.YES_NO_OPTION);
         if (m == JOptionPane.YES_OPTION) {
-            super.remMag(super.magSelected);
-            this.setVisible(false);
-            super.backMenu();
+               
+            for (Magazine mag : magazineSuper) {
+                
+                if (mag.toString().equalsIgnoreCase(super.itemSelected.toString())) {
+                    super.remMag(mag);
+                    this.setVisible(false);
+                    super.backMenu();
+                    System.exit(0);
+                }
+            }
+            
+            
         } else {
             System.exit(0);
         }            
