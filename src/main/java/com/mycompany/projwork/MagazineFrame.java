@@ -81,6 +81,11 @@ public class MagazineFrame extends Main {
 
         editMagazineBtn.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 18)); // NOI18N
         editMagazineBtn.setText("Edit Magazine");
+        editMagazineBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editMagazineBtnActionPerformed(evt);
+            }
+        });
 
         removeMagazineBtn.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 18)); // NOI18N
         removeMagazineBtn.setText("Remove Magazine");
@@ -219,6 +224,21 @@ public class MagazineFrame extends Main {
             System.exit(0);
         }            
     }//GEN-LAST:event_removeMagazineBtnActionPerformed
+
+    private void editMagazineBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editMagazineBtnActionPerformed
+        // TODO add your handling code here:
+        if(eRMagazineTitleTxt.getText().isEmpty() && eRMagazinePubYearTxt.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null,"Please fill in all parameters for adding a book!");
+        } else {
+            Magazine newMag = new Magazine(eRMagazineTitleTxt.getText(), eRMagazinePubYearTxt.getText());
+        
+            super.remMag(super.magSelected);
+            super.addMag(newMag);
+            this.setVisible(false);
+            super.backMenu();
+        }
+
+    }//GEN-LAST:event_editMagazineBtnActionPerformed
 
     /**
      * @param args the command line arguments

@@ -104,6 +104,11 @@ public class JournalFrame extends Main {
 
         editJournalBtn.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 18)); // NOI18N
         editJournalBtn.setText("Edit Journal Paper");
+        editJournalBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editJournalBtnActionPerformed(evt);
+            }
+        });
 
         addJournalBtn.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 18)); // NOI18N
         addJournalBtn.setText("Add Journal Paper");
@@ -254,15 +259,11 @@ public class JournalFrame extends Main {
             //this bookSuper.add is the justAddedBook
             JournalPaper justAddedJournal = new JournalPaper(eRJournalTitleTxt.getText(), eRJournalPubYearTxt.getText(), numAuthors, eRJournalNameTxt.getText());
 
-            //outer part makes sure we get only 1 book, the most recent
-            for(int i = 1; i>0; i--){
-                
-                //this for loop goes through array size for the number of authors in this new book
-                for (int num = 0; num < numAuthors; num++){
-                    //we are adding the Authors for each index in the author_list for the new book.
-                  justAddedJournal.author_list[num] = authors.get(numAuthors - (1+num));
-                }
-                
+            
+            //this for loop goes through array size for the number of authors in this new book
+            for (int num = 0; num < numAuthors; num++){
+                //we are adding the Authors for each index in the author_list for the new book.
+              justAddedJournal.author_list[num] = authors.get(numAuthors - (1+num));
             }
             
             super.addJournal(justAddedJournal);
@@ -286,6 +287,36 @@ public class JournalFrame extends Main {
             System.exit(0);
         }
     }//GEN-LAST:event_removeJournalBtnActionPerformed
+
+    private void editJournalBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editJournalBtnActionPerformed
+        // TODO add your handling code here:
+        if(eRJournalTitleTxt.getText().isEmpty() && eRJournalPubYearTxt.getText().isEmpty() && eRJournalAuthorTxt.getText().isEmpty() && eRJournalNameTxt.getText().isEmpty()){
+
+            JOptionPane.showMessageDialog(null,"Please fill in all parameters for adding a Journal!");
+        } else {
+            //calling setAuthors to parse through text field for authors of new book
+            List<Author> authors = super.setAuthors(eRJournalAuthorTxt.getText());
+            
+            //number of authors for array size in classes
+            int numAuthors = authors.size();
+
+            //this bookSuper.add is the justAddedBook
+            JournalPaper justAddedJournal = new JournalPaper(eRJournalTitleTxt.getText(), eRJournalPubYearTxt.getText(), numAuthors, eRJournalNameTxt.getText());
+
+            
+            //this for loop goes through array size for the number of authors in this new book
+            for (int num = 0; num < numAuthors; num++){
+                //we are adding the Authors for each index in the author_list for the new book.
+              justAddedJournal.author_list[num] = authors.get(numAuthors - (1+num));
+            }
+            
+            super.remJournal(super.jourSelected);
+            super.addJournal(justAddedJournal);
+            this.setVisible(false);
+            super.backMenu();
+
+        }
+    }//GEN-LAST:event_editJournalBtnActionPerformed
 
     /**
      * @param args the command line arguments

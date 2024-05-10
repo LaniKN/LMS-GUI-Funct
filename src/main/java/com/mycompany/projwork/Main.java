@@ -66,25 +66,57 @@ public class Main extends JFrame {
     }
     
     public void addBook(Book book) {
-        bookSuper.add(book);
+        for (Book sBook : bookSuper) {
+            if (!book.equals(sBook)) {
+               bookSuper.add(book); 
+            }
+        }
     }
     public void addThesis(Thesis thesis) {
-        thesisSuper.add(thesis);
+        for (Thesis sThesis : thesisSuper) {
+            if (!thesis.equals(sThesis)) {
+               thesisSuper.add(thesis); 
+            }
+        }
     }
     public void addDiss(Dissertation diss) {
-        dissertationSuper.add(diss);
+        for (Dissertation sDiss : dissertationSuper) {
+            if (!diss.equals(sDiss)) {
+               dissertationSuper.add(diss);
+            }
+        }
+        
     }
     public void addCon(ConferencePaper con) {
-        conferenceSuper.add(con);
+        for (ConferencePaper sCon : conferenceSuper) {
+            if (!con.equals(sCon)) {
+               conferenceSuper.add(con);
+            }
+        }
+        
     }
-    public void addResearch(ResearchReport research) {
-        researchSuper.add(research);
+    public void addResearch(ResearchReport res) {
+        for (ResearchReport sRes : researchSuper) {
+            if (!res.equals(sRes)) {
+               researchSuper.add(res);
+            }
+        }
     }
     public void addJournal(JournalPaper journal) {
-        journalSuper.add(journal);
+        for (JournalPaper sJour : journalSuper) {
+            if (!journal.equals(sJour)) {
+               journalSuper.add(journal);
+            }
+        }
+        
     }
     public void addMag(Magazine mag) {
-        magazineSuper.add(mag);
+        for (Magazine sMag : magazineSuper) {
+            if (!mag.equals(sMag)) {
+               magazineSuper.add(mag);
+            }
+        }
+        
     }
     
     public void remBook(Book book) {

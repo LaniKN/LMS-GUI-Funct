@@ -11,6 +11,12 @@ import javax.swing.AbstractButton;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
+import javax.swing.JTree;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.TreeSelectionModel;
+import javax.swing.event.TreeSelectionEvent;
+import javax.swing.event.TreeSelectionListener;
+
 /**
  *
  * @author nohea
@@ -295,6 +301,7 @@ public class MainFrame extends Main {
         genReportBtn.setText("Generate Report");
 
         genReportTree.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
+        genReportTree.setScrollsOnExpand(false);
         jScrollPane1.setViewportView(genReportTree);
 
         javax.swing.GroupLayout GenReportPaneLayout = new javax.swing.GroupLayout(GenReportPane);
@@ -588,6 +595,11 @@ public class MainFrame extends Main {
         
     }//GEN-LAST:event_searchResultListMouseClicked
 
+    
+    private void createNodes(DefaultMutableTreeNode top) {
+        DefaultMutableTreeNode type = null;
+    }
+    
     
     /**
      * @param args the command line arguments
