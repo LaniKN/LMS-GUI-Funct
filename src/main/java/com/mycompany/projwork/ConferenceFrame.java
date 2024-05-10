@@ -29,9 +29,6 @@ public class ConferenceFrame extends Main {
             removeConferenceBtn.setVisible(false);
         } else {
             addConferenceBtn.setVisible(false);
-            eRConferenceTitleTxt.setText(super.conSelected.title);
-            eRConferenceAuthorTxt.setText(super.conSelected.author_list.toString());
-            eRConferencePubYearTxt.setText(super.conSelected.pubYear);
         }
     }
 
