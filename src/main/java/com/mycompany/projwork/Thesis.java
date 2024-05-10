@@ -5,8 +5,8 @@ public class Thesis extends Publication{
     //public String title, pubYear;
     public Department department;
     public CommitteeMember[] committeeMembers;
-    private Chapters chapters;
-    private Figures figures;
+    public Chapters chapters;
+    public Figures figures;
 
     public Thesis(){
         super();
