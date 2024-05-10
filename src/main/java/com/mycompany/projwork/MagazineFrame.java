@@ -211,7 +211,6 @@ public class MagazineFrame extends Main {
                     super.remMag(mag);
                     this.setVisible(false);
                     super.backMenu();
-                    System.exit(0);
                 }
             }
             

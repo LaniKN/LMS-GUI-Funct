@@ -280,7 +280,6 @@ public class JournalFrame extends Main {
                     super.remJournal(jour);
                     this.setVisible(false);
                     super.backMenu();
-                    System.exit(0);
                 }
             }
         } else {

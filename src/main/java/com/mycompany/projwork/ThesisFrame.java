@@ -350,7 +350,6 @@ public class ThesisFrame extends Main {
                     super.remThesis(thesis);
                     this.setVisible(false);
                     super.backMenu();
-                    System.exit(0);
                 }
             }
         } else {

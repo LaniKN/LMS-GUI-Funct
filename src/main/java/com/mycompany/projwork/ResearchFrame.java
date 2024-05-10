@@ -266,7 +266,6 @@ public class ResearchFrame extends Main {
                     super.remResearch(res);
                     this.setVisible(false);
                     super.backMenu();
-                    System.exit(0);
                 }
             }
         } else {
