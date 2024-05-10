@@ -26,8 +26,8 @@ public class MagazineFrame extends Main {
             removeMagazineBtn.setVisible(false);
         } else {
             addMagazineBtn.setVisible(false);
-            eRMagazineTitleTxt.setText(super.magSelected.title);
-            eRMagazinePubYearTxt.setText(super.magSelected.pubYear);
+            eRMagazineTitleTxt.setText(super.magSelected.getTitle());
+            eRMagazinePubYearTxt.setText(super.magSelected.getPubYear());
         }
     }
 

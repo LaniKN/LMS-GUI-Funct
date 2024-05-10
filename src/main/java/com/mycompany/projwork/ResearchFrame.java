@@ -29,9 +29,12 @@ public class ResearchFrame extends Main {
             removeResearchBtn.setVisible(false);
         } else {
             addResearchBtn.setVisible(false);
-            eRResearchTitleTxt.setText(super.resSelected.title);
-            eRResearchAuthorTxt.setText(super.resSelected.author_list.toString());
-            eRResearchPubYearTxt.setText(super.resSelected.pubYear);
+            eRResearchTitleTxt.setText(super.resSelected.getTitle());
+            for (int i = 0; i < super.resSelected.author_list.length ; i++){
+                eRResearchAuthorTxt.setText(super.resSelected.author_list[i].toString());
+                System.out.println(super.resSelected.author_list[i].toString());
+            }
+            eRResearchPubYearTxt.setText(super.resSelected.getPubYear());
         }
     }
 

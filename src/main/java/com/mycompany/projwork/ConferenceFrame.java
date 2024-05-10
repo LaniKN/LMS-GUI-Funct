@@ -29,9 +29,17 @@ public class ConferenceFrame extends Main {
             removeConferenceBtn.setVisible(false);
         } else {
             addConferenceBtn.setVisible(false);
-            eRConferenceTitleTxt.setText(super.conSelected.title);
-            eRConferenceAuthorTxt.setText(super.conSelected.author_list.toString());
-            eRConferencePubYearTxt.setText(super.conSelected.pubYear);
+            eRConferenceTitleTxt.setText(super.conSelected.getTitle());
+            eRConferenceNameTxt.setText(super.conSelected.conferenceName);
+            String[] dates = super.conSelected.period.toString().split("-");
+            eRConferenceBeginDateTxt.setText(dates[0]);
+            eRConferenceEndDateTxt.setText(dates[1]);
+            eRConferenceLocationTxt.setText(super.conSelected.location.toString());
+            for (int i = 0; i < super.conSelected.author_list.length ; i++){
+                eRConferenceAuthorTxt.setText(super.conSelected.author_list[i].toString());
+                System.out.println(super.conSelected.author_list[i].toString());
+            }
+            eRConferencePubYearTxt.setText(super.conSelected.getPubYear());
         }
     }
 
