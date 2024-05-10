@@ -37,8 +37,8 @@ public class ThesisFrame extends Main {
                 System.out.println(super.thesisSelected.author_list[i].toString());
             }
             eRThesisPubYearTxt.setText(super.thesisSelected.getPubYear());
-            eRThesisFigTxt.setText(super.thesisSelected.figures.toString());
-            eRThesisChapTxt.setText(super.thesisSelected.chapters.toString());
+            eRThesisFigTxt.setText(super.thesisSelected.getFigures().toString());
+            eRThesisChapTxt.setText(super.thesisSelected.getChapters().toString());
             String[] dep = super.thesisSelected.department.toString().split(", ");
             eRThesisDepTxt.setText(dep[0]);
             eRThesisDepBuildingTxt.setText(dep[1]);
