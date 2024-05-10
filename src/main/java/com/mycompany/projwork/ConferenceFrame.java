@@ -328,7 +328,6 @@ public class ConferenceFrame extends Main {
                     super.remCon(con);
                     this.setVisible(false);
                     super.backMenu();
-                    System.exit(0);
                 }
             }
         } else {

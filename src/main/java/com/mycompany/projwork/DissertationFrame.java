@@ -334,7 +334,6 @@ public class DissertationFrame extends Main {
                     super.remDiss(diss);
                     this.setVisible(false);
                     super.backMenu();
-                    System.exit(0);
                 }
             }
         } else {
