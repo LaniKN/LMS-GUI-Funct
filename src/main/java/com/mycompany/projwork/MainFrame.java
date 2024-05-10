@@ -604,6 +604,16 @@ public class MainFrame extends Main {
         DefaultMutableTreeNode res = new DefaultMutableTreeNode("Research Reports");
         DefaultMutableTreeNode jour = new DefaultMutableTreeNode("Books");
         DefaultMutableTreeNode mag = new DefaultMutableTreeNode("Books");
+        top.add(book);
+        top.add(thesis);
+        top.add(diss);
+        top.add(con);
+        top.add(res);
+        top.add(jour);
+        top.add(mag);
+        
+        
+        
     }
     
     
