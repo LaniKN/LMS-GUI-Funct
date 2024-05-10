@@ -138,6 +138,11 @@ public class ThesisFrame extends Main {
 
         editThesisBtn.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 18)); // NOI18N
         editThesisBtn.setText("Edit Thesis");
+        editThesisBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editThesisBtnActionPerformed(evt);
+            }
+        });
 
         removeThesisBtn.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 18)); // NOI18N
         removeThesisBtn.setText("Remove Thesis");
@@ -333,14 +338,11 @@ public class ThesisFrame extends Main {
             // thesisSuper.author_list[0] = addThesisAuthorTxt.getText();
             
 
-            //outer part makes sure we get only 1 book, the most recent
-            for(int i = 1; i>0; i--){
-                
-                //this for loop goes through array size for the number of authors in this new book
-                for (int num = 0; num < numCommittee; num++){
-                    //we are adding the Authors for each index in the author_list for the new book.
-                  justAddedThesis.committeeMembers[num] = committee.get(numCommittee - (1+num));
-                }
+            
+            //this for loop goes through array size for the number of authors in this new book
+            for (int num = 0; num < numCommittee; num++){
+                //we are adding the Authors for each index in the author_list for the new book.
+              justAddedThesis.committeeMembers[num] = committee.get(numCommittee - (1+num));
             }
             
             super.addThesis(justAddedThesis);
@@ -365,6 +367,42 @@ public class ThesisFrame extends Main {
             System.exit(0);
         }            
     }//GEN-LAST:event_removeThesisBtnActionPerformed
+
+    private void editThesisBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editThesisBtnActionPerformed
+        // TODO add your handling code here:
+        if (eRThesisTitleTxt.getText().isEmpty() && eRThesisDepTxt.getText().isEmpty() && eRThesisPubYearTxt.getText().isEmpty() && eRThesisDepBuildingTxt.getText().isEmpty() && eRThesisFigTxt.getText().isEmpty() && eRThesisAuthorTxt.getText().isEmpty() && eRThesisComMemTxt.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null,"Please fill in all parameters for adding a Thesis!");
+        } else {
+            //calling setComitteeMems to parse through text field for committee members and committee title of new dissertation/thesis
+            List<CommitteeMember> committee = super.setCommitteeMems(eRThesisComMemTxt.getText());
+
+            //number of authors for array size in classes
+            int numCommittee = committee.size();
+
+            //this bookSuper.add is the justAddedBook
+            Department addThesisDepartment = new Department(eRThesisDepBuildingTxt.getText(), eRThesisDepTxt.getText());
+            Chapters addThesisChapter = new Chapters(Integer.parseInt(eRThesisChapTxt.getText()));
+            Figures addThesisFigure = new Figures(Integer.parseInt(eRThesisFigTxt.getText()));
+
+            Thesis justAddedThesis =  new Thesis(eRThesisTitleTxt.getText(), eRThesisPubYearTxt.getText(), addThesisDepartment, numCommittee, addThesisChapter, addThesisFigure);
+            // thesisSuper.author_list[0] = addThesisAuthorTxt.getText();
+            
+
+            
+            //this for loop goes through array size for the number of authors in this new book
+            for (int num = 0; num < numCommittee; num++){
+                //we are adding the Authors for each index in the author_list for the new book.
+              justAddedThesis.committeeMembers[num] = committee.get(numCommittee - (1+num));
+            }
+            
+            super.addThesis(justAddedThesis);
+            super.remThesis(super.thesisSelected);
+            this.setVisible(false);
+            super.backMenu();
+    
+        }
+        
+    }//GEN-LAST:event_editThesisBtnActionPerformed
 
     /**
      * @param args the command line arguments

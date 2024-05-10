@@ -35,7 +35,7 @@ public class ConferenceFrame extends Main {
             eRConferenceBeginDateTxt.setText(dates[0]);
             eRConferenceEndDateTxt.setText(dates[1]);
             eRConferenceLocationTxt.setText(super.conSelected.location.toString());
-            for (int i = 0; i < super.conSelected.author_list.length ; i++){
+            for(int i = 0; i < super.conSelected.author_list.length ; i++){
                 eRConferenceAuthorTxt.setText(super.conSelected.author_list[i].toString());
                 System.out.println(super.conSelected.author_list[i].toString());
             }
@@ -137,6 +137,11 @@ public class ConferenceFrame extends Main {
 
         editConferenceBtn.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 18)); // NOI18N
         editConferenceBtn.setText("Edit Conference Paper");
+        editConferenceBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editConferenceBtnActionPerformed(evt);
+            }
+        });
 
         addConferenceBtn.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 18)); // NOI18N
         addConferenceBtn.setText("Add Conference Paper");
@@ -324,7 +329,7 @@ public class ConferenceFrame extends Main {
             this.setVisible(false);
             super.backMenu();
         }
-        //conferenceList = new JList<ConferencePaper>(conferenceSuper.toArray(new ConferencePaper[conferenceSuper.size()]));
+        
     }//GEN-LAST:event_addConferenceBtnActionPerformed
 
     private void removeConferenceBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeConferenceBtnActionPerformed
@@ -342,6 +347,44 @@ public class ConferenceFrame extends Main {
             System.exit(0);
         }            
     }//GEN-LAST:event_removeConferenceBtnActionPerformed
+
+    private void editConferenceBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editConferenceBtnActionPerformed
+        // TODO add your handling code here:
+        // TODO add your handling code here:
+        if(eRConferenceTitleTxt.getText().isEmpty() && eRConferencePubYearTxt.getText().isEmpty() && eRConferenceAuthorTxt.getText().isEmpty() && eRConferenceNameTxt.getText().isEmpty() && eRConferenceLocationTxt.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null,"Please fill in all parameters for adding a conference paper!");
+        } else {
+            //calling setAuthors to parse through text field for authors of new book
+            List<Author> authors = super.setAuthors(eRConferenceAuthorTxt.getText());
+
+            //number of authors for array size in classes
+            int numAuthors = authors.size();
+
+
+            //for Location and Period
+            Location addConferenceLocation = new Location(eRConferenceLocationTxt.getText());
+            Period addConferencePeriod = new Period(eRConferenceBeginDateTxt.getText(), eRConferenceEndDateTxt.getText());
+
+
+            //this bookSuper.add is the justAddedBook
+            ConferencePaper justAddedConference =  new ConferencePaper(eRConferenceTitleTxt.getText(), eRConferencePubYearTxt.getText(), numAuthors, eRConferenceNameTxt.getText(), addConferenceLocation, addConferencePeriod);
+
+            //outer part makes sure we get only 1 book, the most recent
+            for(int i = 1; i>0; i--){
+//                super.conferenceSuper.get(super.conferenceSuper.size()-1);
+                //this for loop goes through array size for the number of authors in this new book
+                for (int num = 0; num < numAuthors; num++){
+                    //we are adding the Authors for each index in the author_list for the new book.
+                  justAddedConference.author_list[num] = authors.get(numAuthors - (1+num));
+                }
+            }
+            
+            super.remCon(super.conSelected);
+            super.addCon(justAddedConference);
+            this.setVisible(false);
+            super.backMenu();
+        }
+    }//GEN-LAST:event_editConferenceBtnActionPerformed
 
     /**
      * @param args the command line arguments
