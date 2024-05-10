@@ -597,7 +597,13 @@ public class MainFrame extends Main {
 
     
     private void createNodes(DefaultMutableTreeNode top) {
-        DefaultMutableTreeNode type = null;
+        DefaultMutableTreeNode book = new DefaultMutableTreeNode("Books");
+        DefaultMutableTreeNode thesis = new DefaultMutableTreeNode("Thesis");
+        DefaultMutableTreeNode diss = new DefaultMutableTreeNode("Dissertations");
+        DefaultMutableTreeNode con = new DefaultMutableTreeNode("Conferences Papers");
+        DefaultMutableTreeNode res = new DefaultMutableTreeNode("Research Reports");
+        DefaultMutableTreeNode jour = new DefaultMutableTreeNode("Books");
+        DefaultMutableTreeNode mag = new DefaultMutableTreeNode("Books");
     }
     
     
