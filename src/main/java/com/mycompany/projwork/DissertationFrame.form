@@ -121,9 +121,11 @@
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="eRDissertationDepBuildingTxt" pref="133" max="32767" attributes="0"/>
                                   </Group>
-                                  <Component id="eRDissertationFigTxt" alignment="0" pref="375" max="32767" attributes="0"/>
-                                  <Component id="eRDissertationChapTxt" alignment="0" max="32767" attributes="0"/>
                                   <Component id="eRDissertationAuthorTxt" alignment="0" min="-2" pref="204" max="-2" attributes="0"/>
+                                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                      <Component id="eRDissertationFigTxt" alignment="0" pref="189" max="32767" attributes="0"/>
+                                      <Component id="eRDissertationChapTxt" alignment="0" max="32767" attributes="0"/>
+                                  </Group>
                               </Group>
                               <EmptySpace min="-2" pref="114" max="-2" attributes="0"/>
                               <Component id="addDissertationBtn" min="-2" max="-2" attributes="0"/>

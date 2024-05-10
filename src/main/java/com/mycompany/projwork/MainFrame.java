@@ -93,7 +93,7 @@ public class MainFrame extends Main {
         GenReportPane = new javax.swing.JPanel();
         genReportBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        genReportTree = new javax.swing.JTree();
+        genReportTxt = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -299,33 +299,39 @@ public class MainFrame extends Main {
 
         genReportBtn.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 18)); // NOI18N
         genReportBtn.setText("Generate Report");
+        genReportBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                genReportBtnActionPerformed(evt);
+            }
+        });
 
-        genReportTree.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
-        genReportTree.setScrollsOnExpand(false);
-        jScrollPane1.setViewportView(genReportTree);
+        genReportTxt.setEditable(false);
+        genReportTxt.setColumns(20);
+        genReportTxt.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 18)); // NOI18N
+        genReportTxt.setRows(5);
+        jScrollPane1.setViewportView(genReportTxt);
 
         javax.swing.GroupLayout GenReportPaneLayout = new javax.swing.GroupLayout(GenReportPane);
         GenReportPane.setLayout(GenReportPaneLayout);
         GenReportPaneLayout.setHorizontalGroup(
             GenReportPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(GenReportPaneLayout.createSequentialGroup()
-                .addGroup(GenReportPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(GenReportPaneLayout.createSequentialGroup()
-                        .addGap(337, 337, 337)
-                        .addComponent(genReportBtn))
-                    .addGroup(GenReportPaneLayout.createSequentialGroup()
-                        .addGap(47, 47, 47)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 754, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addGap(337, 337, 337)
+                .addComponent(genReportBtn)
+                .addContainerGap(356, Short.MAX_VALUE))
+            .addGroup(GenReportPaneLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1)
+                .addContainerGap())
         );
         GenReportPaneLayout.setVerticalGroup(
             GenReportPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(GenReportPaneLayout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(genReportBtn)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         MainMenuTabs.addTab("Generate Report", GenReportPane);
@@ -427,7 +433,6 @@ public class MainFrame extends Main {
                                 if (thesis.getTitle().equalsIgnoreCase(titleFilter)) {
                                     super.listOfItems.addElement(thesis);
                                     searchResultList.setModel(super.listOfItems);
-                                    System.out.println("Should be showing updated List");
                                 }
                             }
                     } else if (type.contains("Dissert")) {
@@ -495,6 +500,11 @@ public class MainFrame extends Main {
                         for (ResearchReport research : super.researchSuper){
                             super.listOfItems.addElement(research);
                         }
+                        searchResultList.setModel(super.listOfItems);
+                    } else if (type.contains("Journal")) {
+                        for (JournalPaper journal : super.journalSuper){
+                            super.listOfItems.addElement(journal);
+                    }
                         searchResultList.setModel(super.listOfItems);
                     } else if (type.contains("Magazine")) {
                         for (Magazine mag : super.magazineSuper) {
@@ -595,26 +605,66 @@ public class MainFrame extends Main {
         
     }//GEN-LAST:event_searchResultListMouseClicked
 
-    
-    private void createNodes(DefaultMutableTreeNode top) {
-        DefaultMutableTreeNode book = new DefaultMutableTreeNode("Books");
-        DefaultMutableTreeNode thesis = new DefaultMutableTreeNode("Thesis");
-        DefaultMutableTreeNode diss = new DefaultMutableTreeNode("Dissertations");
-        DefaultMutableTreeNode con = new DefaultMutableTreeNode("Conferences Papers");
-        DefaultMutableTreeNode res = new DefaultMutableTreeNode("Research Reports");
-        DefaultMutableTreeNode jour = new DefaultMutableTreeNode("Books");
-        DefaultMutableTreeNode mag = new DefaultMutableTreeNode("Books");
+    private void genReportBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_genReportBtnActionPerformed
+        // TODO add your handling code here:
+        StringBuilder stringBuilder = new StringBuilder();
+        
+        stringBuilder.append("----- Books -----" + "\n");
+        for (Book book : super.bookSuper){
+            stringBuilder.append("\t");
+            stringBuilder.append(book.toString());
+            stringBuilder.append("\n");
+        }
+        
+        stringBuilder.append("----- Thesis -----" + "\n");
+        for (Thesis thesis : super.thesisSuper){
+            stringBuilder.append("\t");
+            stringBuilder.append(thesis.toString());
+            stringBuilder.append("\n");
+        }
+        
+        stringBuilder.append("----- Dissertations -----" + "\n");
+        for (Dissertation diss : super.dissertationSuper){
+            stringBuilder.append("\t");
+            stringBuilder.append(diss.toString());
+            stringBuilder.append("\n");
+        }
+        
+        stringBuilder.append("----- Conference Papers -----" + "\n");
+        for (ConferencePaper con : super.conferenceSuper){
+            stringBuilder.append("\t");
+            stringBuilder.append(con.toString());
+            stringBuilder.append("\n");
+        }
+        
+        stringBuilder.append("----- Research Report -----" + "\n");
+        for (ResearchReport res : super.researchSuper){
+            stringBuilder.append("\t");
+            stringBuilder.append(res.toString());
+            stringBuilder.append("\n");
+        }
+        
+        stringBuilder.append("----- Journal Paper -----" + "\n");
+        for (JournalPaper jour : super.journalSuper){
+            stringBuilder.append("\t");
+            stringBuilder.append(jour.toString());
+            stringBuilder.append("\n");
+        }
+        
+        stringBuilder.append("----- Magazines -----" + "\n");
+        for (Magazine mag : super.magazineSuper){
+            stringBuilder.append("\t");
+            stringBuilder.append(mag.toString());
+            stringBuilder.append("\n");
+        }
+        
+        String repString = stringBuilder.toString();
+        
+        genReportTxt.setText(repString);
+        
+        
+    }//GEN-LAST:event_genReportBtnActionPerformed
 
-        top.add(book);
-        top.add(thesis);
-        top.add(diss);
-        top.add(con);
-        top.add(res);
-        top.add(jour);
-        top.add(mag);
-        
-        
-    }
     
     
     /**
@@ -666,7 +716,7 @@ public class MainFrame extends Main {
     private javax.swing.JButton addItemBtn;
     private javax.swing.JButton editRemoveItemBtn;
     private javax.swing.JButton genReportBtn;
-    private javax.swing.JTree genReportTree;
+    private javax.swing.JTextArea genReportTxt;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton searchBtn;
     public javax.swing.JList<Publication> searchResultList;

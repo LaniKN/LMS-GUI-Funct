@@ -2,6 +2,8 @@ package com.mycompany.projwork;
 
 //Patrick Siegler
 public class Dissertation extends Publication{
+    public String title, pubYear;
+    public int authNum;
     public Department department;
     public CommitteeMember[] committeeMembers;
     public Chapters chapters;
