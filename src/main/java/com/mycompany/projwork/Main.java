@@ -8,6 +8,8 @@ import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JList;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
 
 
 /**
@@ -116,6 +118,7 @@ public class Main extends JFrame {
     
     public void backMenu(){
         menu.setVisible(true);
+        itemSelected = "";
     }
     
     

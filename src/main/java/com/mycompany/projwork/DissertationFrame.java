@@ -189,9 +189,10 @@ public class DissertationFrame extends Main {
                                 .addComponent(eRDissertationDepBuildingLabel)
                                 .addGap(18, 18, 18)
                                 .addComponent(eRDissertationDepBuildingTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE))
-                            .addComponent(eRDissertationFigTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 375, Short.MAX_VALUE)
-                            .addComponent(eRDissertationChapTxt)
-                            .addComponent(eRDissertationAuthorTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(eRDissertationAuthorTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(editRemoveDissertationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(eRDissertationFigTxt, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
+                                .addComponent(eRDissertationChapTxt, javax.swing.GroupLayout.Alignment.LEADING)))
                         .addGap(114, 114, 114)
                         .addComponent(addDissertationBtn))
                     .addGroup(editRemoveDissertationPanelLayout.createSequentialGroup()
@@ -306,6 +307,11 @@ public class DissertationFrame extends Main {
         if(eRDissertationTitleTxt.getText().isEmpty() && eRDissertationDepTxt.getText().isEmpty() && eRDissertationPubYearTxt.getText().isEmpty() && eRDissertationDepBuildingTxt.getText().isEmpty() && eRDissertationFigTxt.getText().isEmpty() && eRDissertationAuthorTxt.getText().isEmpty() && eRDissertationComMemTxt.getText().isEmpty()){
             JOptionPane.showMessageDialog(null,"Please fill in all parameters for adding a dissertation!");
         } else {
+            List<Author> authors = super.setAuthors(eRDissertationAuthorTxt.getText());
+
+            //number of authors for array size in classes
+            int numAuthors = authors.size();
+            
             //calling setComitteeMems to parse through text field for committee members and committee title of new dissertation/thesis
             List<CommitteeMember> committee = super.setCommitteeMems(eRDissertationComMemTxt.getText());
 
@@ -326,6 +332,10 @@ public class DissertationFrame extends Main {
             for (int num = 0; num < numCommittee; num++){
                 //we are adding the Authors for each index in the author_list for the new book.
               justAddedDissertation.committeeMembers[num] = committee.get(numCommittee - (1+num));
+            }
+            for (int num = 0; num < numAuthors; num++){
+                //we are adding the Authors for each index in the author_list for the new book.
+              justAddedDissertation.author_list[num] = authors.get(numAuthors - (1+num));
             }
                 
                 

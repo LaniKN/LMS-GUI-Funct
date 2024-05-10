@@ -133,6 +133,7 @@ public class ThesisFrame extends Main {
         eRThesisComMemLabel.setText("Committee Members:");
 
         eRThesisComMemTxt.setColumns(20);
+        eRThesisComMemTxt.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
         eRThesisComMemTxt.setRows(5);
         jScrollPane1.setViewportView(eRThesisComMemTxt);
 
@@ -169,9 +170,9 @@ public class ThesisFrame extends Main {
                 .addComponent(eRThesisComMemLabel)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(removeThesisBtn)
-                .addGap(71, 71, 71))
+                .addGap(64, 64, 64))
             .addGroup(editRemoveThesisPanelLayout.createSequentialGroup()
                 .addGap(35, 35, 35)
                 .addGroup(editRemoveThesisPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -200,22 +201,23 @@ public class ThesisFrame extends Main {
                                         .addComponent(eRThesisDepBuildingLabel)
                                         .addGap(18, 18, 18)
                                         .addComponent(eRThesisDepBuildingTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(eRThesisChapTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(eRThesisChapTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(editRemoveThesisPanelLayout.createSequentialGroup()
                                 .addGroup(editRemoveThesisPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(eRThesisAuthorLabel)
                                     .addComponent(eRThesisFigLabel))
                                 .addGap(18, 18, 18)
                                 .addGroup(editRemoveThesisPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(eRThesisFigTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(eRThesisAuthorTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(154, 154, 154)
-                        .addComponent(addThesisBtn))
+                                    .addComponent(eRThesisAuthorTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(eRThesisFigTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addContainerGap(365, Short.MAX_VALUE))
                     .addGroup(editRemoveThesisPanelLayout.createSequentialGroup()
                         .addComponent(eRThesisComMemInstrucLabel)
-                        .addGap(84, 84, 84)
-                        .addComponent(editThesisBtn)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(95, 95, 95)
+                        .addGroup(editRemoveThesisPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(editThesisBtn)
+                            .addComponent(addThesisBtn))
+                        .addGap(78, 78, 78))))
         );
         editRemoveThesisPanelLayout.setVerticalGroup(
             editRemoveThesisPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -258,9 +260,9 @@ public class ThesisFrame extends Main {
                 .addComponent(addThesisBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(editThesisBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(removeThesisBtn)
-                .addGap(154, 154, 154))
+                .addGap(106, 106, 106))
         );
 
         backBtn.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 18)); // NOI18N
@@ -323,6 +325,12 @@ public class ThesisFrame extends Main {
         if (eRThesisTitleTxt.getText().isEmpty() && eRThesisDepTxt.getText().isEmpty() && eRThesisPubYearTxt.getText().isEmpty() && eRThesisDepBuildingTxt.getText().isEmpty() && eRThesisFigTxt.getText().isEmpty() && eRThesisAuthorTxt.getText().isEmpty() && eRThesisComMemTxt.getText().isEmpty()){
             JOptionPane.showMessageDialog(null,"Please fill in all parameters for adding a Thesis!");
         } else {
+            
+            List<Author> authors = super.setAuthors(eRThesisAuthorTxt.getText());
+
+            //number of authors for array size in classes
+            int numAuthors = authors.size();
+            
             //calling setComitteeMems to parse through text field for committee members and committee title of new dissertation/thesis
             List<CommitteeMember> committee = super.setCommitteeMems(eRThesisComMemTxt.getText());
 
@@ -343,6 +351,10 @@ public class ThesisFrame extends Main {
             for (int num = 0; num < numCommittee; num++){
                 //we are adding the Authors for each index in the author_list for the new book.
               justAddedThesis.committeeMembers[num] = committee.get(numCommittee - (1+num));
+            }
+            for (int num = 0; num < numAuthors; num++){
+                //we are adding the Authors for each index in the author_list for the new book.
+              justAddedThesis.author_list[num] = authors.get(numAuthors - (1+num));
             }
             
             super.addThesis(justAddedThesis);
